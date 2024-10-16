@@ -18,3 +18,8 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 MenuManager="*res://source/autoloads/menu_manager.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"

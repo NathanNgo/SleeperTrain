@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 
+const default_menu = Menus.OVERWORLD_NAVIGATION
 enum Menus {
 	MAIN,
 	OVERWORLD_NAVIGATION
@@ -14,7 +15,7 @@ var menus = {
 func _ready() -> void:
 	_add_all_as_child()
 	_hide_all()
-	transition(Menus.MAIN)
+	transition(default_menu)
 
 
 func transition(menu_name: Menus) -> void:
