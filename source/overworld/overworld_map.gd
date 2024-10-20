@@ -42,3 +42,7 @@ func _reposition_map_on_zoom(
 
 	var offset = original_mouse_position - scaled_mouse_position
 	_map_image.offset += offset
+	
+	for town_vertex in get_tree().get_nodes_in_group("town_vertex"):
+		town_vertex.position += offset
+	

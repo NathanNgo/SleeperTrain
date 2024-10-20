@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cftascm1c5rv8"]
+[gd_scene load_steps=4 format=3 uid="uid://cftascm1c5rv8"]
 
 [ext_resource type="Texture2D" uid="uid://b5wfersevhmpe" path="res://assets/maps/Fiefdom.jpg" id="1_eanog"]
 [ext_resource type="Script" path="res://source/overworld/overworld_map.gd" id="1_es02f"]
+[ext_resource type="Script" path="res://source/overworld/station_graph.gd" id="3_ifw5u"]
 
 [node name="OverworldMap" type="Node2D" node_paths=PackedStringArray("_map_image")]
 script = ExtResource("1_es02f")
@@ -11,3 +12,138 @@ _map_image = NodePath("MapImage")
 scale = Vector2(0.11263, 0.11263)
 texture = ExtResource("1_eanog")
 centered = false
+
+[node name="StationGraph" type="Node2D" parent="MapImage"]
+script = ExtResource("3_ifw5u")
+
+[node name="Porvoo" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(1997.69, 2201.9)
+
+[node name="Dusselvanta" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(541.596, 5815.5)
+
+[node name="Bremi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(337.388, 4874.37)
+
+[node name="Torintammi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(1171.98, 5122.97)
+
+[node name="Suttukartti" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(1429.46, 5762.23)
+
+[node name="Munkkilahti" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(2521.53, 5904.29)
+
+[node name="Berliini" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3533.69, 5948.68)
+
+[node name="Tresdela" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3844.45, 5194)
+
+[node name="Hampuri" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(2974.34, 4963.15)
+
+[node name="Leivikki" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(2033.21, 4519.22)
+
+[node name="Uusikaupunki" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(2601.44, 3729.02)
+
+[node name="Naantali" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(2814.53, 2459.38)
+
+[node name="Savonlinna" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3711.27, 2317.32)
+
+[node name="Vyborg" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3436.03, 1695.82)
+
+[node name="Ulvila" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(4137.44, 1322.92)
+
+[node name="Raahe" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(4998.67, 754.683)
+
+[node name="Kemijarvi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5087.45, 1447.22)
+
+[node name="Viitasaari" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5744.47, 1882.27)
+
+[node name="Haapajarvi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(6312.71, 452.81)
+
+[node name="Jamsa" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7591.23, 257.48)
+
+[node name="Jarvenpaa" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7777.68, 834.591)
+
+[node name="Hanko" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7102.9, 1331.79)
+
+[node name="Kangasala" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7511.32, 1740.21)
+
+[node name="Joensuu" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(8008.52, 2219.66)
+
+[node name="Duisakari" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5913.17, 4536.98)
+
+[node name="Ikaalinen" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(6579.06, 2024.33)
+
+[node name="Pieksamaki" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5424.84, 2521.53)
+
+[node name="Vuppertala" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3924.35, 3187.43)
+
+[node name="Placeholder" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3169.67, 3737.9)
+
+[node name="Kuulonja" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(3498.18, 4306.14)
+
+[node name="Punginkoski" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(4528.1, 4048.65)
+
+[node name="Pohku" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(4812.22, 4750.07)
+
+[node name="Hannomaa" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(4776.7, 5575.78)
+
+[node name="Nyyrimpergi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5558.02, 5362.69)
+
+[node name="Imatra" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(6419.25, 5771.11)
+
+[node name="Aanekoski" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7626.74, 5593.54)
+
+[node name="Turku" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7156.18, 4528.1)
+
+[node name="Huittinen" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(7342.63, 4164.08)
+
+[node name="Tampere" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(8088.43, 4350.53)
+
+[node name="Iisalmi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(6996.36, 3089.76)
+
+[node name="Alajarvi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(6392.61, 3098.64)
+
+[node name="Vantaa" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5460.36, 2929.95)
+
+[node name="Ylojarvi" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(5637.93, 3586.97)
+
+[node name="Eseinki" type="Node2D" parent="MapImage/StationGraph" groups=["town_vertex"]]
+position = Vector2(337.388, 4306.13)
