@@ -1,14 +1,16 @@
 extends CanvasLayer
 
 
-const default_menu = Menus.OVERWORLD_NAVIGATION
+const default_menu = Menus.MAIN
 enum Menus {
 	MAIN,
 	OVERWORLD_NAVIGATION
 }
 var menus = {
-	Menus.MAIN: preload("res://source/menus/main_menu.tscn").instantiate(),
-	Menus.OVERWORLD_NAVIGATION: preload("res://source/menus/overworld_navigation_menu.tscn").instantiate(),
+	Menus.MAIN: preload("res://source/menus/main_menu/main_menu.tscn").instantiate(),
+	Menus.OVERWORLD_NAVIGATION: preload(
+		"res://source/menus/overworld_navigation_menu/overworld_navigation_menu.tscn"
+	).instantiate(),
 }
 
 
