@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cc6n5h7po41on"]
+[gd_scene load_steps=3 format=3 uid="uid://cc6n5h7po41on"]
 
 [ext_resource type="Script" path="res://source/menus/main_menu/main_menu.gd" id="1_lgmpb"]
+[ext_resource type="Texture2D" uid="uid://b5wfersevhmpe" path="res://assets/maps/Fiefdom.jpg" id="2_746gn"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -21,3 +22,16 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Main Menu"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 0
+offset_left = 224.0
+offset_top = 208.0
+offset_right = 928.0
+offset_bottom = 552.0
+
+[node name="TextureRect" type="TextureRect" parent="SubViewportContainer"]
+layout_mode = 2
+texture = ExtResource("2_746gn")
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]

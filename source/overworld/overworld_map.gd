@@ -42,11 +42,13 @@ func _reposition_map_on_zoom(
 
 	var offset = original_mouse_position - scaled_mouse_position
 	_map_image.offset += offset
-	
-	for railway_vertex in get_tree().get_nodes_in_group("railway_vertex"):
-		railway_vertex.position += offset
 
-	for railway_edge in get_tree().get_nodes_in_group("railway_edges"):
-		railway_edge.position += offset
-
+	_resize_group("station_vertex", offset)
+	_resize_group("junction_vertex", offset)
+	_resize_group("station_areas", offset)
+	_resize_group("railway_edges", offset)
 	
+
+func _resize_group(group_name: String, offset: Vector2):
+	for group_item in get_tree().get_nodes_in_group(group_name):
+		group_item.position += offset

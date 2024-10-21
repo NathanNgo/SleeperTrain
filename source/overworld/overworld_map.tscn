@@ -1,8 +1,9 @@
-[gd_scene load_steps=28 format=3 uid="uid://cftascm1c5rv8"]
+[gd_scene load_steps=29 format=3 uid="uid://cftascm1c5rv8"]
 
 [ext_resource type="Texture2D" uid="uid://b5wfersevhmpe" path="res://assets/maps/Fiefdom.jpg" id="1_eanog"]
 [ext_resource type="Script" path="res://source/overworld/overworld_map.gd" id="1_es02f"]
 [ext_resource type="Script" path="res://source/overworld/railway_graph/railway_graph.gd" id="3_dwolx"]
+[ext_resource type="PackedScene" uid="uid://bjqrs3x2nin3m" path="res://source/overworld/railway_graph/station_vertex.tscn" id="4_6m5h3"]
 [ext_resource type="Script" path="res://source/overworld/railway_graph/railway_edge.gd" id="4_g1g8v"]
 
 [sub_resource type="Curve2D" id="Curve2D_lwxa7"]
@@ -145,227 +146,232 @@ point_count = 15
 
 [node name="OverworldMap" type="Node2D" node_paths=PackedStringArray("_map_image")]
 script = ExtResource("1_es02f")
-_map_image = NodePath("MapImage")
+_map_image = NodePath("Container/MapImage")
 
-[node name="MapImage" type="Sprite2D" parent="."]
+[node name="Container" type="Node2D" parent="."]
+
+[node name="MapImage" type="Sprite2D" parent="Container"]
 scale = Vector2(0.11263, 0.11263)
 texture = ExtResource("1_eanog")
 centered = false
 metadata/_edit_lock_ = true
 
-[node name="RailwayGraph" type="Node2D" parent="MapImage"]
+[node name="RailwayGraph" type="Node2D" parent="Container/MapImage"]
 script = ExtResource("3_dwolx")
 
-[node name="StationVextexes" type="Node2D" parent="MapImage/RailwayGraph"]
+[node name="StationVextexes" type="Node2D" parent="Container/MapImage/RailwayGraph"]
 metadata/_edit_lock_ = true
 
-[node name="Eseinki" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Eseinki" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(337.388, 4306.14)
 
-[node name="Bremi" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Bremi" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(337.388, 4865.49)
 
-[node name="Torintammi" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Torintammi" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(1171.98, 5114.09)
 
-[node name="Dusselvanta" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Dusselvanta" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(550.475, 5824.38)
 
-[node name="Leivikki" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Leivikki" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(2033.21, 4519.22)
 
-[node name="Hampuri" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Hampuri" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(2974.34, 4954.27)
 
-[node name="Kuulonja" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Kuulonja" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(3507.06, 4315.01)
 
-[node name="Punginkoski" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Punginkoski" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(4536.98, 4048.65)
 
-[node name="Placeholder" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Placeholder" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(3169.67, 3729.02)
 
-[node name="Uusikaupunki" type="Node2D" parent="MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
+[node name="Uusikaupunki" type="Node2D" parent="Container/MapImage/RailwayGraph/StationVextexes" groups=["station_vertexes"]]
 position = Vector2(2601.44, 3729.02)
 
-[node name="RailwayEdges" type="Node2D" parent="MapImage/RailwayGraph"]
+[node name="StationVertex" parent="Container/MapImage/RailwayGraph/StationVextexes" instance=ExtResource("4_6m5h3")]
+position = Vector2(2121.99, 4101.93)
+
+[node name="RailwayEdges" type="Node2D" parent="Container/MapImage/RailwayGraph"]
 metadata/_edit_lock_ = true
 
-[node name="EseinkiToJunction1" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="EseinkiToJunction1" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_lwxa7")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../StationVextexes/Eseinki")
 second_vertex = NodePath("../../JunctionVertexes/Junction1")
 
-[node name="Junction1ToTorintammi" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction1ToTorintammi" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_8rpwd")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction1")
 second_vertex = NodePath("../../StationVextexes/Torintammi")
 
-[node name="TorintammiToJunction4" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="TorintammiToJunction4" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_74soi")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../StationVextexes/Torintammi")
 second_vertex = NodePath("../../JunctionVertexes/Junction4")
 
-[node name="Junction4ToJunction2" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction4ToJunction2" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_kigps")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction4")
 second_vertex = NodePath("../../JunctionVertexes/Junction2")
 
-[node name="Junction4ToJunction1" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction4ToJunction1" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_whrdy")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction4")
 second_vertex = NodePath("../../JunctionVertexes/Junction1")
 
-[node name="Junction2ToJunction3" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction2ToJunction3" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_qah1u")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction2")
 second_vertex = NodePath("../../JunctionVertexes/Junction3")
 
-[node name="Junction3ToBremi" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction3ToBremi" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_86fhb")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction3")
 second_vertex = NodePath("../../StationVextexes/Bremi")
 
-[node name="Junction3ToDusselvanta" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction3ToDusselvanta" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_smyf2")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction3")
 second_vertex = NodePath("../../StationVextexes/Dusselvanta")
 
-[node name="Junction4ToJunction5" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction4ToJunction5" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_kiu58")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction4")
 second_vertex = NodePath("../../JunctionVertexes/Junction5")
 
-[node name="Junction5ToHampuri" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction5ToHampuri" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_b34es")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction5")
 second_vertex = NodePath("../../StationVextexes/Hampuri")
 
-[node name="Junction5ToJunction6" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction5ToJunction6" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_wvkov")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction5")
 second_vertex = NodePath("../../JunctionVertexes/Junction6")
 
-[node name="Junction6ToLeivikki" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction6ToLeivikki" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_ylo4j")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction6")
 second_vertex = NodePath("../../StationVextexes/Leivikki")
 
-[node name="Junction6ToJunction7" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction6ToJunction7" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_grf8q")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction6")
 second_vertex = NodePath("../../JunctionVertexes/Junction7")
 
-[node name="Junction7ToKuulonja" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction7ToKuulonja" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_dfys2")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction7")
 second_vertex = NodePath("../../StationVextexes/Kuulonja")
 
-[node name="KuulonjaToJunction8" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="KuulonjaToJunction8" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_51ucv")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../StationVextexes/Kuulonja")
 second_vertex = NodePath("../../JunctionVertexes/Junction8")
 
-[node name="Junction8ToPunginkoski" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction8ToPunginkoski" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_naxs8")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction8")
 second_vertex = NodePath("../../StationVextexes/Punginkoski")
 
-[node name="Junction8ToJunction9" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction8ToJunction9" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_8k6hl")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction8")
 second_vertex = NodePath("../../JunctionVertexes/Junction9")
 weight = 100.0
 
-[node name="Junction9ToJunction10" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction9ToJunction10" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_a155g")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction9")
 second_vertex = NodePath("../../JunctionVertexes/Junction10")
 
-[node name="Junction10ToJunction11" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction10ToJunction11" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_ueue2")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction10")
 second_vertex = NodePath("../../JunctionVertexes/Junction11")
 
-[node name="Junction11ToPlaceholder" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction11ToPlaceholder" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_23ggq")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction11")
 second_vertex = NodePath("../../StationVextexes/Placeholder")
 
-[node name="Junction11ToJunction12" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction11ToJunction12" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_ho2sl")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction11")
 second_vertex = NodePath("../../JunctionVertexes/Junction12")
 
-[node name="Junction12ToUusikaupunki" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction12ToUusikaupunki" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_ykpnl")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction12")
 second_vertex = NodePath("../../StationVextexes/Uusikaupunki")
 
-[node name="Junction12ToJunction7" type="Path2D" parent="MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
+[node name="Junction12ToJunction7" type="Path2D" parent="Container/MapImage/RailwayGraph/RailwayEdges" node_paths=PackedStringArray("first_vertex", "second_vertex") groups=["railway_edges"]]
 curve = SubResource("Curve2D_tsmqs")
 script = ExtResource("4_g1g8v")
 first_vertex = NodePath("../../JunctionVertexes/Junction12")
 second_vertex = NodePath("../../JunctionVertexes/Junction7")
 
-[node name="JunctionVertexes" type="Node2D" parent="MapImage/RailwayGraph"]
+[node name="JunctionVertexes" type="Node2D" parent="Container/MapImage/RailwayGraph"]
 metadata/_edit_lock_ = true
 
-[node name="Junction1" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction1" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(967.771, 5051.94)
 
-[node name="Junction2" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction2" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(887.863, 5238.39)
 
-[node name="Junction3" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction3" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(577.111, 5353.81)
 
-[node name="Junction4" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction4" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(1225.25, 5309.42)
 
-[node name="Junction5" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction5" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(2130.87, 4918.76)
 
-[node name="Junction6" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction6" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(2059.84, 4741.19)
 
-[node name="Junction7" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction7" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(2707.98, 4146.32)
 
-[node name="Junction8" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction8" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(3844.45, 4252.86)
 
-[node name="Junction9" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction9" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(3249.58, 3249.58)
 
-[node name="Junction10" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction10" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(3125.28, 3338.36)
 
-[node name="Junction11" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction11" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(3054.25, 3711.27)
 
-[node name="Junction12" type="Node2D" parent="MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
+[node name="Junction12" type="Node2D" parent="Container/MapImage/RailwayGraph/JunctionVertexes" groups=["junction_vertexes"]]
 position = Vector2(2965.46, 3773.42)
