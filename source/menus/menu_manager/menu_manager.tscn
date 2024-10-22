@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfybk2e44api1"]
+
+[ext_resource type="Script" path="res://source/menus/menu_manager/menu_manager.gd" id="1_5c18h"]
+[ext_resource type="PackedScene" uid="uid://cc6n5h7po41on" path="res://source/menus/main_menu/main_menu.tscn" id="2_p7uxg"]
+[ext_resource type="PackedScene" uid="uid://bi8r6dsx64nty" path="res://source/menus/overworld_navigation_menu/overworld_navigation_menu.tscn" id="3_dwipw"]
+
+[node name="MenuManager" type="CanvasLayer" node_paths=PackedStringArray("_main_menu", "_overworld_navigation_menu")]
+script = ExtResource("1_5c18h")
+_main_menu = NodePath("MainMenu")
+_overworld_navigation_menu = NodePath("OverworldNavigationMenu")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_p7uxg")]
+
+[node name="OverworldNavigationMenu" parent="." instance=ExtResource("3_dwipw")]
+visible = false

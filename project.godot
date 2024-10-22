@@ -17,7 +17,7 @@ config/icon="res://assets/icon.svg"
 
 [autoload]
 
-MenuManager="*res://source/autoloads/menu_manager.gd"
+Globals="*res://source/autoloads/globals.gd"
 
 [display]
 
