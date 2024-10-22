@@ -1,54 +1,33 @@
 extends Node2D
 
+@export var _camera: Camera2D
 
-@export var _map_image: Sprite2D
+const zoom_scaling_increment := 0.1
 
-const ORIGINAL_IMAGE_SCALE = 1
-const IMAGE_SCALE = 0.113
-
-
-func zoom_in(zoom_scaling_increment: float) -> void:
-	var absolute_scaling_increment = ORIGINAL_IMAGE_SCALE + zoom_scaling_increment
-	_map_image.scale.x *= absolute_scaling_increment 
-	_map_image.scale.y *= absolute_scaling_increment 
-	_reposition_map_on_zoom(_map_image.get_local_mouse_position(), zoom_scaling_increment, true)
+var inputs = {
+	ZOOM_IN = "zoom_in",
+	ZOOM_OUT = "zoom_out",
+	LEFT_MOUSE_CLICK = "left_mouse_click"
+}
+var dragging = false
 
 
-func zoom_out(zoom_scaling_increment: float) -> void:
-	var absolute_scaling_increment = ORIGINAL_IMAGE_SCALE + zoom_scaling_increment
-	_map_image.scale.x /= absolute_scaling_increment 
-	_map_image.scale.y /= absolute_scaling_increment 
-	_reposition_map_on_zoom(_map_image.get_local_mouse_position(), zoom_scaling_increment, false)
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(inputs.ZOOM_IN):
+		_camera.zoom += Vector2(zoom_scaling_increment, zoom_scaling_increment)
 
+	if event.is_action_pressed(inputs.ZOOM_OUT):
+		_camera.zoom -= Vector2(zoom_scaling_increment, zoom_scaling_increment)
 
-func move_map(relative_move_amount: Vector2) -> void:
-	_map_image.position += relative_move_amount
-
-
-func get_map_image_scale() -> Vector2:
-	return _map_image.scale
-
-
-func _reposition_map_on_zoom(
-	original_mouse_position: Vector2, zoom_scaling_increment: float, is_zooming_in: bool = true
-) -> void:
-	var scaled_mouse_position: Vector2
-	var absolute_scaling_increment = ORIGINAL_IMAGE_SCALE + zoom_scaling_increment
-
-	if is_zooming_in:
-		scaled_mouse_position = original_mouse_position * (absolute_scaling_increment)
-	else:
-		scaled_mouse_position = original_mouse_position / (absolute_scaling_increment)
-
-	var offset = original_mouse_position - scaled_mouse_position
-	_map_image.offset += offset
-
-	_resize_group("station_vertex", offset)
-	_resize_group("junction_vertex", offset)
-	_resize_group("station_areas", offset)
-	_resize_group("railway_edges", offset)
+	if event.is_action_pressed(inputs.LEFT_MOUSE_CLICK):
+		dragging = true
 	
+	if event.is_action_released(inputs.LEFT_MOUSE_CLICK):
+		dragging = false
 
-func _resize_group(group_name: String, offset: Vector2):
-	for group_item in get_tree().get_nodes_in_group(group_name):
-		group_item.position += offset
+	if dragging and event is InputEventMouseMotion:
+		_move_camera(event.relative)
+
+
+func _move_camera(relative_move_amount: Vector2) -> void:
+	_camera.position -= relative_move_amount

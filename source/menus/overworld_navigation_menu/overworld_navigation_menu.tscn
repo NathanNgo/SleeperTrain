@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi8r6dsx64nty"]
+[gd_scene load_steps=3 format=3 uid="uid://bi8r6dsx64nty"]
 
-[ext_resource type="Script" path="res://source/menus/overworld_navigation_menu/map_clipping.gd" id="1_42bgb"]
 [ext_resource type="Script" path="res://source/menus/overworld_navigation_menu/overworld_navigation_menu.gd" id="1_h6ea7"]
-[ext_resource type="PackedScene" uid="uid://cftascm1c5rv8" path="res://source/overworld/overworld_map.tscn" id="2_7sefv"]
+[ext_resource type="PackedScene" uid="uid://b5nue1m4semk6" path="res://source/overworld/overworld_map.tscn" id="2_7sefv"]
 
 [node name="OverworldNavigationMenu" type="Control"]
 layout_mode = 3
@@ -13,28 +12,33 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_h6ea7")
-
-[node name="MapClipping" type="Control" parent="." node_paths=PackedStringArray("_map")]
-clip_contents = true
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.494
-anchor_right = 0.5
-anchor_bottom = 0.494
-offset_left = -448.0
-offset_top = -256.112
-offset_right = 448.0
-offset_bottom = 255.888
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_42bgb")
-_map = NodePath("OverworldMap")
-
-[node name="OverworldMap" parent="MapClipping" instance=ExtResource("2_7sefv")]
+metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "Overworld Navigation Menu"
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.0
+offset_top = -256.0
+offset_right = 512.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(1024, 512)
+render_target_update_mode = 4
+
+[node name="OverworldMap" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_7sefv")]
+position = Vector2(64, 64)
