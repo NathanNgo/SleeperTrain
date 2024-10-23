@@ -23,6 +23,10 @@ func transition(menu: Globals.Menus) -> void:
 	menus[menu].show()
 
 
+func get_menu(menu: Globals.Menus) -> ManagedMenu:
+	return menus[menu]
+
+
 func _setup_all() -> void:
 	for key in menus:
 		menus[key].transition.connect(_on_transition)

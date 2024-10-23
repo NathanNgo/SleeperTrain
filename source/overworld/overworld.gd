@@ -30,4 +30,4 @@ func _input(event: InputEvent) -> void:
 
 
 func _move_camera(relative_move_amount: Vector2) -> void:
-	_camera.position -= relative_move_amount
+	_camera.position -= relative_move_amount / _camera.zoom.x

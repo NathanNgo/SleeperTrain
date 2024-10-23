@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bi8r6dsx64nty"]
 
 [ext_resource type="Script" path="res://source/menus/overworld_navigation_menu/overworld_navigation_menu.gd" id="1_h6ea7"]
-[ext_resource type="PackedScene" uid="uid://b5nue1m4semk6" path="res://source/overworld/overworld_map.tscn" id="2_7sefv"]
+[ext_resource type="PackedScene" uid="uid://b5nue1m4semk6" path="res://source/overworld/overworld.tscn" id="2_7sefv"]
 
 [node name="OverworldNavigationMenu" type="Control"]
 layout_mode = 3
