@@ -1,2 +1,2 @@
 # Sleeper Train
-A game about managing a luxury sleeper train.
+A convoy game about managing a luxury sleeper train.
