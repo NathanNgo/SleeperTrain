@@ -29,12 +29,12 @@ func _estimate_cost(from_id: int, to_id: int) -> float:
 	return cost
 
 
-func connect_points_with_edge(id: int, to_id: int, edge_weight: float, bidirectional: bool = true) -> void:
+func connect_points_with_edge_weight(id: int, to_id: int, edge_weight: float, bidirectional: bool = true) -> void:
 	edge_weights[[id, to_id]] = edge_weight
 	super.connect_points(id, to_id, bidirectional)
 
 
-func disconnect_points_with_edge(id: int, to_id: int, bidirectional: bool = true) -> void:
+func disconnect_points_with_edge_weight(id: int, to_id: int, bidirectional: bool = true) -> void:
 	if [id, to_id] in edge_weights:
 		edge_weights.erase([id, to_id])
 	else:

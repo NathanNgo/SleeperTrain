@@ -1,12 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5nue1m4semk6"]
 
 [ext_resource type="Script" path="res://source/overworld/overworld.gd" id="1_suyy2"]
-[ext_resource type="PackedScene" uid="uid://b5kiwo6a8skht" path="res://source/overworld/overworld_map/overworld_map.tscn" id="2_t8xm1"]
+[ext_resource type="PackedScene" uid="uid://bhpf5hs87h706" path="res://source/overworld/levels/level_small/level_small.tscn" id="2_6c2vs"]
 
-[node name="Overworld" type="Node2D" node_paths=PackedStringArray("_camera")]
+[node name="Overworld" type="Node2D" node_paths=PackedStringArray("_camera", "level")]
 script = ExtResource("1_suyy2")
 _camera = NodePath("Camera2D")
-
-[node name="OverworldMap" parent="." instance=ExtResource("2_t8xm1")]
+level = NodePath("LevelSmall")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="LevelSmall" parent="." instance=ExtResource("2_6c2vs")]

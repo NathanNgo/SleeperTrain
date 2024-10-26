@@ -1,0 +1,158 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhpf5hs87h706"]
+
+[ext_resource type="Script" path="res://source/overworld/levels/level.gd" id="1_kvkos"]
+[ext_resource type="PackedScene" uid="uid://b5kiwo6a8skht" path="res://source/overworld/levels/level_small/level_small_map.tscn" id="1_ueqyx"]
+[ext_resource type="PackedScene" uid="uid://bixcdsp2pjd16" path="res://source/grid_railway_graph/grid_railway_vertex.tscn" id="2_mcr6l"]
+[ext_resource type="PackedScene" uid="uid://6x27i7g382dh" path="res://source/grid_railway_graph/grid_railway_edge.tscn" id="3_fhjcy"]
+
+[node name="LevelSmall" type="Node2D" node_paths=PackedStringArray("_grid_railway_vertex_container", "_grid_railway_edge_container", "map")]
+script = ExtResource("1_kvkos")
+_grid_railway_vertex_container = NodePath("GridRailwayVertexContainer")
+_grid_railway_edge_container = NodePath("GridRailwayEdgeContainer")
+map = NodePath("LevelSmallMap")
+
+[node name="LevelSmallMap" parent="." instance=ExtResource("1_ueqyx")]
+texture_filter = 2
+
+[node name="GridRailwayVertexContainer" type="Node2D" parent="."]
+
+[node name="FirstTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-296, -296)
+connections = null
+vertex_name = "First Town"
+
+[node name="SecondTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(168, -184)
+connections = null
+vertex_name = "Second Town"
+
+[node name="ThirdTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-104, 24)
+connections = null
+vertex_name = "Third Town"
+
+[node name="FourthTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(120, 8)
+connections = null
+vertex_name = "Fourth Town"
+
+[node name="FifthTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-296, 296)
+connections = null
+vertex_name = "Fifth Town"
+
+[node name="SixthTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(248, 280)
+connections = null
+vertex_name = "Sixth Town"
+
+[node name="SeventhTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-168, -200)
+connections = null
+vertex_name = "Seventh Town"
+
+[node name="Junction1" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-184, -120)
+connections = null
+vertex_name = "Junction 1"
+
+[node name="Junction2" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-40, -120)
+connections = null
+vertex_name = "Junction 2"
+
+[node name="Junction3" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(152, -120)
+connections = null
+vertex_name = "Junction 3"
+
+[node name="Junction4" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-24, -56)
+connections = null
+vertex_name = "Junction 4"
+
+[node name="Junction5" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(216, 8)
+connections = null
+vertex_name = "Junction 5"
+
+[node name="Junction6" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-104, 104)
+connections = null
+vertex_name = "Junction 6"
+
+[node name="Junction7" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(200, 184)
+connections = null
+vertex_name = "Junction 7"
+
+[node name="Junction8" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
+position = Vector2(-104, 216)
+connections = null
+vertex_name = "Junction 8"
+
+[node name="GridRailwayEdgeContainer" type="Node2D" parent="."]
+
+[node name="GridRailwayEdge" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-296, -296)
+points = PackedVector2Array(0, 0, 0, 64, 112, 64, 112, 80, 128, 96)
+
+[node name="GridRailwayEdge2" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-168, -200)
+points = PackedVector2Array(0, 0, -16, 16, -16, 80)
+
+[node name="GridRailwayEdge3" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-184, -120)
+points = PackedVector2Array(0, 0, 0, 160, -16, 160, -16, 208, 16, 208, 16, 224, 80, 224)
+
+[node name="GridRailwayEdge4" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(0, 0, 0, -80)
+
+[node name="GridRailwayEdge5" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(0, 0, 0, 112)
+
+[node name="GridRailwayEdge6" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(0, 112, -96, 112, -96, 80, -192, 80, -192, 192)
+
+[node name="GridRailwayEdge7" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(0, 112, 128, 112, 128, 80, 304, 80)
+
+[node name="GridRailwayEdge8" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(304, 80, 352, 80, 352, 176)
+
+[node name="GridRailwayEdge9" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(304, 80, 304, 0, 320, 0, 320, -96)
+
+[node name="GridRailwayEdge10" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(320, -96, 224, -96)
+
+[node name="GridRailwayEdge11" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(224, -96, 176, -96, 176, -160, 80, -160)
+
+[node name="GridRailwayEdge12" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(80, -160, 80, -144, 64, -144, 64, -96, 16, -96, 0, -80)
+
+[node name="GridRailwayEdge13" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(80, -160, 80, -192, 64, -192, 64, -224)
+
+[node name="GridRailwayEdge14" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(64, -224, 16, -224, 16, -240, -48, -240, -48, -224, -80, -224)
+
+[node name="GridRailwayEdge15" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(64, -224, 256, -224, 256, -240, 272, -240, 272, -288)
+
+[node name="GridRailwayEdge16" parent="GridRailwayEdgeContainer" instance=ExtResource("3_fhjcy")]
+position = Vector2(-104, 104)
+points = PackedVector2Array(256, -224, 256, -208, 304, -208, 304, -144, 320, -144, 320, -96)

@@ -1,14 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfvvce0x58vns"]
+[gd_scene load_steps=3 format=3 uid="uid://bfvvce0x58vns"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_0oi3d"]
 [ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/menu_manager.tscn" id="1_0rlfs"]
-[ext_resource type="PackedScene" uid="uid://cujgddvlpd40u" path="res://source/managers/overworld_manager/overworld_manager.tscn" id="3_eomhq"]
-[ext_resource type="Script" path="res://source/managers/overworld_manager/overworld_manager.gd" id="4_sir5r"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node" node_paths=PackedStringArray("_menu_manager")]
 script = ExtResource("1_0oi3d")
+_menu_manager = NodePath("MenuManager")
 
 [node name="MenuManager" parent="." instance=ExtResource("1_0rlfs")]
-
-[node name="OverworldManager" parent="." instance=ExtResource("3_eomhq")]
-script = ExtResource("4_sir5r")
