@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx5ptdx7rwa0"]
+
+[ext_resource type="Script" path="res://source/overworld/levels/location_selection.gd" id="1_hfj1m"]
+
+[node name="LocationSelection" type="TextureButton"]
+script = ExtResource("1_hfj1m")
