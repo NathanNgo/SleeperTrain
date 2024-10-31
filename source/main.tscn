@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_0oi3d"]
 [ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/menu_manager.tscn" id="1_0rlfs"]
-[ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/train_view/train_view.tscn" id="3_vr70b"]
+[ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/world/world.tscn" id="3_vr70b"]
 
 [node name="Main" type="Node" node_paths=PackedStringArray("_menu_manager")]
 script = ExtResource("1_0oi3d")
@@ -10,4 +10,4 @@ _menu_manager = NodePath("MenuManager")
 
 [node name="MenuManager" parent="." instance=ExtResource("1_0rlfs")]
 
-[node name="TrainView" parent="." instance=ExtResource("3_vr70b")]
+[node name="World" parent="." instance=ExtResource("3_vr70b")]
