@@ -4,33 +4,36 @@
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/background/background.tscn" id="1_uiuku"]
 [ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/world_objects/train_carriage_basic/train_cabin_basic.tscn" id="2_tlfh4"]
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" node_paths=PackedStringArray("_background")]
 script = ExtResource("1_bljk7")
+_background = NodePath("BackgroundPivot/SubViewportContainer/SubViewport/Background")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="BackgroundPivot" type="Node2D" parent="."]
+position = Vector2(960, 544)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="BackgroundPivot"]
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 504.0
-offset_top = 96.0
-offset_right = 2424.0
-offset_bottom = 1184.0
+offset_left = -960.0
+offset_top = -544.0
+offset_right = 960.0
+offset_bottom = 544.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="BackgroundPivot/SubViewportContainer"]
 handle_input_locally = false
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
-[node name="Background" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_uiuku")]
+[node name="Background" parent="BackgroundPivot/SubViewportContainer/SubViewport" instance=ExtResource("1_uiuku")]
 
 [node name="TrainCabinBasic" parent="." instance=ExtResource("2_tlfh4")]
-z_index = 1
-position = Vector2(1480, 1008)
+position = Vector2(960, 848)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(1464, 640)
+position = Vector2(960, 544)
