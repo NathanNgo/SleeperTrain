@@ -8,6 +8,10 @@ extends CanvasLayer
 	set(menu):
 		menus[Globals.Menus.OVERWORLD_NAVIGATION_MENU] = menu
 
+@export var _how_to_play_menu: ManagedMenu:
+	set(menu):
+		menus[Globals.Menus.HOW_TO_PLAY_MENU] = menu
+
 var menus = {}
 const default_menu = Globals.Menus.MAIN_MENU
 

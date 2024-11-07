@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/background/background.tscn" id="1_uiuku"]
-[ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/world_objects/train_carriage_basic/train_cabin_basic.tscn" id="2_tlfh4"]
+[ext_resource type="PackedScene" uid="uid://vt0qspgdidmj" path="res://source/world/world_objects/train/train.tscn" id="3_eldhk"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("_background", "_camera", "_background_pivot")]
 script = ExtResource("1_bljk7")
@@ -33,8 +33,8 @@ render_target_update_mode = 4
 
 [node name="Background" parent="BackgroundPivot/SubViewportContainer/SubViewport" instance=ExtResource("1_uiuku")]
 
-[node name="TrainCabinBasic" parent="." instance=ExtResource("2_tlfh4")]
-position = Vector2(960, 848)
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 544)
+
+[node name="Train" parent="." instance=ExtResource("3_eldhk")]
+position = Vector2(960, 840)
