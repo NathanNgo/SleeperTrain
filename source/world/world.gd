@@ -25,10 +25,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera.position.y += CAMERA_ZOOM_OFFSET
 		_camera.zoom *= Vector2.ONE * CAMERA_ZOOM_INCREMENT
 		_background_pivot.scale /= Vector2.ONE * CAMERA_ZOOM_INCREMENT
-		_background.show_big_layer(true)
+		_background.show_big_layer()
 
 	if event.is_action_pressed("zoom_out") and _camera.zoom.x > MIN_CAMERA_ZOOM:
 		_camera.position.y -= CAMERA_ZOOM_OFFSET
 		_camera.zoom /= Vector2.ONE * CAMERA_ZOOM_INCREMENT
 		_background_pivot.scale *= Vector2.ONE * CAMERA_ZOOM_INCREMENT
-		_background.show_big_layer(false)
+		_background.hide_big_layer()

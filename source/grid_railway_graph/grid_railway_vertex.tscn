@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bixcdsp2pjd16"]
+[gd_scene load_steps=3 format=3 uid="uid://bixcdsp2pjd16"]
 
 [ext_resource type="Script" path="res://source/grid_railway_graph/grid_railway_vertex.gd" id="1_3ff77"]
+[ext_resource type="PackedScene" uid="uid://c58sr4duma0r0" path="res://source/characters/passenger/passenger.tscn" id="2_mr0yq"]
 
 [node name="GridRailwayVertex" type="Node2D"]
 script = ExtResource("1_3ff77")
+available_characters = Array[PackedScene]([ExtResource("2_mr0yq")])

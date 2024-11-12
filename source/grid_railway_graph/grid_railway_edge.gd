@@ -12,4 +12,5 @@ var edge_points: Array[Vector2] = []
 
 func _ready() -> void:
     for point in points:
+        # TODO: use global_position instead of adding position to point co-ordinates.
         edge_points.append(point + position)

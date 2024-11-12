@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://50hbrfsqyer4"]
+
+[ext_resource type="Script" path="res://source/menus/train_management_menu/train_management_menu.gd" id="1_if7d0"]
+
+[node name="TrainManagementMenu" type="Control" node_paths=PackedStringArray("_add_carriage_button", "_add_short_carriage_button", "_remove_carriage_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_if7d0")
+_add_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/AddCarriageButton")
+_add_short_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/AddShortCarriageButton2")
+_remove_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/RemoveCarraigeButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="AddCarriageButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add Carriage"
+
+[node name="AddShortCarriageButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add Short Carriage"
+
+[node name="RemoveCarraigeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Remove Carriage"

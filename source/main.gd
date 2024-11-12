@@ -32,7 +32,7 @@ func _setup_graph() -> void:
 	_current_vertex = _graph.get_vertex_by_name("First Town")
 
 
-func _on_town_selection_pressed(vertex_name: String):
+func _on_town_selection_pressed(vertex_name: String) -> void:
 	if _overworld_navigation_menu.overworld.train_moving:
 		return
 
