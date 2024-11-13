@@ -5,21 +5,10 @@ class_name GridRailwayVertex
 # Array[Array[Vector2]]
 @export var connections = []
 @export var vertex_name: String
-@export var available_characters: Array[PackedScene]
+@export var available_character_ids: Array[int]
+@export var vertex_type: Globals.VertexType
 
 @onready var id := position
-
-var characters: Array[Character] = []
-
-const MAX_CHARACTERS := 10
-const MIN_CHARACTERS := 1
-
-
-func _ready() -> void:
-	for count in range(randi_range(MIN_CHARACTERS, MAX_CHARACTERS)):
-		var selected_character: Character = available_characters.pick_random().instantiate()
-		add_child(selected_character)
-		characters.append(selected_character)
 
 
 func add_connection(connection: Array[Vector2]) -> void:

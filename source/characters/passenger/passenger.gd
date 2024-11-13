@@ -1,5 +1,5 @@
-extends Character
+extends CharacterBody2D
 
 
 func _ready() -> void:
-	super._ready()
+	pass

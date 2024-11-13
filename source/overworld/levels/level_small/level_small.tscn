@@ -49,34 +49,42 @@ vertex_name = "Seventh Town"
 [node name="Junction1" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(-184, -120)
 vertex_name = "Junction 1"
+vertex_type = 1
 
 [node name="Junction2" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(-40, -120)
 vertex_name = "Junction 2"
+vertex_type = 1
 
 [node name="Junction3" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(152, -120)
 vertex_name = "Junction 3"
+vertex_type = 1
 
 [node name="Junction4" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(-24, -56)
 vertex_name = "Junction 4"
+vertex_type = 1
 
 [node name="Junction5" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(216, 8)
 vertex_name = "Junction 5"
+vertex_type = 1
 
 [node name="Junction6" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(-104, 104)
 vertex_name = "Junction 6"
+vertex_type = 1
 
 [node name="Junction7" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(200, 184)
 vertex_name = "Junction 7"
+vertex_type = 1
 
 [node name="Junction8" parent="GridRailwayVertexContainer" instance=ExtResource("2_mcr6l")]
 position = Vector2(-104, 216)
 vertex_name = "Junction 8"
+vertex_type = 1
 
 [node name="GridRailwayEdgeContainer" type="Node2D" parent="."]
 

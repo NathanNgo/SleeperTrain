@@ -8,3 +8,7 @@ enum Menus {
 }
 const FIRST_VERTEX_ID_IN_EDGE_ID := 0
 const SECOND_VERTEX_ID_IN_EDGE_ID := 1
+enum VertexType {
+	TOWN,
+	JUNCTION
+}

@@ -6,6 +6,12 @@ extends Node
 var _graph: GridRailwayGraph
 var _current_vertex: GridRailwayVertex
 
+const MAX_CHARACTERS := 10
+const MIN_CHARACTERS := 1
+const MIN_HUNGER := 0
+const MAX_HUNGER := 100
+const DEFAULT_SATISFACTION := 100
+
 @onready var _overworld_navigation_menu: ManagedMenu = _menu_manager.get_menu(Globals.Menus.OVERWORLD_NAVIGATION_MENU) 
 
 
@@ -26,6 +32,9 @@ func _setup_graph() -> void:
 	for vertex in vertexes:
 		_graph.add_vertex(vertex)
 
+		if vertex.vertex_type == Globals.VertexType.TOWN:
+			vertex.available_character_ids = _generate_characters()
+
 	for edge in edges:
 		_graph.add_edge(edge)
 
@@ -43,3 +52,13 @@ func _on_town_selection_pressed(vertex_name: String) -> void:
 	_overworld_navigation_menu.overworld.move_train(full_path, 5)
 	_current_vertex = destination_vertex
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
+
+
+func _generate_characters() -> Array[int]:
+	var characters: Array[int] = []
+
+	for count in range(randi_range(MIN_CHARACTERS, MAX_CHARACTERS)):
+		var generated_character: Character = Character.new(randi_range(MIN_HUNGER, MAX_HUNGER), DEFAULT_SATISFACTION)
+		characters.append(generated_character.id)
+
+	return characters

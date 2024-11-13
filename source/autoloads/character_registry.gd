@@ -5,7 +5,7 @@ var registry = {}
 static var total_characters = 0
 
 
-func register(character: Variant) -> void:
-	character.id = total_characters
+func register(character: Variant) -> int:
 	total_characters += 1
-	registry[character.id] = character
+	registry[total_characters] = character
+	return total_characters
