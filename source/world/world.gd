@@ -4,6 +4,7 @@ extends Node2D
 @export var _background: ParallaxBackground
 @export var _camera: Camera2D
 @export var _background_pivot: Node2D
+@export var train_pivot: Node2D
 
 const CAMERA_PAN_SPEED = 5
 const CAMERA_ZOOM_INCREMENT = 2

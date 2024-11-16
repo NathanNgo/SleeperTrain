@@ -2,6 +2,10 @@ extends Node
 
 
 @export var _menu_manager: CanvasLayer
+@export var _train_manager: Node
+@export var _world: Node2D
+
+@export var _passenger: PackedScene
 
 var _graph: GridRailwayGraph
 var _current_vertex: GridRailwayVertex
@@ -12,16 +16,19 @@ const MIN_HUNGER := 0
 const MAX_HUNGER := 100
 const DEFAULT_SATISFACTION := 100
 
-@onready var _overworld_navigation_menu: ManagedMenu = _menu_manager.get_menu(Globals.Menus.OVERWORLD_NAVIGATION_MENU) 
+@onready var _overworld_navigation_menu: ManagedMenu = _menu_manager.get_menu(
+	Globals.Menus.OVERWORLD_NAVIGATION_MENU
+) 
+@onready var _passenger_management_menu: ManagedMenu = _menu_manager.get_menu(
+	Globals.Menus.PASSENGER_MANAGEMENT_MENU
+) 
 
 
 func _ready() -> void:
 	_setup_graph()
-	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
-	
-	for town_selection in _overworld_navigation_menu.overworld.level.town_selections:
-		town_selection.pressed.connect(_on_town_selection_pressed.bind(town_selection.vertex_name))
-
+	_setup_overworld_navigation_menu()
+	_setup_train_manager()
+	_populate_passenger_management_menu()
 
 func _setup_graph() -> void:
 	var edges = _overworld_navigation_menu.overworld.level.grid_railway_edges
@@ -41,10 +48,21 @@ func _setup_graph() -> void:
 	_current_vertex = _graph.get_vertex_by_name("First Town")
 
 
+func _setup_train_manager() -> void:
+	_train_manager.train_pivot = _world.train_pivot
+	_train_manager.add_carriage_at(0, Globals.TrainCarriageType.BASIC)
+
+
+func _setup_overworld_navigation_menu() -> void:
+	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
+	
+	for town_selection in _overworld_navigation_menu.overworld.level.town_selections:
+		town_selection.pressed.connect(_on_town_selection_pressed.bind(town_selection.vertex_name))
+
+
 func _on_town_selection_pressed(vertex_name: String) -> void:
 	if _overworld_navigation_menu.overworld.train_moving:
 		return
-
 
 	var destination_vertex := _graph.get_vertex_by_name(vertex_name)
 	var full_path = _graph.get_full_path(_current_vertex.id, destination_vertex.id)
@@ -53,12 +71,23 @@ func _on_town_selection_pressed(vertex_name: String) -> void:
 	_current_vertex = destination_vertex
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
 
+	_populate_passenger_management_menu()
+
 
 func _generate_characters() -> Array[int]:
 	var characters: Array[int] = []
 
 	for count in range(randi_range(MIN_CHARACTERS, MAX_CHARACTERS)):
-		var generated_character: Character = Character.new(randi_range(MIN_HUNGER, MAX_HUNGER), DEFAULT_SATISFACTION)
+		var hunger = randi_range(MIN_HUNGER, MAX_HUNGER)
+		var generated_character: CharacterData = CharacterData.new(
+			"Jane", _passenger, hunger, DEFAULT_SATISFACTION
+		)
 		characters.append(generated_character.id)
 
 	return characters
+
+
+func _populate_passenger_management_menu() -> void:
+	_passenger_management_menu.set_available_character_list(
+		_current_vertex.available_character_ids
+	)

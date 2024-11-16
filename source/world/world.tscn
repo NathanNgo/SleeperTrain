@@ -1,15 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=3 format=3 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/background/background.tscn" id="1_uiuku"]
-[ext_resource type="PackedScene" uid="uid://vt0qspgdidmj" path="res://source/managers/train_manager/train_manager.tscn" id="3_eldhk"]
-[ext_resource type="PackedScene" uid="uid://c58sr4duma0r0" path="res://source/characters/passenger/passenger.tscn" id="4_ougoy"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("_background", "_camera", "_background_pivot")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("_background", "_camera", "_background_pivot", "train_pivot")]
 script = ExtResource("1_bljk7")
 _background = NodePath("BackgroundPivot/SubViewportContainer/SubViewport/Background")
 _camera = NodePath("Camera2D")
 _background_pivot = NodePath("BackgroundPivot")
+train_pivot = NodePath("TrainPivot")
 
 [node name="BackgroundPivot" type="Node2D" parent="."]
 position = Vector2(960, 544)
@@ -37,8 +36,5 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 544)
 
-[node name="TrainManager" parent="." instance=ExtResource("3_eldhk")]
-position = Vector2(960, 840)
-
-[node name="Passenger" parent="." instance=ExtResource("4_ougoy")]
-position = Vector2(960, 840)
+[node name="TrainPivot" type="Node2D" parent="."]
+position = Vector2(960, 888)
