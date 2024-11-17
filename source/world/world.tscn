@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/background/background.tscn" id="1_uiuku"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("_background", "_camera", "_background_pivot", "train_pivot")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("_background", "_camera", "_background_pivot", "train_container", "character_container")]
 script = ExtResource("1_bljk7")
 _background = NodePath("BackgroundPivot/SubViewportContainer/SubViewport/Background")
 _camera = NodePath("Camera2D")
 _background_pivot = NodePath("BackgroundPivot")
-train_pivot = NodePath("TrainPivot")
+train_container = NodePath("TrainContainer")
+character_container = NodePath("CharacterContainer")
 
 [node name="BackgroundPivot" type="Node2D" parent="."]
 position = Vector2(960, 544)
@@ -36,5 +37,8 @@ render_target_update_mode = 4
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 544)
 
-[node name="TrainPivot" type="Node2D" parent="."]
+[node name="TrainContainer" type="Node2D" parent="."]
+position = Vector2(960, 888)
+
+[node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 888)

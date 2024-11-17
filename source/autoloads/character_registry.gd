@@ -11,8 +11,12 @@ func register(character_data: CharacterData) -> int:
 	return total_characters
 
 
-func get_world_representation(id: int) -> CharacterWorldRepresentation:
+func get_character_data(id: int) -> CharacterData:
+	return registry[id]
+
+
+func get_world_representation(id: int) -> CharacterBody2D:
 	var character_data: CharacterData = registry[id]
-	var character_world_representation: CharacterWorldRepresentation = character_data.world_representation.instantiate()
+	var character_world_representation: CharacterBody2D = character_data.world_representation.instantiate()
 	character_world_representation.character_data = character_data
 	return character_world_representation

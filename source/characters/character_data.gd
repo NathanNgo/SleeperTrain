@@ -3,16 +3,24 @@ extends RefCounted
 class_name CharacterData
 
 var id: int
-var name: String
+var character_name: String
 var satisfaction: int
 var hunger: int
 var world_representation: PackedScene
-var position: Vector2
+var menu_image: Resource
+var world_position: Vector2
 
 
-func _init(name_: String, world_representation_: PackedScene, hunger_: int = 0, satisfaction_: int = 0) -> void:
+func _init(
+	character_name_: String,
+	menu_image_: Resource,
+	world_representation_: PackedScene,
+	hunger_: int = 0,
+	satisfaction_: int = 0
+) -> void:
 	self.id = CharacterRegistry.register(self)
-	self.name = name_
+	self.character_name = character_name_
+	self.menu_image = menu_image_
 	self.satisfaction = satisfaction_
 	self.hunger = hunger_
 	self.world_representation = world_representation_
