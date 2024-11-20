@@ -16,6 +16,10 @@ extends CanvasLayer
 	set(menu):
 		menus[Globals.Menus.TRAIN_MANAGEMENT_MENU] = menu
 
+@export var _passenger_management_menu: ManagedMenu:
+	set(menu):
+		menus[Globals.Menus.PASSENGER_MANAGEMENT_MENU] = menu
+
 var menus = {}
 var menu_open = false
 

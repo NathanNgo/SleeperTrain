@@ -1,13 +1,15 @@
-extends Node2D
+extends Node
 
+signal add_carriage(carriage: Node2D)
 
 @export var _train_carriage_scene: PackedScene
 @export var _train_carriage_short_scene: PackedScene
-@export var _train: Node2D
 
-# Index 0 will always be the back of the train. len(train_layout) - 1 will always be the front of the train.
+# Index 0 will always be the back of the train. len(train_layout) - 1 will always
+# be the front of the train.
 var train_layout: Array[Node2D] = []
-
+# Dict[int, int]
+var character_id_to_carriage_id_mapping = {}
 
 const DEFAULT_CARRIAGE_AMOUNT := 1
 const CARRIAGE_WIDTH_MULTIPLIER := 0.5
@@ -21,40 +23,44 @@ func _ready() -> void:
 	SignalBus.add_train_carriage_at_back.connect(_on_add_train_carriage_at_back)
 	SignalBus.remove_train_carriage_at_back.connect(_on_remove_train_carriage_at_back)
 
-	if len(train_layout) < DEFAULT_CARRIAGE_AMOUNT:
-		_add_carriage_at(0, "basic")
-
 
 func _organize_train() -> void:
 	# We reverse the array to easily iterate from the front of the train to the back.
-	var copy_train_layout = train_layout.duplicate()
+	var copy_train_layout := train_layout.duplicate()
 	copy_train_layout.reverse()
 
-	var initial_carriage_length = copy_train_layout[0].train_carriage_length if copy_train_layout.size() > 0 else 0.0
-	var current_train_length = 0
+	var initial_carriage_length: float = (
+		copy_train_layout[0].train_carriage_length if copy_train_layout.size() > 0 else 0.0
+	)
+	var current_train_length := 0.0
 
 	for train_carriage in copy_train_layout:
-		var offset = current_train_length + CARRIAGE_WIDTH_MULTIPLIER * (train_carriage.train_carriage_length - initial_carriage_length)
+		var offset = (
+			current_train_length + CARRIAGE_WIDTH_MULTIPLIER *
+			(train_carriage.train_carriage_length - initial_carriage_length)
+		)
 
 		train_carriage.position.x = -offset
 		current_train_length += train_carriage.train_carriage_length
 
 
-func _add_carriage_at(location: int, type: String) -> void:
+func add_carriage_at(location: int, train_carriage_type: Globals.TrainCarriageType) -> void:
 	# TODO: Do this properly. Also, rename "type"
 	var train_carriage: Node2D
-	if type == "basic":
-		train_carriage = _train_carriage_scene.instantiate()
-	elif type == "short":
-		train_carriage = _train_carriage_short_scene.instantiate()
 
-	_train.add_child(train_carriage)
+	match train_carriage_type:
+		Globals.TrainCarriageType.BASIC:
+			train_carriage = _train_carriage_scene.instantiate()
+		Globals.TrainCarriageType.SHORT:
+			train_carriage = _train_carriage_short_scene.instantiate()
+
+	add_carriage.emit(train_carriage)
 
 	_push_at(location, train_carriage)
 	_organize_train()
 
 
-func _remove_carriage_at(location: int) -> void:
+func remove_carriage_at(location: int) -> void:
 	if location >= len(train_layout):
 		return
 
@@ -64,28 +70,47 @@ func _remove_carriage_at(location: int) -> void:
 	_organize_train()
 
 
-func _on_add_train_carriage_at(location: int, type: String) -> void:
-	_add_carriage_at(location, type)
+func add_character_to_carriage(character_id: int, carriage_id: int) -> void:
+	character_id_to_carriage_id_mapping[character_id] = carriage_id
+
+
+func remove_character(character_id: int) -> void:
+	character_id_to_carriage_id_mapping.erase(character_id)
+
+
+func remove_all_characters() -> void:
+	character_id_to_carriage_id_mapping.clear()
+
+
+func move_character_to_carriage(character_id: int, carriage_id: int) -> void:
+	remove_character(character_id)
+	add_character_to_carriage(character_id, carriage_id)
+
+
+func _on_add_train_carriage_at(
+	location: int, train_carriage_type: Globals.TrainCarriageType
+) -> void:
+	add_carriage_at(location, train_carriage_type)
 
 
 func _on_remove_train_carriage_at(location: int) -> void:
-	_remove_carriage_at(location)
+	remove_carriage_at(location)
 
 
-func _on_add_train_carriage_at_front(type: String) -> void:
-	_add_carriage_at(len(train_layout), type)
+func _on_add_train_carriage_at_front(train_carriage_type: Globals.TrainCarriageType) -> void:
+	add_carriage_at(len(train_layout), train_carriage_type)
 
 
 func _on_remove_train_carriage_at_front() -> void:
-	_remove_carriage_at(-1)
+	remove_carriage_at(-1)
 
 
-func _on_add_train_carriage_at_back(type: String) -> void:
-	_add_carriage_at(0, type)
+func _on_add_train_carriage_at_back(train_carriage_type: Globals.TrainCarriageType) -> void:
+	add_carriage_at(0, train_carriage_type)
 
 
 func _on_remove_train_carriage_at_back() -> void:
-	_remove_carriage_at(0)
+	remove_carriage_at(0)
 
 
 func _push_at(location: int, item: Node2D) -> void:
