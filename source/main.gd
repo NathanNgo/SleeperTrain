@@ -9,9 +9,11 @@ extends Node
 
 var _graph: GridRailwayGraph
 var _current_vertex: GridRailwayVertex
+var _destination_vertex: GridRailwayVertex
+var _train_arrived := true
 
-const MAX_CHARACTERS := 3
-const MIN_CHARACTERS := 2
+const MAX_CHARACTERS := 20
+const MIN_CHARACTERS := 18
 const MIN_HUNGER := 0
 const MAX_HUNGER := 100
 const DEFAULT_SATISFACTION := 100
@@ -61,6 +63,7 @@ func _setup_train_manager() -> void:
 
 func _setup_overworld_navigation_menu() -> void:
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
+	_overworld_navigation_menu.overworld.train_arrived.connect(_on_train_arrived)
 	
 	for town_selection in _overworld_navigation_menu.overworld.level.town_selections:
 		town_selection.pressed.connect(_on_town_selection_pressed.bind(town_selection.vertex_name))
@@ -78,7 +81,7 @@ func _generate_characters() -> Array[int]:
 			hunger,
 			DEFAULT_SATISFACTION
 		)
-		characters.append(generated_character.id)
+		characters.append(generated_character.character_id)
 
 	return characters
 
@@ -103,33 +106,23 @@ func _spawn_world_characters() -> void:
 		)
 
 		var carriage_id: int = _train_manager.character_id_to_carriage_id_mapping[character_id]
-		var carriage: Node2D = _train_manager.train_layout[carriage_id]
+
+		var carriage: Node2D = _train_manager.get_carriage(carriage_id)
 		character_world_representation.world_position = carriage.position
 
 		_world.character_container.add_child(character_world_representation)
 
 
-# func _populate_train_manager_characters() -> void:
-# 	_train_manager.remove_all_characters()
-# 	for character_id in _current_vertex.available_character_ids:
-# 		var random_carriage := randi_range(0, _train_manager.train_layout.size() - 1)
-# 		_train_manager.add_character_to_carriage(character_id, random_carriage)
-
-
 func _on_town_selection_pressed(vertex_name: String) -> void:
-	if _overworld_navigation_menu.overworld.train_moving:
+	if not _train_arrived:
 		return
 
-	var destination_vertex := _graph.get_vertex_by_name(vertex_name)
-	var full_path := _graph.get_full_path(_current_vertex.id, destination_vertex.id)
+	_train_arrived = false
+
+	_destination_vertex = _graph.get_vertex_by_name(vertex_name)
+	var full_path := _graph.get_full_path(_current_vertex.id, _destination_vertex.id)
 
 	_overworld_navigation_menu.overworld.move_train(full_path, DEFAULT_TRAVEL_TIME)
-	_current_vertex = destination_vertex
-	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
-
-	_populate_passenger_management_menu()
-	# _spawn_world_characters()
-	# _populate_train_manager_characters()
 
 
 func _on_carriage_added(carriage: Node2D) -> void:
@@ -138,5 +131,11 @@ func _on_carriage_added(carriage: Node2D) -> void:
 
 
 func _on_character_added() -> void:
-	_clear_world_characters()
 	_spawn_world_characters()
+
+
+func _on_train_arrived() -> void:
+	_train_arrived = true
+	_current_vertex = _destination_vertex
+	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
+	_populate_passenger_management_menu()

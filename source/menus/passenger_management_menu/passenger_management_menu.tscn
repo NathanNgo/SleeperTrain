@@ -31,9 +31,8 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Passengers" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Passengers" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
 alignment = 1
 
 [node name="Carriages" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]

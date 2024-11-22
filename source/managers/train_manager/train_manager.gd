@@ -11,6 +11,7 @@ signal character_added
 var train_layout: Array[Node2D] = []
 # Dict[int, int]
 var character_id_to_carriage_id_mapping = {}
+var total_carriages = 0
 
 const DEFAULT_CARRIAGE_AMOUNT := 1
 const CARRIAGE_WIDTH_MULTIPLIER := 0.5
@@ -49,7 +50,18 @@ func _organize_train() -> void:
 		current_train_length += train_carriage.train_carriage_length
 
 
-func add_carriage_at(location: int, train_carriage_type: Globals.TrainCarriageType) -> void:
+func get_carriage(carriage_id: int) -> Node2D:
+	# Either maintain a mapping of chatacter_id --> carriage object, or
+	# do this search every time. For now this is probably fine.
+	# This gets slower the more carriages we have.
+	var carriage = train_layout.filter(
+		func(carriage_): return carriage_.carriage_id == carriage_id
+	)[0]
+
+	return carriage
+
+
+func add_carriage_at(carriage_index: int, train_carriage_type: Globals.TrainCarriageType) -> void:
 	var train_carriage: Node2D
 
 	match train_carriage_type:
@@ -58,24 +70,36 @@ func add_carriage_at(location: int, train_carriage_type: Globals.TrainCarriageTy
 		Globals.TrainCarriageType.SHORT:
 			train_carriage = _train_carriage_short_scene.instantiate()
 
+	total_carriages += 1
+	train_carriage.carriage_id = total_carriages
+
 	carriage_added.emit(train_carriage)
 
-	_push_at(location, train_carriage)
+	_push_at(carriage_index, train_carriage)
 	_organize_train()
 
 
-func remove_carriage_at(location: int) -> void:
-	if location >= len(train_layout):
+func remove_carriage_at(carriage_index: int) -> void:
+	if carriage_index >= len(train_layout):
 		return
 
-	var train_carriage = train_layout.pop_at(location)
+	# We should probably maintain a reverse mapping of carriage_id to character_id.
+	# That will mean we don't have to check every character to see if they exist
+	# on the carriage we're trying to delete.
+	for character_id in character_id_to_carriage_id_mapping:
+		var carriage_id = character_id_to_carriage_id_mapping[character_id]
+
+		if carriage_id == train_layout[carriage_index].carriage_id:
+			return
+
+	var train_carriage = train_layout.pop_at(carriage_index)
 
 	train_carriage.queue_free()
 	_organize_train()
 
 
-func add_character_to_carriage(character_id: int, carriage_id: int) -> void:
-	character_id_to_carriage_id_mapping[character_id] = carriage_id
+func add_character_to_carriage(character_id: int, carriage_index: int) -> void:
+	character_id_to_carriage_id_mapping[character_id] = train_layout[carriage_index].carriage_id
 	character_added.emit()
 
 
@@ -87,19 +111,19 @@ func remove_all_characters() -> void:
 	character_id_to_carriage_id_mapping.clear()
 
 
-func move_character_to_carriage(character_id: int, carriage_id: int) -> void:
+func move_character_to_carriage(character_id: int, carriage_index: int) -> void:
 	remove_character(character_id)
-	add_character_to_carriage(character_id, carriage_id)
+	add_character_to_carriage(character_id, carriage_index)
 
 
 func _on_add_train_carriage_at(
-	location: int, train_carriage_type: Globals.TrainCarriageType
+	carriage_index: int, train_carriage_type: Globals.TrainCarriageType
 ) -> void:
-	add_carriage_at(location, train_carriage_type)
+	add_carriage_at(carriage_index, train_carriage_type)
 
 
-func _on_remove_train_carriage_at(location: int) -> void:
-	remove_carriage_at(location)
+func _on_remove_train_carriage_at(carriage_index: int) -> void:
+	remove_carriage_at(carriage_index)
 
 
 func _on_add_train_carriage_at_front(train_carriage_type: Globals.TrainCarriageType) -> void:
@@ -118,8 +142,8 @@ func _on_remove_train_carriage_at_back() -> void:
 	remove_carriage_at(0)
 
 
-func _on_add_character_to_carriage(character_id: int, carriage_id: int) -> void:
-	add_character_to_carriage(character_id, carriage_id)
+func _on_add_character_to_carriage(character_id: int, carriage_index: int) -> void:
+	add_character_to_carriage(character_id, carriage_index)
 
 
 func _on_remove_character(character_id: int) -> void:
@@ -130,9 +154,9 @@ func _on_remove_all_characters() -> void:
 	remove_all_characters()
 
 
-func _push_at(location: int, item: Node2D) -> void:
+func _push_at(carriage_index: int, item: Node2D) -> void:
 	# TODO: Replace with Array.insert()
-	var beginning_array: Array[Node2D] = train_layout.slice(0, location)
-	var end_array: Array[Node2D] = train_layout.slice(location, len(train_layout))
+	var beginning_array: Array[Node2D] = train_layout.slice(0, carriage_index)
+	var end_array: Array[Node2D] = train_layout.slice(carriage_index, len(train_layout))
 	var item_array: Array[Node2D] = [item]
 	train_layout = beginning_array + item_array + end_array
