@@ -1,6 +1,7 @@
 extends Node
 
-signal add_carriage(carriage: Node2D)
+signal carriage_added(carriage: Node2D)
+signal character_added
 
 @export var _train_carriage_scene: PackedScene
 @export var _train_carriage_short_scene: PackedScene
@@ -22,6 +23,10 @@ func _ready() -> void:
 	SignalBus.remove_train_carriage_at_front.connect(_on_remove_train_carriage_at_front)
 	SignalBus.add_train_carriage_at_back.connect(_on_add_train_carriage_at_back)
 	SignalBus.remove_train_carriage_at_back.connect(_on_remove_train_carriage_at_back)
+
+	SignalBus.add_character_to_carriage.connect(_on_add_character_to_carriage)
+	SignalBus.remove_character.connect(_on_remove_character)
+	SignalBus.remove_all_characters.connect(_on_remove_all_characters)
 
 
 func _organize_train() -> void:
@@ -45,7 +50,6 @@ func _organize_train() -> void:
 
 
 func add_carriage_at(location: int, train_carriage_type: Globals.TrainCarriageType) -> void:
-	# TODO: Do this properly. Also, rename "type"
 	var train_carriage: Node2D
 
 	match train_carriage_type:
@@ -54,7 +58,7 @@ func add_carriage_at(location: int, train_carriage_type: Globals.TrainCarriageTy
 		Globals.TrainCarriageType.SHORT:
 			train_carriage = _train_carriage_short_scene.instantiate()
 
-	add_carriage.emit(train_carriage)
+	carriage_added.emit(train_carriage)
 
 	_push_at(location, train_carriage)
 	_organize_train()
@@ -72,6 +76,7 @@ func remove_carriage_at(location: int) -> void:
 
 func add_character_to_carriage(character_id: int, carriage_id: int) -> void:
 	character_id_to_carriage_id_mapping[character_id] = carriage_id
+	character_added.emit()
 
 
 func remove_character(character_id: int) -> void:
@@ -111,6 +116,18 @@ func _on_add_train_carriage_at_back(train_carriage_type: Globals.TrainCarriageTy
 
 func _on_remove_train_carriage_at_back() -> void:
 	remove_carriage_at(0)
+
+
+func _on_add_character_to_carriage(character_id: int, carriage_id: int) -> void:
+	add_character_to_carriage(character_id, carriage_id)
+
+
+func _on_remove_character(character_id: int) -> void:
+	remove_character(character_id)
+
+
+func _on_remove_all_characters() -> void:
+	remove_all_characters()
 
 
 func _push_at(location: int, item: Node2D) -> void:

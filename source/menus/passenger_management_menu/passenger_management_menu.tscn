@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh116m477jfgh"]
+[gd_scene load_steps=3 format=3 uid="uid://dh116m477jfgh"]
 
 [ext_resource type="Script" path="res://source/menus/passenger_management_menu/passenger_management_menu.gd" id="1_n5wrw"]
+[ext_resource type="PackedScene" uid="uid://t7vjlxweuy6a" path="res://source/menus/passenger_management_menu/character_button.tscn" id="2_a8wny"]
 
-[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_carriages_container")]
+[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_minus_button", "_plus_button", "_submit_button", "_current_carriage_display")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n5wrw")
 _passengers_container = NodePath("MarginContainer/VBoxContainer/Passengers")
-_carriages_container = NodePath("MarginContainer/VBoxContainer/Carriages")
+_character_button = ExtResource("2_a8wny")
+_minus_button = NodePath("MarginContainer/VBoxContainer/Carriages/MinusButton")
+_plus_button = NodePath("MarginContainer/VBoxContainer/Carriages/PlusButton")
+_submit_button = NodePath("MarginContainer/VBoxContainer/Submit/Button")
+_current_carriage_display = NodePath("MarginContainer/VBoxContainer/Carriages/ColorRect/CurrentCarriageDisplay")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -24,6 +29,7 @@ theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
 [node name="Passengers" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -34,6 +40,50 @@ alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
+
+[node name="MinusButton" type="Button" parent="MarginContainer/VBoxContainer/Carriages"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "-"
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/Carriages"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CurrentCarriageDisplay" type="Label" parent="MarginContainer/VBoxContainer/Carriages/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlusButton" type="Button" parent="MarginContainer/VBoxContainer/Carriages"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+"
+
+[node name="Submit" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Submit"]
+custom_minimum_size = Vector2(100, 50)
+layout_mode = 2
+text = "Submit"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

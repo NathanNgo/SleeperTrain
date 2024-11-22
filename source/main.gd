@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var _menu_manager: CanvasLayer
 @export var _train_manager: Node
 @export var _world: Node2D
@@ -33,8 +32,8 @@ func _ready() -> void:
 	_setup_overworld_navigation_menu()
 	_setup_train_manager()
 	_populate_passenger_management_menu()
-	_populate_train_manager_characters()
-	_populate_world_characters()
+	# _populate_train_manager_characters()
+	# _populate_world_characters()
 
 func _setup_graph() -> void:
 	var edges = _overworld_navigation_menu.overworld.level.grid_railway_edges
@@ -55,7 +54,8 @@ func _setup_graph() -> void:
 
 
 func _setup_train_manager() -> void:
-	_train_manager.add_carriage.connect(_on_add_carriage)
+	_train_manager.carriage_added.connect(_on_carriage_added)
+	_train_manager.character_added.connect(_on_character_added)
 	_train_manager.add_carriage_at(0, Globals.TrainCarriageType.BASIC)
 
 
@@ -87,6 +87,7 @@ func _populate_passenger_management_menu() -> void:
 	_passenger_management_menu.set_available_character_list(
 		_current_vertex.available_character_ids
 	)
+	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
 
 
 func _clear_world_characters() -> void:
@@ -94,7 +95,7 @@ func _clear_world_characters() -> void:
 		child.queue_free()
 
 
-func _populate_world_characters() -> void:
+func _spawn_world_characters() -> void:
 	_clear_world_characters()
 	for character_id in _train_manager.character_id_to_carriage_id_mapping:
 		var character_world_representation := CharacterRegistry.get_world_representation(
@@ -108,11 +109,11 @@ func _populate_world_characters() -> void:
 		_world.character_container.add_child(character_world_representation)
 
 
-func _populate_train_manager_characters() -> void:
-	_train_manager.remove_all_characters()
-	for character_id in _current_vertex.available_character_ids:
-		var random_carriage := randi_range(0, _train_manager.train_layout.size() - 1)
-		_train_manager.add_character_to_carriage(character_id, random_carriage)
+# func _populate_train_manager_characters() -> void:
+# 	_train_manager.remove_all_characters()
+# 	for character_id in _current_vertex.available_character_ids:
+# 		var random_carriage := randi_range(0, _train_manager.train_layout.size() - 1)
+# 		_train_manager.add_character_to_carriage(character_id, random_carriage)
 
 
 func _on_town_selection_pressed(vertex_name: String) -> void:
@@ -127,9 +128,15 @@ func _on_town_selection_pressed(vertex_name: String) -> void:
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
 
 	_populate_passenger_management_menu()
-	_populate_train_manager_characters()
-	_populate_world_characters()
+	# _spawn_world_characters()
+	# _populate_train_manager_characters()
 
 
-func _on_add_carriage(carriage: Node2D) -> void:
+func _on_carriage_added(carriage: Node2D) -> void:
 	_world.train_container.add_child(carriage)
+	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
+
+
+func _on_character_added() -> void:
+	_clear_world_characters()
+	_spawn_world_characters()
