@@ -6,6 +6,8 @@ class_name GridRailwayVertex
 @export var connections = []
 @export var vertex_name: String
 @export var available_character_ids: Array[int]
+# Dict[Globals.ResourceType, int]
+@export var available_resources = {}
 @export var vertex_type: Globals.VertexType
 
 @onready var id := position

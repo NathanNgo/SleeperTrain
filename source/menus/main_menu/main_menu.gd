@@ -5,6 +5,7 @@ extends ManagedMenu
 @export var _how_to_play_button: Button
 @export var _train_management_button: Button
 @export var _passenger_management_button: Button
+@export var _resource_management_menu: Button
 
 
 func _ready() -> void:
@@ -12,6 +13,7 @@ func _ready() -> void:
 	_how_to_play_button.pressed.connect(_on_how_to_play_button_pressed)
 	_train_management_button.pressed.connect(_on_train_management_button_pressed)
 	_passenger_management_button.pressed.connect(_on_passenger_management_button_pressed)
+	_resource_management_menu.pressed.connect(_on_resource_management_button_pressed)
 
 
 func _on_map_button_pressed() -> void:
@@ -28,3 +30,7 @@ func _on_train_management_button_pressed() -> void:
 
 func _on_passenger_management_button_pressed() -> void:
 	transition.emit(Globals.Menus.PASSENGER_MANAGEMENT_MENU)
+
+
+func _on_resource_management_button_pressed() -> void:
+	transition.emit(Globals.Menus.RESOURCE_MANAGEMENT_MENU)

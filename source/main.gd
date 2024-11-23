@@ -27,15 +27,18 @@ const DEFAULT_TRAVEL_TIME := 5
 @onready var _passenger_management_menu: ManagedMenu = _menu_manager.get_menu(
 	Globals.Menus.PASSENGER_MANAGEMENT_MENU
 ) 
+@onready var _resource_management_menu: ManagedMenu = _menu_manager.get_menu(
+	Globals.Menus.RESOURCE_MANAGEMENT_MENU
+) 
 
 
 func _ready() -> void:
 	_setup_graph()
 	_setup_overworld_navigation_menu()
 	_setup_train_manager()
+	_setup_resource_management_menu()
 	_populate_passenger_management_menu()
-	# _populate_train_manager_characters()
-	# _populate_world_characters()
+	_populate_resource_management_menu()
 
 func _setup_graph() -> void:
 	var edges = _overworld_navigation_menu.overworld.level.grid_railway_edges
@@ -48,6 +51,7 @@ func _setup_graph() -> void:
 
 		if vertex.vertex_type == Globals.VertexType.TOWN:
 			vertex.available_character_ids = _generate_characters()
+			vertex.available_resources = _generate_resources()
 
 	for edge in edges:
 		_graph.add_edge(edge)
@@ -69,6 +73,10 @@ func _setup_overworld_navigation_menu() -> void:
 		town_selection.pressed.connect(_on_town_selection_pressed.bind(town_selection.vertex_name))
 
 
+func _setup_resource_management_menu() -> void:
+	_resource_management_menu.resource_purchased.connect(_on_resource_purchased)
+
+
 func _generate_characters() -> Array[int]:
 	var characters: Array[int] = []
 
@@ -86,11 +94,30 @@ func _generate_characters() -> Array[int]:
 	return characters
 
 
+# Returns Dict[Globals.Resource, int]
+func _generate_resources() -> Variant:
+	var resources = {
+		Globals.ResourceType.COAL: randi_range(10, 100),
+		Globals.ResourceType.FOOD: randi_range(10, 100),
+		Globals.ResourceType.LUXURIES: randi_range(10, 100),
+		Globals.ResourceType.REPUTATION: randi_range(10, 100)
+	}
+	return resources
+
+
 func _populate_passenger_management_menu() -> void:
 	_passenger_management_menu.set_available_character_list(
 		_current_vertex.available_character_ids
 	)
 	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
+
+
+func _populate_resource_management_menu() -> void:
+	_resource_management_menu.set_current_town_resources(
+		_current_vertex.available_resources[Globals.ResourceType.COAL],
+		_current_vertex.available_resources[Globals.ResourceType.LUXURIES],
+		_current_vertex.available_resources[Globals.ResourceType.FOOD]
+	)
 
 
 func _clear_world_characters() -> void:
@@ -139,3 +166,8 @@ func _on_train_arrived() -> void:
 	_current_vertex = _destination_vertex
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
 	_populate_passenger_management_menu()
+	_populate_resource_management_menu()
+
+
+func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:
+	_current_vertex.available_resources[resource_type] -= amount

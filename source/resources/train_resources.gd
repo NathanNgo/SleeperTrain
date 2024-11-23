@@ -1,6 +1,8 @@
 extends Resource
 
-@export var coal: int = 100
-@export var food: int = 100
-@export var luxuries: int = 100
-@export var reputation: int = 100
+@export var resources = {
+    Globals.ResourceType.COAL: 98,
+    Globals.ResourceType.FOOD: 50,
+    Globals.ResourceType.LUXURIES: 72,
+    Globals.ResourceType.REPUTATION: 100
+}

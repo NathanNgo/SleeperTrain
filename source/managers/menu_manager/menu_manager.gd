@@ -20,6 +20,10 @@ extends CanvasLayer
 	set(menu):
 		menus[Globals.Menus.PASSENGER_MANAGEMENT_MENU] = menu
 
+@export var _resource_management_menu: ManagedMenu:
+	set(menu):
+		menus[Globals.Menus.RESOURCE_MANAGEMENT_MENU] = menu
+
 var menus = {}
 var menu_open = false
 

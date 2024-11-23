@@ -2,10 +2,8 @@ extends ManagedMenu
 
 @export var _passengers_container: HFlowContainer
 @export var _character_button: PackedScene
-@export var _minus_button: Button
-@export var _plus_button: Button
 @export var _submit_button: Button
-@export var _current_carriage_display: Label
+@export var _number_select: HBoxContainer
 
 var _character_selection: int
 var _carriage_selection: int = 0
@@ -15,10 +13,10 @@ const MIN_CARRIAGES = 0
 
 
 func _ready() -> void:
-	_minus_button.pressed.connect(_on_minus_button_pressed)
-	_plus_button.pressed.connect(_on_plus_button_pressed)
+	_number_select.minus_button.pressed.connect(_on_minus_button_pressed)
+	_number_select.plus_button.pressed.connect(_on_plus_button_pressed)
+	_number_select.display_label.text = str(MIN_CARRIAGES)
 	_submit_button.pressed.connect(_on_submit_button_pressed)
-	_current_carriage_display.text = str(MIN_CARRIAGES)
 
 
 func set_available_character_list(character_ids: Array[int]) -> void:
@@ -38,12 +36,12 @@ func set_available_character_list(character_ids: Array[int]) -> void:
 
 func _on_minus_button_pressed() -> void:
 	_carriage_selection = clamp(_carriage_selection - 1, MIN_CARRIAGES, total_carriages - 1)
-	_current_carriage_display.text = str(_carriage_selection)
+	_number_select.display_label.text = str(_carriage_selection)
 
 
 func _on_plus_button_pressed() -> void:
 	_carriage_selection = clamp(_carriage_selection + 1, MIN_CARRIAGES, total_carriages - 1)
-	_current_carriage_display.text = str(_carriage_selection)
+	_number_select.display_label.text = str(_carriage_selection)
 
 
 func _on_submit_button_pressed() -> void:

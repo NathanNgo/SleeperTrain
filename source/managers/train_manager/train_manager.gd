@@ -73,9 +73,8 @@ func add_carriage_at(carriage_index: int, train_carriage_type: Globals.TrainCarr
 	total_carriages += 1
 	train_carriage.carriage_id = total_carriages
 
-	carriage_added.emit(train_carriage)
-
 	_push_at(carriage_index, train_carriage)
+	carriage_added.emit(train_carriage)
 	_organize_train()
 
 
@@ -90,6 +89,8 @@ func remove_carriage_at(carriage_index: int) -> void:
 		var carriage_id = character_id_to_carriage_id_mapping[character_id]
 
 		if carriage_id == train_layout[carriage_index].carriage_id:
+			# TODO: Display message to user.
+			print("Cannot remove carriage with passengers assigned.")
 			return
 
 	var train_carriage = train_layout.pop_at(carriage_index)
