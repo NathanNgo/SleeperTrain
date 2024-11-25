@@ -1,10 +1,9 @@
-extends AStar2D
+class_name AStar2DWithEdgeWeights extends AStar2D
 
-class_name AStar2DWithEdgeWeights
+const MIN_EDGE_WEIGHT = 0.0
 
 # Dict[Array[int], float]
 var edge_weights = {}
-const MIN_EDGE_WEIGHT = 0.0
 
 
 func _compute_cost(from_id: int, to_id: int) -> float:

@@ -3,6 +3,9 @@ extends Node
 signal carriage_added(carriage: Node2D)
 signal character_added
 
+const DEFAULT_CARRIAGE_AMOUNT := 1
+const CARRIAGE_WIDTH_MULTIPLIER := 0.5
+
 @export var _train_carriage_scene: PackedScene
 @export var _train_carriage_short_scene: PackedScene
 
@@ -12,9 +15,6 @@ var train_layout: Array[Node2D] = []
 # Dict[int, int]
 var character_id_to_carriage_id_mapping = {}
 var total_carriages = 0
-
-const DEFAULT_CARRIAGE_AMOUNT := 1
-const CARRIAGE_WIDTH_MULTIPLIER := 0.5
 
 
 func _ready() -> void:
@@ -57,7 +57,8 @@ func get_carriage(carriage_id: int) -> Node2D:
     # Either maintain a mapping of chatacter_id --> carriage object, or
     # do this search every time. For now this is probably fine.
     # This gets slower the more carriages we have.
-    var carriage = train_layout.filter(func(carriage_): return carriage_.carriage_id == carriage_id)[0]
+    var filter_function = func(carriage_lambda): return carriage_lambda.carriage_id == carriage_id
+    var carriage = train_layout.filter(filter_function)[0]
 
     return carriage
 
@@ -101,7 +102,7 @@ func remove_carriage_at(carriage_index: int) -> void:
 
 
 func add_character_to_carriage(character_id: int, carriage_index: int) -> void:
-    character_id_to_carriage_id_mapping[character_id] = train_layout[carriage_index].carriage_id
+    character_id_to_carriage_id_mapping[character_id] = (train_layout[carriage_index].carriage_id)
     character_added.emit()
 
 

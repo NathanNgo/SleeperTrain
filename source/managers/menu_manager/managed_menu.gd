@@ -1,5 +1,3 @@
-extends Control
-
-class_name ManagedMenu
+class_name ManagedMenu extends Control
 
 signal transition(menu: Globals.Menus)

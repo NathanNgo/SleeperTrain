@@ -1,6 +1,4 @@
-extends Node2D
-
-class_name GridRailwayVertex
+class_name GridRailwayVertex extends Node2D
 
 # Array[Array[Vector2]]
 @export var connections = []

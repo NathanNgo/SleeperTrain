@@ -1,5 +1,8 @@
 extends CanvasLayer
 
+const DEFAULT_MENU = Globals.Menus.MAIN_MENU
+const DEFAULT_ESCAPE_ACTION = "escape"
+
 @export var _main_menu: ManagedMenu:
     set(menu):
         menus[Globals.Menus.MAIN_MENU] = menu
@@ -26,9 +29,6 @@ extends CanvasLayer
 
 var menus = {}
 var menu_open = false
-
-const DEFAULT_MENU = Globals.Menus.MAIN_MENU
-const DEFAULT_ESCAPE_ACTION = "escape"
 
 
 func _ready() -> void:
