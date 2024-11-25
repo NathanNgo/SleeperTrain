@@ -4,4 +4,4 @@ extends Control
 
 
 func set_texture(texture: Resource):
-	_texture_rect.texture = texture
+    _texture_rect.texture = texture

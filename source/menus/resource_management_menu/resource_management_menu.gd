@@ -20,14 +20,10 @@ signal resource_purchased(resource_type: Globals.ResourceType, amount: int)
 @export var _train_resources: Resource
 
 var town_amount = {
-    Globals.ResourceType.COAL: 0,
-    Globals.ResourceType.LUXURIES: 0,
-    Globals.ResourceType.FOOD: 0
+    Globals.ResourceType.COAL: 0, Globals.ResourceType.LUXURIES: 0, Globals.ResourceType.FOOD: 0
 }
 var purchase_amount = {
-    Globals.ResourceType.COAL: 0,
-    Globals.ResourceType.LUXURIES: 0,
-    Globals.ResourceType.FOOD: 0
+    Globals.ResourceType.COAL: 0, Globals.ResourceType.LUXURIES: 0, Globals.ResourceType.FOOD: 0
 }
 
 const MIN_RESOURCE = 0
@@ -74,9 +70,7 @@ func _on_minus_button_pressed(
     number_select: HBoxContainer, resource_type: Globals.ResourceType
 ) -> void:
     purchase_amount[resource_type] = clamp(
-        purchase_amount[resource_type] - 1,
-        MIN_RESOURCE,
-        town_amount[resource_type]
+        purchase_amount[resource_type] - 1, MIN_RESOURCE, town_amount[resource_type]
     )
     number_select.display_label.text = str(purchase_amount[resource_type])
 
@@ -85,9 +79,7 @@ func _on_plus_button_pressed(
     number_select: HBoxContainer, resource_type: Globals.ResourceType
 ) -> void:
     purchase_amount[resource_type] = clamp(
-        purchase_amount[resource_type] + 1,
-        MIN_RESOURCE,
-        town_amount[resource_type]
+        purchase_amount[resource_type] + 1, MIN_RESOURCE, town_amount[resource_type]
     )
     number_select.display_label.text = str(purchase_amount[resource_type])
 
@@ -104,15 +96,9 @@ func _on_purchase_button_pressed() -> void:
     # FIXME:
     # This can cause bugs as we now have 2 sources of truth. The menu, and the vertex.
     # We shouldn't have town_amount. Just pass in the resource amount for the town.
-    resource_purchased.emit(
-        Globals.ResourceType.COAL, coal_amount
-    )
-    resource_purchased.emit(
-        Globals.ResourceType.LUXURIES, luxuries_amount
-    )
-    resource_purchased.emit(
-        Globals.ResourceType.FOOD, food_amount
-    )
+    resource_purchased.emit(Globals.ResourceType.COAL, coal_amount)
+    resource_purchased.emit(Globals.ResourceType.LUXURIES, luxuries_amount)
+    resource_purchased.emit(Globals.ResourceType.FOOD, food_amount)
 
     var new_town_coal = town_amount[Globals.ResourceType.COAL] - coal_amount
     var new_town_luxuries = town_amount[Globals.ResourceType.LUXURIES] - luxuries_amount
