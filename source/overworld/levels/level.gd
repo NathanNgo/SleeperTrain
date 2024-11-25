@@ -1,6 +1,5 @@
 extends Node
 
-
 @export var _grid_railway_vertex_container: Node2D
 @export var _grid_railway_edge_container: Node2D
 @export var _town_selections: Control
