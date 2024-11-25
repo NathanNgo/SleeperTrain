@@ -11,7 +11,7 @@ const MAX_ZOOM_SCALE := 4
 @export var _train_path_follow: PathFollow2D
 @export var _train: Sprite2D
 
-var _train_moving := false
+var _train_arrived := true
 var _inputs = {ZOOM_IN = "zoom_in", ZOOM_OUT = "zoom_out", LEFT_MOUSE_CLICK = "left_mouse_click"}
 var _dragging = false
 var _current_train_path: Array[Vector2]
@@ -24,7 +24,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-    if not _train_moving:
+    if _train_arrived:
         _train.hide()
         return
 
@@ -34,7 +34,7 @@ func _process(delta: float) -> void:
 
     if ratio_travelled >= 1.0:
         _current_travel_time_seconds = 0.0
-        _train_moving = false
+        _train_arrived = true
         train_arrived.emit()
         return
 
@@ -75,5 +75,5 @@ func move_train(path: Array[Vector2], travel_time: float) -> void:
     _current_travel_time_seconds = 0
     _current_train_path = path
     _total_travel_time_seconds = travel_time
-    _train_moving = true
+    _train_arrived = false
     _train.show()
