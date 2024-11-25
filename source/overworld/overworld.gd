@@ -2,14 +2,14 @@ extends Node2D
 
 signal train_arrived
 
+const ZOOM_SCALING_INCREMENT := 2
+const MAX_ZOOM_SCALE := 4
+
 @export var _camera: Camera2D
 @export var level: Node2D
 @export var _train_path: Path2D
 @export var _train_path_follow: PathFollow2D
 @export var _train: Sprite2D
-
-const ZOOM_SCALING_INCREMENT := 2
-const MAX_ZOOM_SCALE := 4
 
 var _train_moving := false
 var _inputs = {ZOOM_IN = "zoom_in", ZOOM_OUT = "zoom_out", LEFT_MOUSE_CLICK = "left_mouse_click"}

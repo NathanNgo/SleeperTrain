@@ -1,5 +1,14 @@
 extends Node
 
+const MAX_CHARACTERS := 20
+const MIN_CHARACTERS := 18
+const MIN_HUNGER := 0
+const MAX_HUNGER := 100
+const DEFAULT_SATISFACTION := 100
+const DEFAULT_CHARACTER_NAME := "John"
+const DEFAULT_TOWN_NAME := "First Town"
+const DEFAULT_TRAVEL_TIME := 5
+
 @export var _menu_manager: CanvasLayer
 @export var _train_manager: Node
 @export var _world: Node2D
@@ -11,15 +20,6 @@ var _graph: GridRailwayGraph
 var _current_vertex: GridRailwayVertex
 var _destination_vertex: GridRailwayVertex
 var _train_arrived := true
-
-const MAX_CHARACTERS := 20
-const MIN_CHARACTERS := 18
-const MIN_HUNGER := 0
-const MAX_HUNGER := 100
-const DEFAULT_SATISFACTION := 100
-const DEFAULT_CHARACTER_NAME := "John"
-const DEFAULT_TOWN_NAME := "First Town"
-const DEFAULT_TRAVEL_TIME := 5
 
 @onready var _overworld_navigation_menu: ManagedMenu = _menu_manager.get_menu(
     Globals.Menus.OVERWORLD_NAVIGATION_MENU

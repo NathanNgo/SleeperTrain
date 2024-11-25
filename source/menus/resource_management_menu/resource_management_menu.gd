@@ -7,6 +7,8 @@ extends ManagedMenu
 
 signal resource_purchased(resource_type: Globals.ResourceType, amount: int)
 
+const MIN_RESOURCE = 0
+
 @export var _current_coal_label: Label
 @export var _current_luxuries_label: Label
 @export var _current_food_label: Label
@@ -25,8 +27,6 @@ var town_amount = {
 var purchase_amount = {
     Globals.ResourceType.COAL: 0, Globals.ResourceType.LUXURIES: 0, Globals.ResourceType.FOOD: 0
 }
-
-const MIN_RESOURCE = 0
 
 
 func _ready() -> void:

@@ -1,6 +1,4 @@
-extends RefCounted
-
-class_name GridRailwayGraph
+class_name GridRailwayGraph extends RefCounted
 
 var astar := AStar2DWithEdgeWeights.new()
 
@@ -95,7 +93,8 @@ func get_edge(id: Array[Vector2]) -> GridRailwayEdge:
 
     if id in edges:
         return edges[id]
-    elif reverse_id in edges:
+
+    if reverse_id in edges:
         return edges[reverse_id]
 
     return null

@@ -1,7 +1,8 @@
 extends Node
 
-var registry = {}
 static var total_characters = 0
+
+var registry = {}
 
 
 func register(character_data: CharacterData) -> int:

@@ -9,9 +9,6 @@ enum Menus {
     RESOURCE_MANAGEMENT_MENU
 }
 
-const FIRST_VERTEX_ID_IN_EDGE_ID := 0
-const SECOND_VERTEX_ID_IN_EDGE_ID := 1
-
 enum VertexType { TOWN, JUNCTION }
 
 enum TrainCarriageType { BASIC, SHORT }
@@ -22,3 +19,6 @@ enum ResourceType {
     LUXURIES,
     REPUTATION,
 }
+
+const FIRST_VERTEX_ID_IN_EDGE_ID := 0
+const SECOND_VERTEX_ID_IN_EDGE_ID := 1

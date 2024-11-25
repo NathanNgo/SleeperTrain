@@ -1,15 +1,16 @@
 extends ManagedMenu
 
+const MIN_CARRIAGES = 0
+
 @export var _passengers_container: HFlowContainer
 @export var _character_button: PackedScene
 @export var _submit_button: Button
 @export var _number_select: HBoxContainer
 
-var _character_selection: int
-var _carriage_selection: int = 0
 var total_carriages: int = 0
 
-const MIN_CARRIAGES = 0
+var _character_selection: int
+var _carriage_selection: int = 0
 
 
 func _ready() -> void:

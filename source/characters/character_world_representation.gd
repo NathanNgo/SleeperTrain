@@ -1,6 +1,4 @@
-extends CharacterBody2D
-
-class_name CharacterWorldRepresentation
+class_name CharacterWorldRepresentation extends CharacterBody2D
 
 var character_data: CharacterData
 var world_position: Vector2:
