@@ -10,3 +10,5 @@ signal remove_train_carriage_at_back
 signal add_character_to_carriage(character_id: int, carriage_index: int)
 signal remove_character(character_id: int)
 signal remove_all_characters
+
+signal train_resources_changed

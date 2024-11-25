@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=4 format=3 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/backgrounds/background_good/background_good.tscn" id="1_uiuku"]
+[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources.tres" id="2_4a2n7"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("_camera", "_background_pivot", "train_container", "character_container")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot")]
 script = ExtResource("1_bljk7")
-_camera = NodePath("Camera2D")
-_background_pivot = NodePath("BackgroundPivot")
 train_container = NodePath("TrainContainer")
 character_container = NodePath("CharacterContainer")
+_camera = NodePath("Camera2D")
+_background_pivot = NodePath("BackgroundPivot")
+_train_resources = ExtResource("2_4a2n7")
 
 [node name="BackgroundPivot" type="Node2D" parent="."]
 position = Vector2(960, 544)

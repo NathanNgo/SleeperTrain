@@ -119,24 +119,14 @@ func _populate_resource_management_menu() -> void:
     )
 
 
-func _clear_world_characters() -> void:
-    for child in _world.character_container.get_children():
-        child.queue_free()
-
-
 func _spawn_world_characters() -> void:
-    _clear_world_characters()
+    _world.clear_world_characters()
+
     for character_id in _train_manager.character_id_to_carriage_id_mapping:
-        var character_world_representation := CharacterRegistry.get_world_representation(
-            character_id
-        )
-
         var carriage_id: int = _train_manager.character_id_to_carriage_id_mapping[character_id]
-
         var carriage: Node2D = _train_manager.get_carriage(carriage_id)
-        character_world_representation.world_position = carriage.position
 
-        _world.character_container.add_child(character_world_representation)
+        _world.spawn_world_character(character_id, carriage.position)
 
 
 func _on_town_selection_pressed(vertex_name: String) -> void:

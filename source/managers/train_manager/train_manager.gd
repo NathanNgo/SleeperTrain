@@ -54,6 +54,7 @@ func _organize_train() -> void:
 
 
 func get_carriage(carriage_id: int) -> Node2D:
+    # TODO:
     # Either maintain a mapping of chatacter_id --> carriage object, or
     # do this search every time. For now this is probably fine.
     # This gets slower the more carriages we have.
@@ -84,6 +85,7 @@ func remove_carriage_at(carriage_index: int) -> void:
     if carriage_index >= len(train_layout):
         return
 
+    # TODO:
     # We should probably maintain a reverse mapping of carriage_id to character_id.
     # That will mean we don't have to check every character to see if they exist
     # on the carriage we're trying to delete.

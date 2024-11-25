@@ -31,6 +31,7 @@ var purchase_amount = {
 
 func _ready() -> void:
     set_current_train_resources()
+    SignalBus.train_resources_changed.connect(_on_train_resources_changed)
     _number_select_coal.display_label.text = str(0)
     _number_select_luxuries.display_label.text = str(0)
     _number_select_food.display_label.text = str(0)
@@ -89,9 +90,9 @@ func _on_purchase_button_pressed() -> void:
     var luxuries_amount = purchase_amount[Globals.ResourceType.LUXURIES]
     var food_amount = purchase_amount[Globals.ResourceType.FOOD]
 
-    _train_resources.resources[Globals.ResourceType.COAL] += coal_amount
-    _train_resources.resources[Globals.ResourceType.LUXURIES] += luxuries_amount
-    _train_resources.resources[Globals.ResourceType.FOOD] += food_amount
+    _train_resources.add_resources(Globals.ResourceType.COAL, coal_amount)
+    _train_resources.add_resources(Globals.ResourceType.LUXURIES, coal_amount)
+    _train_resources.add_resources(Globals.ResourceType.FOOD, coal_amount)
 
     # FIXME:
     # This can cause bugs as we now have 2 sources of truth. The menu, and the vertex.
@@ -105,7 +106,6 @@ func _on_purchase_button_pressed() -> void:
     var new_town_food = town_amount[Globals.ResourceType.FOOD] - food_amount
 
     set_current_town_resources(new_town_coal, new_town_luxuries, new_town_food)
-    set_current_train_resources()
 
     purchase_amount[Globals.ResourceType.COAL] = 0
     purchase_amount[Globals.ResourceType.LUXURIES] = 0
@@ -113,3 +113,7 @@ func _on_purchase_button_pressed() -> void:
     _number_select_coal.display_label.text = str(0)
     _number_select_luxuries.display_label.text = str(0)
     _number_select_food.display_label.text = str(0)
+
+
+func _on_train_resources_changed() -> void:
+    set_current_train_resources()
