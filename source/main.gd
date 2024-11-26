@@ -167,6 +167,8 @@ func _on_train_arrived() -> void:
     _train_manager.stop_train_consumption()
     _world.set_background_town()
 
+    # TODO: Despawn characters to stop consumption.
+
 
 func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:
     _current_vertex.available_resources[resource_type] -= amount
