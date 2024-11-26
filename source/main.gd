@@ -134,14 +134,19 @@ func _on_town_selection_pressed(vertex_name: String) -> void:
     if not _train_arrived:
         return
 
-    _train_arrived = false
-
     _destination_vertex = _graph.get_vertex_by_name(vertex_name)
+
+    if _current_vertex.id == _destination_vertex.id:
+        # TODO: Give a message to the player.
+        print("Cannot travel to the same vertex")
+        return
+
     var full_path := _graph.get_full_path(_current_vertex.id, _destination_vertex.id)
 
     _overworld_navigation_menu.overworld.move_train(full_path, DEFAULT_TRAVEL_TIME)
     _train_manager.start_train_consumption()
     _world.set_background_journey()
+    _train_arrived = false
 
 
 func _on_carriage_added(carriage: Node2D) -> void:
