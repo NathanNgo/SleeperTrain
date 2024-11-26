@@ -7,12 +7,16 @@
 radius = 32.0
 height = 160.0
 
-[node name="Passenger" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_consumption_timer")]
 script = ExtResource("1_lnf6b")
+_consumption_timer = NodePath("ConsumptionTimer")
 
-[node name="Passenger" type="Sprite2D" parent="."]
+[node name="CharacterSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_npw2e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cmy0b")
+
+[node name="ConsumptionTimer" type="Timer" parent="."]
+wait_time = 5.0

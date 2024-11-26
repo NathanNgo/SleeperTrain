@@ -4,6 +4,9 @@
 
 [resource]
 script = ExtResource("1_c321s")
-coal = 100
-food = 100
-luxuries = 100
+resources = {
+0: 98,
+1: 50,
+2: 72,
+3: 100
+}

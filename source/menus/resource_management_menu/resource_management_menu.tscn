@@ -1,0 +1,546 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdkeua2fgp65a"]
+
+[ext_resource type="Script" path="res://source/menus/resource_management_menu/resource_management_menu.gd" id="1_6ioxs"]
+[ext_resource type="PackedScene" uid="uid://cm20vamj531m0" path="res://source/menus/common/number_select/number_select.tscn" id="2_0krjx"]
+[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources.tres" id="2_t83et"]
+
+[node name="ResourceManagementMenu" type="Control" node_paths=PackedStringArray("_current_coal_label", "_current_luxuries_label", "_current_food_label", "_town_coal_label", "_town_luxuries_label", "_town_food_label", "_number_select_coal", "_number_select_luxuries", "_number_select_food", "_purchase_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6ioxs")
+_current_coal_label = NodePath("MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Coal/ColorRect/CoalAmountDisplay")
+_current_luxuries_label = NodePath("MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect/LuxuriesAmountDisplay")
+_current_food_label = NodePath("MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Food/ColorRect/FoodAmountDisplay")
+_town_coal_label = NodePath("MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Coal/ColorRect/CoalAmountDisplay")
+_town_luxuries_label = NodePath("MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect/LuxuriesAmountDisplay")
+_town_food_label = NodePath("MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Food/ColorRect/FoodAmountDisplay")
+_number_select_coal = NodePath("MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Coal/NumberSelect")
+_number_select_luxuries = NodePath("MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Luxuries/NumberSelect")
+_number_select_food = NodePath("MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Food/NumberSelect")
+_purchase_button = NodePath("MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/Purchase")
+_train_resources = ExtResource("2_t83et")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CurrentTrainResources" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CurrentTrainResources"]
+layout_mode = 2
+
+[node name="CurrentTrainResourcesLabel" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer"]
+custom_minimum_size = Vector2(608, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CurrentTrainResourcesLabel" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/CurrentTrainResourcesLabel"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Current Resources
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer"]
+layout_mode = 2
+
+[node name="Coal" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Coal"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CoalLabel" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Coal/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Coal"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CoalAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Coal/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Luxuries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Luxuries"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="LuxuriesLabel" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Luxuries"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Luxuries"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="LuxuriesAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Food" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Food"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Food/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Food"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Food"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="FoodAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/CurrentTrainResources/VBoxContainer/HBoxContainer/Food/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TownResources" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TownResources"]
+layout_mode = 2
+
+[node name="TownResourcesLabel" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer"]
+custom_minimum_size = Vector2(608, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="TownResourcesLabel" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/TownResourcesLabel"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Town Resources
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer"]
+layout_mode = 2
+
+[node name="Coal" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Coal"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CoalLabel" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Coal/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Coal"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CoalAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Coal/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Luxuries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Luxuries"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="LuxuriesLabel" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Luxuries"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Luxuries"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="LuxuriesAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Food" type="VBoxContainer" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Food"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Food/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Food"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Food"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="FoodAmountDisplay" type="Label" parent="MarginContainer/VBoxContainer/TownResources/VBoxContainer/HBoxContainer/Food/ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PurchaseResources" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PurchaseResources"]
+layout_mode = 2
+
+[node name="PurchaseLabel" type="ColorRect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer"]
+custom_minimum_size = Vector2(608, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="PurchaseLabel" type="Label" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/PurchaseLabel"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Purchase Resources
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer"]
+layout_mode = 2
+
+[node name="Coal" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Coal"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="CoalLabel" type="Label" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Coal/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Coal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberSelect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Coal" instance=ExtResource("2_0krjx")]
+layout_mode = 2
+
+[node name="Luxuries" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Luxuries"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="LuxuriesLabel" type="Label" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Luxuries/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Luxuries"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberSelect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Luxuries" instance=ExtResource("2_0krjx")]
+layout_mode = 2
+
+[node name="Food" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Food"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="FoodLabel" type="Label" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Food/ColorRect2"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Food"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NumberSelect" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer/HBoxContainer/Food" instance=ExtResource("2_0krjx")]
+layout_mode = 2
+
+[node name="Purchase" type="Button" parent="MarginContainer/VBoxContainer/PurchaseResources/VBoxContainer"]
+layout_mode = 2
+text = "Purchase"

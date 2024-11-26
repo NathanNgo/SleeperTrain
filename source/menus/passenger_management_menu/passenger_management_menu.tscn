@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dh116m477jfgh"]
+[gd_scene load_steps=4 format=3 uid="uid://dh116m477jfgh"]
 
 [ext_resource type="Script" path="res://source/menus/passenger_management_menu/passenger_management_menu.gd" id="1_n5wrw"]
+[ext_resource type="PackedScene" uid="uid://t7vjlxweuy6a" path="res://source/menus/passenger_management_menu/character_button.tscn" id="2_a8wny"]
+[ext_resource type="PackedScene" uid="uid://cm20vamj531m0" path="res://source/menus/common/number_select/number_select.tscn" id="3_1lmur"]
 
-[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_carriages_container")]
+[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_submit_button", "_number_select")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +13,9 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n5wrw")
 _passengers_container = NodePath("MarginContainer/VBoxContainer/Passengers")
-_carriages_container = NodePath("MarginContainer/VBoxContainer/Carriages")
+_character_button = ExtResource("2_a8wny")
+_submit_button = NodePath("MarginContainer/VBoxContainer/Submit/Button")
+_number_select = NodePath("MarginContainer/VBoxContainer/CarriagesNumberSelect")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -24,16 +28,24 @@ theme_override_constants/margin_bottom = 100
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 20
 
-[node name="Passengers" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Passengers" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CarriagesNumberSelect" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_1lmur")]
+layout_mode = 2
+
+[node name="Submit" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Carriages" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/Submit"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-theme_override_constants/separation = 20
-alignment = 1
+text = "Submit"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

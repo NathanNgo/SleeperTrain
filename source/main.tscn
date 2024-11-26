@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_0oi3d"]
 [ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/menu_manager.tscn" id="1_0rlfs"]
-[ext_resource type="PackedScene" uid="uid://c58sr4duma0r0" path="res://source/characters/passenger/passenger_world_representation.tscn" id="2_frxew"]
+[ext_resource type="PackedScene" uid="uid://c58sr4duma0r0" path="res://source/characters/character_world_representation.tscn" id="2_frxew"]
 [ext_resource type="Texture2D" uid="uid://bfq2581n0g3sn" path="res://assets/graphics/Passenger.png" id="3_gpw1o"]
 [ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/world/world.tscn" id="3_vr70b"]
 [ext_resource type="PackedScene" uid="uid://vt0qspgdidmj" path="res://source/managers/train_manager/train_manager.tscn" id="4_op22d"]

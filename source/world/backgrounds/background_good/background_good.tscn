@@ -1,153 +1,135 @@
 [gd_scene load_steps=9 format=3 uid="uid://08wmaujqxydq"]
 
-[ext_resource type="Script" path="res://source/world/background/background.gd" id="1_jdf6f"]
-[ext_resource type="Material" uid="uid://bnql5b7qr02n8" path="res://source/shaders/smooth_pixel.tres" id="2_7vi1w"]
-[ext_resource type="Texture2D" uid="uid://cidgla3oqkmoa" path="res://assets/background/super/sky.png" id="3_c8kgh"]
-[ext_resource type="Texture2D" uid="uid://bbw3l7ns3qacb" path="res://assets/background/super/far-clouds.png" id="4_wggdv"]
-[ext_resource type="Texture2D" uid="uid://nei8g3fblyr7" path="res://assets/background/super/near-clouds.png" id="5_2ouje"]
-[ext_resource type="Texture2D" uid="uid://bcnsdxg457gf4" path="res://assets/background/super/far-mountains.png" id="6_akn3x"]
-[ext_resource type="Texture2D" uid="uid://cub65x0y0ym76" path="res://assets/background/super/mountains.png" id="7_b1rti"]
-[ext_resource type="Texture2D" uid="uid://ce5thi6nax605" path="res://assets/background/super/trees.png" id="8_s5eyc"]
+[ext_resource type="Script" path="res://source/world/backgrounds/background.gd" id="1_mhhlk"]
+[ext_resource type="Material" uid="uid://bnql5b7qr02n8" path="res://source/shaders/smooth_pixel.tres" id="2_q4dqh"]
+[ext_resource type="Texture2D" uid="uid://cidgla3oqkmoa" path="res://assets/background/super/sky.png" id="3_sgf0t"]
+[ext_resource type="Texture2D" uid="uid://bbw3l7ns3qacb" path="res://assets/background/super/far-clouds.png" id="4_yqk4w"]
+[ext_resource type="Texture2D" uid="uid://nei8g3fblyr7" path="res://assets/background/super/near-clouds.png" id="5_in5vp"]
+[ext_resource type="Texture2D" uid="uid://bcnsdxg457gf4" path="res://assets/background/super/far-mountains.png" id="6_en7l0"]
+[ext_resource type="Texture2D" uid="uid://cub65x0y0ym76" path="res://assets/background/super/mountains.png" id="7_cqelh"]
+[ext_resource type="Texture2D" uid="uid://ce5thi6nax605" path="res://assets/background/super/trees.png" id="8_afpcf"]
 
-[node name="Background" type="ParallaxBackground" node_paths=PackedStringArray("_small_layer", "_big_layer")]
-script = ExtResource("1_jdf6f")
-_small_layer = NodePath("SmallTrees")
-_big_layer = NodePath("BigTrees")
+[node name="BackgroundGood" type="ParallaxBackground"]
+script = ExtResource("1_mhhlk")
 
 [node name="Sky" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0, 0)
 
 [node name="Sky" type="Sprite2D" parent="Sky"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(960, 720)
 scale = Vector2(6, 6)
-texture = ExtResource("3_c8kgh")
+texture = ExtResource("3_sgf0t")
 
 [node name="FarClouds" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.5, 0)
 motion_mirroring = Vector2(2336, 0)
 
 [node name="Far-clouds" type="Sprite2D" parent="FarClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(292, 547.5)
 scale = Vector2(4.5625, 4.5625)
-texture = ExtResource("4_wggdv")
+texture = ExtResource("4_yqk4w")
 
 [node name="Far-clouds2" type="Sprite2D" parent="FarClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(876, 547.5)
 scale = Vector2(4.5625, 4.5625)
-texture = ExtResource("4_wggdv")
+texture = ExtResource("4_yqk4w")
 
 [node name="Far-clouds3" type="Sprite2D" parent="FarClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(1460, 547.5)
 scale = Vector2(4.5625, 4.5625)
-texture = ExtResource("4_wggdv")
+texture = ExtResource("4_yqk4w")
 
 [node name="Far-clouds4" type="Sprite2D" parent="FarClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(2044, 547.5)
 scale = Vector2(4.5625, 4.5625)
-texture = ExtResource("4_wggdv")
+texture = ExtResource("4_yqk4w")
 
 [node name="NearClouds" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.9, 0)
 motion_mirroring = Vector2(1968, 0)
 
 [node name="Near-clouds" type="Sprite2D" parent="NearClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(328, 552)
 scale = Vector2(4.55556, 4.55556)
-texture = ExtResource("5_2ouje")
+texture = ExtResource("5_in5vp")
 
 [node name="Near-clouds2" type="Sprite2D" parent="NearClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(984, 552)
 scale = Vector2(4.55556, 4.55556)
-texture = ExtResource("5_2ouje")
+texture = ExtResource("5_in5vp")
 
 [node name="Near-clouds3" type="Sprite2D" parent="NearClouds"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(1640, 552)
 scale = Vector2(4.55556, 4.55556)
-texture = ExtResource("5_2ouje")
+texture = ExtResource("5_in5vp")
 
 [node name="FarMountains" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(1.2, 0)
 motion_mirroring = Vector2(2184, 0)
 
 [node name="Far-mountains" type="Sprite2D" parent="FarMountains"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(364, 549.5)
 scale = Vector2(4.55, 4.57917)
-texture = ExtResource("6_akn3x")
+texture = ExtResource("6_en7l0")
 
 [node name="Far-mountains2" type="Sprite2D" parent="FarMountains"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(1092, 549.5)
 scale = Vector2(4.55, 4.57917)
-texture = ExtResource("6_akn3x")
+texture = ExtResource("6_en7l0")
 
 [node name="Far-mountains3" type="Sprite2D" parent="FarMountains"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(1820, 549.5)
 scale = Vector2(4.55, 4.57917)
-texture = ExtResource("6_akn3x")
+texture = ExtResource("6_en7l0")
 
 [node name="Mountains" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(1.5, 0)
 motion_mirroring = Vector2(2928, 0)
 
 [node name="Mountains2" type="Sprite2D" parent="Mountains"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(732, 548)
 scale = Vector2(4.575, 4.56667)
-texture = ExtResource("7_b1rti")
+texture = ExtResource("7_cqelh")
 
 [node name="Mountains3" type="Sprite2D" parent="Mountains"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(2196, 548)
 scale = Vector2(4.575, 4.56667)
-texture = ExtResource("7_b1rti")
-
-[node name="BigTrees" type="ParallaxLayer" parent="."]
-motion_scale = Vector2(15, 0)
-motion_mirroring = Vector2(2880, 0)
-
-[node name="Trees" type="Sprite2D" parent="BigTrees"]
-material = ExtResource("2_7vi1w")
-position = Vector2(240, 176)
-scale = Vector2(6, 6)
-texture = ExtResource("8_s5eyc")
-
-[node name="Trees2" type="Sprite2D" parent="BigTrees"]
-material = ExtResource("2_7vi1w")
-position = Vector2(1680, 176)
-scale = Vector2(6, 6)
-texture = ExtResource("8_s5eyc")
+texture = ExtResource("7_cqelh")
 
 [node name="SmallTrees" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(10, 0)
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Trees" type="Sprite2D" parent="SmallTrees"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(480, 416)
 scale = Vector2(4, 4)
-texture = ExtResource("8_s5eyc")
+texture = ExtResource("8_afpcf")
 
 [node name="Trees2" type="Sprite2D" parent="SmallTrees"]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(1440, 416)
 scale = Vector2(4, 4)
-texture = ExtResource("8_s5eyc")
+texture = ExtResource("8_afpcf")
 
 [node name="Ground" type="Sprite2D" parent="."]
-material = ExtResource("2_7vi1w")
+material = ExtResource("2_q4dqh")
 position = Vector2(960, 1616)
 scale = Vector2(6, -6)
-texture = ExtResource("3_c8kgh")
+texture = ExtResource("3_sgf0t")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 544)
