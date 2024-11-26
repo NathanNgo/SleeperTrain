@@ -7,7 +7,7 @@ const MAX_HUNGER := 100
 const DEFAULT_SATISFACTION := 100
 const DEFAULT_CHARACTER_NAME := "John"
 const DEFAULT_TOWN_NAME := "First Town"
-const DEFAULT_TRAVEL_TIME := 5
+const DEFAULT_TRAVEL_TIME := 10
 
 @export var _menu_manager: CanvasLayer
 @export var _train_manager: Node
@@ -39,6 +39,7 @@ func _ready() -> void:
     _setup_resource_management_menu()
     _populate_passenger_management_menu()
     _populate_resource_management_menu()
+    _world.set_background_town()
 
 
 func _setup_graph() -> void:
@@ -139,6 +140,8 @@ func _on_town_selection_pressed(vertex_name: String) -> void:
     var full_path := _graph.get_full_path(_current_vertex.id, _destination_vertex.id)
 
     _overworld_navigation_menu.overworld.move_train(full_path, DEFAULT_TRAVEL_TIME)
+    _train_manager.start_train_consumption()
+    _world.set_background_journey()
 
 
 func _on_carriage_added(carriage: Node2D) -> void:
@@ -156,6 +159,8 @@ func _on_train_arrived() -> void:
     _overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
     _populate_passenger_management_menu()
     _populate_resource_management_menu()
+    _train_manager.stop_train_consumption()
+    _world.set_background_town()
 
 
 func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:

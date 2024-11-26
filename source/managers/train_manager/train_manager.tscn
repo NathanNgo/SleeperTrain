@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://vt0qspgdidmj"]
+[gd_scene load_steps=5 format=3 uid="uid://vt0qspgdidmj"]
 
 [ext_resource type="Script" path="res://source/managers/train_manager/train_manager.gd" id="1_oagmk"]
 [ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/world_objects/train_carriages/train_carriage_basic/train_carriage_basic.tscn" id="2_wjklg"]
 [ext_resource type="PackedScene" uid="uid://3pq1072o1fdo" path="res://source/world/world_objects/train_carriages/train_carriage_short/train_carriage_short.tscn" id="3_6o4nr"]
+[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources.tres" id="4_5xp6e"]
 
-[node name="TrainManager" type="Node"]
+[node name="TrainManager" type="Node" node_paths=PackedStringArray("_consumption_timer")]
 script = ExtResource("1_oagmk")
 _train_carriage_scene = ExtResource("2_wjklg")
 _train_carriage_short_scene = ExtResource("3_6o4nr")
+_consumption_timer = NodePath("ConsumptionTimer")
+_train_resources = ExtResource("4_5xp6e")
+
+[node name="ConsumptionTimer" type="Timer" parent="."]

@@ -10,7 +10,11 @@ const MIN_CAMERA_ZOOM = 1
 @export var character_container: Node2D
 @export var _camera: Camera2D
 @export var _background_pivot: Node2D
+@export var _background_sub_viewport: SubViewport
 @export var _train_resources: Resource
+
+@export var _journey_background: PackedScene
+@export var _town_background: PackedScene
 
 
 func _process(_delta: float) -> void:
@@ -48,3 +52,18 @@ func spawn_world_character(character_id: int, world_position: Vector2) -> void:
 
 func _on_character_consume_resource(resource_type: Globals.ResourceType, amount: int) -> void:
     _train_resources.remove_resources(resource_type, amount)
+
+
+# TODO: Clean this janky shit up.
+func set_background_town() -> void:
+    for child in _background_sub_viewport.get_children():
+        child.queue_free()
+
+    _background_sub_viewport.add_child(_town_background.instantiate())
+
+
+func set_background_journey() -> void:
+    for child in _background_sub_viewport.get_children():
+        child.queue_free()
+
+    _background_sub_viewport.add_child(_journey_background.instantiate())

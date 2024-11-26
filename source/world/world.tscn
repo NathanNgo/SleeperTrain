@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=5 format=3 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/backgrounds/background_good/background_good.tscn" id="1_uiuku"]
 [ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources.tres" id="2_4a2n7"]
+[ext_resource type="PackedScene" uid="uid://dwi6pubh3vgby" path="res://source/world/backgrounds/background_town/background_town.tscn" id="4_yfvks"]
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot", "_background_sub_viewport")]
 script = ExtResource("1_bljk7")
 train_container = NodePath("TrainContainer")
 character_container = NodePath("CharacterContainer")
 _camera = NodePath("Camera2D")
 _background_pivot = NodePath("BackgroundPivot")
+_background_sub_viewport = NodePath("BackgroundPivot/SubViewportContainer/SubViewport")
 _train_resources = ExtResource("2_4a2n7")
+_journey_background = ExtResource("1_uiuku")
+_town_background = ExtResource("4_yfvks")
 
 [node name="BackgroundPivot" type="Node2D" parent="."]
 position = Vector2(960, 544)

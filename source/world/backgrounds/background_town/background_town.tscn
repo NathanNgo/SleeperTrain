@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwi6pubh3vgby"]
+
+[ext_resource type="Script" path="res://source/world/backgrounds/background.gd" id="1_xk0st"]
+[ext_resource type="Texture2D" uid="uid://qehjim8lls1t" path="res://assets/background/town/10.png" id="2_rfma5"]
+
+[node name="BackgroundGood" type="ParallaxBackground"]
+script = ExtResource("1_xk0st")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 544)
+
+[node name="Town" type="Sprite2D" parent="."]
+position = Vector2(960, 440)
+texture = ExtResource("2_rfma5")

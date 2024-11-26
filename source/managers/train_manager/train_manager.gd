@@ -5,9 +5,14 @@ signal character_added
 
 const DEFAULT_CARRIAGE_AMOUNT := 1
 const CARRIAGE_WIDTH_MULTIPLIER := 0.5
+const DEFAULT_COAL_CONSUMPTION := 5
+const MAX_CONSUMPTION_WAIT_TIME := 20.0
+const MIN_CONSUMPTION_WAIT_TIME := 10.0
 
 @export var _train_carriage_scene: PackedScene
 @export var _train_carriage_short_scene: PackedScene
+@export var _consumption_timer: Timer
+@export var _train_resources: Resource
 
 # Index 0 will always be the back of the train. len(train_layout) - 1 will always
 # be the front of the train.
@@ -28,6 +33,8 @@ func _ready() -> void:
     SignalBus.add_character_to_carriage.connect(_on_add_character_to_carriage)
     SignalBus.remove_character.connect(_on_remove_character)
     SignalBus.remove_all_characters.connect(_on_remove_all_characters)
+
+    _consumption_timer.timeout.connect(_on_consumption_timer_timeout)
 
 
 func _organize_train() -> void:
@@ -121,6 +128,15 @@ func move_character_to_carriage(character_id: int, carriage_index: int) -> void:
     add_character_to_carriage(character_id, carriage_index)
 
 
+func start_train_consumption() -> void:
+    _consumption_timer.wait_time = randf_range(MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME)
+    _consumption_timer.start()
+
+
+func stop_train_consumption() -> void:
+    _consumption_timer.stop()
+
+
 func _on_add_train_carriage_at(
     carriage_index: int, train_carriage_type: Globals.TrainCarriageType
 ) -> void:
@@ -165,3 +181,8 @@ func _push_at(carriage_index: int, item: Node2D) -> void:
     var end_array: Array[Node2D] = train_layout.slice(carriage_index, len(train_layout))
     var item_array: Array[Node2D] = [item]
     train_layout = beginning_array + item_array + end_array
+
+
+func _on_consumption_timer_timeout() -> void:
+    _train_resources.remove_resources(Globals.ResourceType.COAL, DEFAULT_COAL_CONSUMPTION)
+    _consumption_timer.wait_time = randf_range(MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME)
