@@ -105,6 +105,8 @@ func get_vertex_id_path(from_id: Vector2, to_id: Vector2) -> PackedVector2Array:
     var astar_to_id: int = vertex_id_to_astar_id_mapping[to_id]
     var path_ids := astar.get_point_path(astar_from_id, astar_to_id)
 
+    # We use the position of the vertex as its ID, therefore we can just treat the position vectors
+    # returned by AStar as a collection of vertex ID's.
     return path_ids
 
 
@@ -126,7 +128,7 @@ func get_edge_path(from_id: Vector2, to_id: Vector2) -> Array[GridRailwayEdge]:
     var path_length := len(path_ids)
 
     for index in range(path_length):
-        if index == path_length - 1:
+        if index >= path_length - 1:
             return edge_path
 
         var current_point := path_ids[index]
