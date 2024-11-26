@@ -7,7 +7,7 @@ const MAX_HUNGER := 100
 const DEFAULT_SATISFACTION := 100
 const DEFAULT_CHARACTER_NAME := "John"
 const DEFAULT_TOWN_NAME := "First Town"
-const DEFAULT_TRAVEL_TIME := 10
+const DEFAULT_TRAVEL_TIME := 30
 
 @export var _menu_manager: CanvasLayer
 @export var _train_manager: Node

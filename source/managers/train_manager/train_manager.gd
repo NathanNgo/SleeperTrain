@@ -6,8 +6,8 @@ signal character_added
 const DEFAULT_CARRIAGE_AMOUNT := 1
 const CARRIAGE_WIDTH_MULTIPLIER := 0.5
 const DEFAULT_COAL_CONSUMPTION := 5
-const MAX_CONSUMPTION_WAIT_TIME := 20.0
-const MIN_CONSUMPTION_WAIT_TIME := 10.0
+const MAX_CONSUMPTION_WAIT_TIME := 10.0
+const MIN_CONSUMPTION_WAIT_TIME := 5.0
 
 @export var _train_carriage_scene: PackedScene
 @export var _train_carriage_short_scene: PackedScene
