@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=6 format=3 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/backgrounds/background_good/background_good.tscn" id="1_uiuku"]
 [ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources.tres" id="2_4a2n7"]
 [ext_resource type="PackedScene" uid="uid://dwi6pubh3vgby" path="res://source/world/backgrounds/background_town/background_town.tscn" id="4_yfvks"]
+[ext_resource type="PackedScene" uid="uid://chdq82xwdb2vw" path="res://source/characters/conductor.tscn" id="5_gai6i"]
 
 [node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot", "_background_sub_viewport")]
 script = ExtResource("1_bljk7")
@@ -47,3 +48,6 @@ position = Vector2(960, 864)
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 864)
+
+[node name="Conductor" parent="." instance=ExtResource("5_gai6i")]
+position = Vector2(955, 888)
