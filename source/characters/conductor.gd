@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var conductor_animation: AnimationPlayer
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("pan_right") and Input.is_action_pressed("pan_left"):
 		move_conductor("stop")
 	elif Input.is_action_pressed("pan_right"):
