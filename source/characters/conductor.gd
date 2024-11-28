@@ -5,11 +5,13 @@ extends CharacterBody2D
 
 
 func _physics_process(delta: float) -> void:
-	if (Input.is_action_just_pressed("pan_right") and not Input.is_action_pressed("pan_left")) or (Input.is_action_just_released("pan_left") and Input.is_action_pressed("pan_right")):
+	if Input.is_action_pressed("pan_right") and Input.is_action_pressed("pan_left"):
+		move_conductor("stop")
+	elif Input.is_action_pressed("pan_right"):
 		move_conductor("right")
-	if (Input.is_action_just_pressed("pan_left") and not Input.is_action_pressed("pan_right")) or (Input.is_action_just_released("pan_right") and Input.is_action_pressed("pan_left")):
+	elif Input.is_action_pressed("pan_left"):
 		move_conductor("left")
-	if (Input.is_action_pressed("pan_left") and Input.is_action_pressed("pan_right")) or (Input.is_action_just_released("pan_left") and not Input.is_action_pressed("pan_right")) or (Input.is_action_just_released("pan_right") and not Input.is_action_pressed("pan_left")):
+	else:
 		move_conductor("stop")
 
 
