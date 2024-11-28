@@ -13,5 +13,5 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: Scony/godot-gdscript-toolkit@master
-    - run: gdformat --use-space=4 --check source/
+    - run: gdformat -l 90 --check source/
     - run: gdlint source/

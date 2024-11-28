@@ -45,14 +45,20 @@ func clear_world_characters() -> void:
 
 
 func spawn_world_character(character_id: int, world_position: Vector2) -> void:
-	var character_world_representation := CharacterRegistry.get_world_representation(character_id)
+	var character_world_representation := CharacterRegistry.get_world_representation(
+		character_id
+	)
 	character_world_representation.world_position = world_position
-	character_world_representation.consume_resource.connect(_on_character_consume_resource)
+	character_world_representation.consume_resource.connect(
+		_on_character_consume_resource
+	)
 
 	character_container.add_child(character_world_representation)
 
 
-func _on_character_consume_resource(resource_type: Globals.ResourceType, amount: int) -> void:
+func _on_character_consume_resource(
+	resource_type: Globals.ResourceType, amount: int
+) -> void:
 	_train_resources.remove_resources(resource_type, amount)
 
 
