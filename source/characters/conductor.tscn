@@ -99,8 +99,10 @@ _data = {
 "walk_right": SubResource("Animation_671uy")
 }
 
-[node name="Conductor" type="CharacterBody2D"]
+[node name="Conductor" type="CharacterBody2D" node_paths=PackedStringArray("conductor_sprite", "conductor_animation")]
 script = ExtResource("1_gxexe")
+conductor_sprite = NodePath("ConductorSprite")
+conductor_animation = NodePath("AnimationPlayer")
 
 [node name="ConductorSprite" type="Sprite2D" parent="."]
 texture_filter = 1
