@@ -21,6 +21,9 @@ var _train_arrived := true
 @onready var _resource_management_menu: ManagedMenu = _menu_manager.get_menu(
 	Globals.Menus.RESOURCE_MANAGEMENT_MENU
 )
+@onready var _main_menu: ManagedMenu = _menu_manager.get_menu(
+	Globals.Menus.MAIN_MENU
+)
 
 
 func _ready() -> void:
@@ -130,6 +133,7 @@ func _start_train_journey(destination_vertex_name: String) -> void:
 	_train_manager.start_train_consumption()
 	_world.start_character_consumption()
 	_world.set_background_journey()
+	_main_menu.disable_town_buttons()
 	_train_arrived = false
 
 
@@ -141,6 +145,7 @@ func _stop_train_journey() -> void:
 	_train_manager.stop_train_consumption()
 	_world.stop_character_consumption()
 	_world.set_background_town()
+	_main_menu.enable_town_buttons()
 	_train_arrived = true
 
 
