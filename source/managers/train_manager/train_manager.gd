@@ -23,6 +23,7 @@ var total_carriages = 0
 
 
 func setup(carriage_type: Globals.TrainCarriageType) -> void:
+	print("spawn")
 	add_carriage_at(0, carriage_type)
 
 

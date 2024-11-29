@@ -42,19 +42,20 @@ func _setup_graph() -> void:
 
 
 func _setup_train_manager() -> void:
-	_train_manager.setup(Globals.TrainCarriageType.BASIC)
 	_train_manager.carriage_added.connect(_on_carriage_added)
 	_train_manager.character_added.connect(_on_character_added)
+	_train_manager.setup(Globals.TrainCarriageType.BASIC)
 
 
 func _setup_overworld_navigation_menu() -> void:
-	_overworld_navigation_menu.setup(_current_vertex.vertex_name)
 	_overworld_navigation_menu.overworld.train_arrived.connect(_on_train_arrived)
 
 	for town_selection in _overworld_navigation_menu.overworld.level.town_selections:
 		town_selection.pressed.connect(
 			_on_town_selection_pressed.bind(town_selection.vertex_name)
 		)
+
+	_overworld_navigation_menu.setup(_current_vertex.vertex_name)
 
 
 func _setup_resource_management_menu() -> void:
@@ -79,6 +80,18 @@ func _populate_resource_management_menu() -> void:
 func _on_carriage_added(carriage: Node2D) -> void:
 	_world.train_container.add_child(carriage)
 	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
+
+
+func _spawn_world_characters() -> void:
+	_world.clear_world_characters()
+
+	for character_id in _train_manager.character_id_to_carriage_id_mapping:
+		var carriage_id: int = (
+			_train_manager.character_id_to_carriage_id_mapping[character_id]
+		)
+		var carriage: Node2D = _train_manager.get_carriage(carriage_id)
+
+		_world.spawn_world_character(character_id, carriage.position)
 
 
 func _on_character_added() -> void:
@@ -115,19 +128,20 @@ func _start_train_journey(destination_vertex_name: String) -> void:
 
 	_overworld_navigation_menu.overworld.move_train(full_path, DEFAULT_TRAVEL_TIME)
 	_train_manager.start_train_consumption()
+	_world.start_character_consumption()
 	_world.set_background_journey()
 	_train_arrived = false
 
 
 func _stop_train_journey() -> void:
-	_train_arrived = true
 	_current_vertex = _destination_vertex
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
 	_populate_passenger_management_menu()
 	_populate_resource_management_menu()
 	_train_manager.stop_train_consumption()
+	_world.stop_character_consumption()
 	_world.set_background_town()
-	# TODO: Despawn characters to stop consumption.
+	_train_arrived = true
 
 
 func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:

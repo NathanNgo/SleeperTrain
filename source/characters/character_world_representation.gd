@@ -20,15 +20,25 @@ var world_position: Vector2:
 func _ready() -> void:
 	assert(character_data != null, "character_data has not been configured")
 
+	_consumption_timer.timeout.connect(_on_consumption_timer_timeout)
+
+
+func start_character_consumption() -> void:
 	_consumption_timer.wait_time = randf_range(
 		MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME
 	)
 	_consumption_timer.start()
-	_consumption_timer.timeout.connect(_on_consumption_timer_timeout)
+
+
+func stop_character_consumption() -> void:
+	_consumption_timer.stop()
 
 
 func _on_consumption_timer_timeout() -> void:
 	consume_resource.emit(Globals.ResourceType.FOOD, DEFAULT_FOOD_CONSUMPTION)
+	_consumption_timer.wait_time = randf_range(
+		MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME
+	)
 
 ###
 # This should contain logic bespoke to a character. Walk, run, jump, etc.

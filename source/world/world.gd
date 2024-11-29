@@ -56,6 +56,16 @@ func spawn_world_character(character_id: int, world_position: Vector2) -> void:
 	character_container.add_child(character_world_representation)
 
 
+func start_character_consumption() -> void:
+	for character in character_container.get_children():
+		character.start_character_consumption()
+
+
+func stop_character_consumption() -> void:
+	for character in character_container.get_children():
+		character.stop_character_consumption()
+
+
 func _on_character_consume_resource(
 	resource_type: Globals.ResourceType, amount: int
 ) -> void:
