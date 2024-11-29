@@ -21,9 +21,7 @@ var _train_arrived := true
 @onready var _resource_management_menu: ManagedMenu = _menu_manager.get_menu(
 	Globals.Menus.RESOURCE_MANAGEMENT_MENU
 )
-@onready var _main_menu: ManagedMenu = _menu_manager.get_menu(
-	Globals.Menus.MAIN_MENU
-)
+@onready var _main_menu: ManagedMenu = _menu_manager.get_menu(Globals.Menus.MAIN_MENU)
 
 
 func _ready() -> void:
