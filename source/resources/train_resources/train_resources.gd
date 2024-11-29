@@ -4,7 +4,8 @@ extends Resource
 	Globals.ResourceType.COAL: 98,
 	Globals.ResourceType.FOOD: 50,
 	Globals.ResourceType.LUXURIES: 72,
-	Globals.ResourceType.REPUTATION: 100
+	Globals.ResourceType.REPUTATION: 100,
+	Globals.ResourceType.MONEY: 100
 }
 
 

@@ -1,11 +1,12 @@
 extends Node
 
-const DEFAULT_TRAVEL_TIME := 30
+const DEFAULT_TRAVEL_TIME := 3
 const DEFAULT_TOWN_NAME := "First Town"
 
 @export var _menu_manager: CanvasLayer
 @export var _train_manager: Node
 @export var _world: Node2D
+@export var _train_resources: Resource
 
 var _graph: GridRailwayGraph
 var _current_vertex: GridRailwayVertex
@@ -83,7 +84,7 @@ func _on_carriage_added(carriage: Node2D) -> void:
 	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
 
 
-func _spawn_world_characters() -> void:
+func _reload_train_characters() -> void:
 	_world.clear_world_characters()
 
 	for character_id in _train_manager.character_id_to_carriage_id_mapping:
@@ -96,15 +97,7 @@ func _spawn_world_characters() -> void:
 
 
 func _on_character_added() -> void:
-	_world.clear_world_characters()
-
-	for character_id in _train_manager.character_id_to_carriage_id_mapping:
-		var carriage_id: int = (
-			_train_manager.character_id_to_carriage_id_mapping[character_id]
-		)
-		var carriage: Node2D = _train_manager.get_carriage(carriage_id)
-
-		_world.spawn_world_character(character_id, carriage.position)
+	_reload_train_characters()
 
 
 func _on_town_selection_pressed(destination_vertex_name: String) -> void:
@@ -145,6 +138,21 @@ func _stop_train_journey() -> void:
 	_world.set_background_town()
 	_main_menu.enable_town_buttons()
 	_train_arrived = true
+
+	for character_id in _train_manager.character_id_to_carriage_id_mapping:
+		var character_data = CharacterRegistry.get_character_data(character_id)
+		character_data.current_town = _current_vertex
+
+		if character_data.destination_town == _current_vertex:
+			_train_manager.character_id_to_carriage_id_mapping.erase(character_id)
+			_train_resources.add_resources(
+				Globals.ResourceType.MONEY, character_data.money
+			)
+			_train_resources.add_resources(
+				Globals.ResourceType.REPUTATION, character_data.satisfaction
+			)
+
+	_reload_train_characters()
 
 
 func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:

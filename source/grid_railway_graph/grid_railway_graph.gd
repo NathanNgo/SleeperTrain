@@ -16,9 +16,12 @@ func _init(vertexes_init: Array[Node], edges_init: Array[Node]) -> void:
 	for vertex in vertexes_init:
 		add_vertex(vertex)
 
-		if vertex.vertex_type == Globals.VertexType.TOWN:
-			vertex.available_character_ids = Generation._generate_characters()
-			vertex.available_resources = Generation._generate_resources()
+	var town_vertexes := get_all_vertex_by_type(Globals.VertexType.TOWN)
+	for vertex in town_vertexes:
+		vertex.available_character_ids = Generation.generate_characters(
+			vertex, town_vertexes
+		)
+		vertex.available_resources = Generation.generate_resources()
 
 	for edge in edges_init:
 		add_edge(edge)
@@ -100,6 +103,18 @@ func get_vertex_by_name(vertex_name: String) -> GridRailwayVertex:
 		return vertexes[id]
 
 	return null
+
+
+func get_all_vertex_by_type(vertex_type: Globals.VertexType) -> Array[GridRailwayVertex]:
+	var vertexes_by_type: Array[GridRailwayVertex] = []
+
+	for vertex_key in vertexes:
+		var vertex = vertexes[vertex_key]
+
+		if vertex.vertex_type == vertex_type:
+			vertexes_by_type.append(vertex)
+
+	return vertexes_by_type
 
 
 func get_edge(id: Array[Vector2]) -> GridRailwayEdge:

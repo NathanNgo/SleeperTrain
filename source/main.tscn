@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bfvvce0x58vns"]
+[gd_scene load_steps=6 format=3 uid="uid://bfvvce0x58vns"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_0oi3d"]
 [ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/menu_manager.tscn" id="1_0rlfs"]
+[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources/train_resources.tres" id="2_vgucw"]
 [ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/world/world.tscn" id="3_vr70b"]
 [ext_resource type="PackedScene" uid="uid://vt0qspgdidmj" path="res://source/managers/train_manager/train_manager.tscn" id="4_op22d"]
 
@@ -10,6 +11,7 @@ script = ExtResource("1_0oi3d")
 _menu_manager = NodePath("MenuManager")
 _train_manager = NodePath("TrainManager")
 _world = NodePath("World")
+_train_resources = ExtResource("2_vgucw")
 
 [node name="MenuManager" parent="." instance=ExtResource("1_0rlfs")]
 

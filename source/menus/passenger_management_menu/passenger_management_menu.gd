@@ -3,7 +3,7 @@ extends ManagedMenu
 const MIN_CARRIAGES = 0
 
 @export var _passengers_container: HFlowContainer
-@export var _character_button: PackedScene
+@export var _character_display: PackedScene
 @export var _submit_button: Button
 @export var _number_select: HBoxContainer
 
@@ -26,13 +26,16 @@ func set_available_character_list(character_ids: Array[int]) -> void:
 
 	for character_id in character_ids:
 		var character_data = CharacterRegistry.get_character_data(character_id)
-		var character_button: Control = _character_button.instantiate()
-		character_button.set_texture(character_data.menu_image)
-		character_button.pressed.connect(
+		var character_display = _character_display.instantiate()
+		character_display.set_character_button_texture(character_data.menu_image)
+		character_display.set_destination_label(
+			character_data.destination_town.vertex_name
+		)
+		character_display.character_button.pressed.connect(
 			_on_character_button_pressed.bind(character_data.character_id)
 		)
 
-		_passengers_container.add_child(character_button)
+		_passengers_container.add_child(character_display)
 
 
 func _on_minus_button_pressed() -> void:

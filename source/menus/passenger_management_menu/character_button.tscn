@@ -5,10 +5,8 @@
 
 [node name="CharacterButton" type="Button" node_paths=PackedStringArray("_texture_rect")]
 custom_minimum_size = Vector2(128, 128)
-offset_left = -64.0
-offset_top = -64.0
-offset_right = 64.0
-offset_bottom = 64.0
+offset_right = 128.0
+offset_bottom = 128.0
 script = ExtResource("1_8mff6")
 _texture_rect = NodePath("TextureRect")
 

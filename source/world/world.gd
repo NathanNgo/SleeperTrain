@@ -40,8 +40,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func clear_world_characters() -> void:
-	for child in character_container.get_children():
-		child.queue_free()
+	for character in character_container.get_children():
+		character.queue_free()
 
 
 func spawn_world_character(character_id: int, world_position: Vector2) -> void:
@@ -54,6 +54,11 @@ func spawn_world_character(character_id: int, world_position: Vector2) -> void:
 	)
 
 	character_container.add_child(character_world_representation)
+
+
+func collect_passenger_payments() -> void:
+	for character in character_container.get_children():
+		_train_resources.add_resource(character.money)
 
 
 func start_character_consumption() -> void:

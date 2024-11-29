@@ -18,6 +18,7 @@ enum ResourceType {
 	FOOD,
 	LUXURIES,
 	REPUTATION,
+	MONEY,
 }
 
 const FIRST_VERTEX_ID_IN_EDGE_ID := 0

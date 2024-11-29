@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmu6g87qlns5e"]
+
+[ext_resource type="Script" path="res://source/menus/passenger_management_menu/character_display.gd" id="1_ldcne"]
+[ext_resource type="PackedScene" uid="uid://t7vjlxweuy6a" path="res://source/menus/passenger_management_menu/character_button.tscn" id="1_rjkvc"]
+
+[node name="CharacterDisplay" type="VBoxContainer" node_paths=PackedStringArray("character_button", "destination_label")]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 168.0
+theme_override_constants/separation = 10
+script = ExtResource("1_ldcne")
+character_button = NodePath("CharacterButton")
+destination_label = NodePath("ColorRect/Destination")
+
+[node name="CharacterButton" parent="." instance=ExtResource("1_rjkvc")]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(128, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="Destination" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Second Town"
+horizontal_alignment = 1
+vertical_alignment = 1
