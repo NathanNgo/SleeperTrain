@@ -12,6 +12,18 @@ var vertexes = {}
 var edges = {}
 
 
+func _init(vertexes_init: Array[Node], edges_init: Array[Node]) -> void:
+	for vertex in vertexes_init:
+		add_vertex(vertex)
+
+		if vertex.vertex_type == Globals.VertexType.TOWN:
+			vertex.available_character_ids = Generation._generate_characters()
+			vertex.available_resources = Generation._generate_resources()
+
+	for edge in edges_init:
+		add_edge(edge)
+
+
 func add_vertex(vertex: GridRailwayVertex) -> void:
 	var astar_id := astar.get_available_point_id()
 

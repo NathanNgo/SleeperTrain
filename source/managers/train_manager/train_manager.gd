@@ -22,6 +22,10 @@ var character_id_to_carriage_id_mapping = {}
 var total_carriages = 0
 
 
+func setup(carriage_type: Globals.TrainCarriageType) -> void:
+	add_carriage_at(0, carriage_type)
+
+
 func _ready() -> void:
 	SignalBus.add_train_carriage_at.connect(_on_add_train_carriage_at)
 	SignalBus.remove_train_carriage_at.connect(_on_remove_train_carriage_at)
