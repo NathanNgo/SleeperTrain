@@ -11,7 +11,7 @@ var vertexes = {}
 # Dict[Vector2, GridRailwayEdge]
 var edges = {}
 
-
+# 
 func _init(vertexes_init: Array[Node], edges_init: Array[Node]) -> void:
 	for vertex in vertexes_init:
 		add_vertex(vertex)
