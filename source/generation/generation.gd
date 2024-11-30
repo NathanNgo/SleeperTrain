@@ -6,7 +6,6 @@ const MIN_HUNGER := 0
 const MAX_HUNGER := 100
 const MIN_MONEY := 1
 const MAX_MONEY := 10
-const DEFAULT_SATISFACTION := 100
 const DEFAULT_CHARACTER_NAME := "John"
 
 static var _passenger_world_representation: PackedScene = preload(
@@ -23,7 +22,6 @@ static func generate_resources() -> Variant:
 		Globals.ResourceType.COAL: randi_range(10, 100),
 		Globals.ResourceType.FOOD: randi_range(10, 100),
 		Globals.ResourceType.LUXURIES: randi_range(10, 100),
-		Globals.ResourceType.REPUTATION: randi_range(10, 100),
 	}
 	return resources
 
@@ -42,11 +40,10 @@ static func generate_characters(
 			DEFAULT_CHARACTER_NAME,
 			_passenger_menu_image,
 			_passenger_world_representation,
-			money,
 			current_town,
 			destination_town,
+			money,
 			hunger,
-			DEFAULT_SATISFACTION
 		)
 		characters.append(generated_character.character_id)
 

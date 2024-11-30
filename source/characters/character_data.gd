@@ -1,26 +1,37 @@
 class_name CharacterData extends RefCounted
 
+const DEFAULT_SATISFACTION = {
+	Globals.SatisfactionType.ROOM: true,
+	Globals.SatisfactionType.SERVICE: true,
+	Globals.SatisfactionType.FOOD: true,
+	Globals.SatisfactionType.SCENERY: true,
+	Globals.SatisfactionType.TIME: true
+}
+
 var character_id: int
+
 var character_name: String
-var satisfaction: int
+# Dict[Globals.SatisfactionType, Bool]
+var satisfaction = {}
 var money: int
 var hunger: int
 var current_town: GridRailwayVertex
 var destination_town: GridRailwayVertex
+var world_position: Vector2
+
 var world_representation: PackedScene
 var menu_image: Resource
-var world_position: Vector2
 
 
 func _init(
 	character_name_init: String,
 	menu_image_init: Resource,
 	world_representation_init: PackedScene,
-	money_init: int,
 	current_town_init: GridRailwayVertex,
 	destination_town_init: GridRailwayVertex,
+	money_init: int = 0,
 	hunger_init: int = 0,
-	satisfaction_init: int = 0
+	satisfaction_init: Variant = DEFAULT_SATISFACTION
 ) -> void:
 	self.character_id = CharacterRegistry.register(self)
 	self.character_name = character_name_init
@@ -31,3 +42,11 @@ func _init(
 	self.destination_town = destination_town_init
 	self.hunger = hunger_init
 	self.world_representation = world_representation_init
+
+
+func get_satisfaction_score() -> int:
+	var score := 0
+	for satisfaction_type in Globals.SatisfactionType.values():
+		score += int(satisfaction[satisfaction_type])
+
+	return score

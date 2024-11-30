@@ -21,5 +21,13 @@ enum ResourceType {
 	MONEY,
 }
 
+enum SatisfactionType {
+	ROOM,
+	SERVICE,
+	FOOD,
+	SCENERY,
+	TIME,
+}
+
 const FIRST_VERTEX_ID_IN_EDGE_ID := 0
 const SECOND_VERTEX_ID_IN_EDGE_ID := 1

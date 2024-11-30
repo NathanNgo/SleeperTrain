@@ -149,7 +149,7 @@ func _stop_train_journey() -> void:
 				Globals.ResourceType.MONEY, character_data.money
 			)
 			_train_resources.add_resources(
-				Globals.ResourceType.REPUTATION, character_data.satisfaction
+				Globals.ResourceType.REPUTATION, character_data.get_satisfaction_score()
 			)
 
 	_reload_train_characters()
