@@ -36,7 +36,7 @@ static func generate_characters(
 		var money = randi_range(MIN_MONEY, MAX_MONEY)
 		var hunger = randi_range(MIN_HUNGER, MAX_HUNGER)
 		var destination_town = available_towns[randi_range(0, available_towns.size() - 1)]
-		var generated_character: CharacterData = (
+		var generated_character := (
 			CharacterData
 			. new(
 				DEFAULT_CHARACTER_NAME,
