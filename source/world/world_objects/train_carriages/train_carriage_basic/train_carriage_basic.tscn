@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://fhlqrgvrjs57"]
+[gd_scene load_steps=7 format=3 uid="uid://fhlqrgvrjs57"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train_carriages/train_carriage.gd" id="1_8vhu3"]
 [ext_resource type="Texture2D" uid="uid://bobq80y6vk04m" path="res://assets/graphics/carriage_full_unscaled.png" id="2_q5pyk"]
 [ext_resource type="Texture2D" uid="uid://c51riroqftx84" path="res://assets/graphics/carriage_backwall_unscaled.png" id="3_bhohw"]
+[ext_resource type="Texture2D" uid="uid://c43gko6xfsiym" path="res://assets/graphics/carriage_shell.png" id="4_egvyt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(1424, 8)
@@ -10,17 +11,23 @@ size = Vector2(1424, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
 size = Vector2(1424, 248)
 
-[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("_train_carriage_shape")]
+[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("_train_carriage_shape") groups=["Carriages"]]
 script = ExtResource("1_8vhu3")
 _train_carriage_shape = NodePath("TrainCarriageArea/TrainCarriageShape")
-
-[node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
-texture_filter = 1
-texture = ExtResource("2_q5pyk")
 
 [node name="CarriageBackwallUnscaled" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("3_bhohw")
+
+[node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+texture = ExtResource("2_q5pyk")
+
+[node name="CarriageShell" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_egvyt")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
@@ -29,7 +36,11 @@ position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_fws6n")
 
 [node name="TrainCarriageArea" type="Area2D" parent="."]
+collision_layer = 8
 
 [node name="TrainCarriageShape" type="CollisionShape2D" parent="TrainCarriageArea"]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_jtscl")
+
+[connection signal="body_entered" from="TrainCarriageArea" to="." method="_on_train_carriage_area_body_entered"]
+[connection signal="body_exited" from="TrainCarriageArea" to="." method="_on_train_carriage_area_body_exited"]

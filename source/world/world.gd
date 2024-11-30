@@ -16,7 +16,6 @@ const MIN_CAMERA_ZOOM = 1
 @export var _journey_background: PackedScene
 @export var _town_background: PackedScene
 
-
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("pan_left"):
 		_camera.position.x -= CAMERA_PAN_SPEED
@@ -90,3 +89,24 @@ func set_background_journey() -> void:
 		child.queue_free()
 
 	_background_sub_viewport.add_child(_journey_background.instantiate())
+
+func connect_carriage_signals():
+	#print("Trying to connect")
+	#print(get_tree().get_nodes_in_group("Carriages"))
+	for carriage in get_tree().get_nodes_in_group("Carriages"):
+		print(carriage.get_node("TrainCarriageArea"))
+		carriage.connect("player_entered_carriage", _on_player_enter_carriage)
+		carriage.connect("player_exited_carriage", _on_player_exit_carriage)
+
+func _on_player_enter_carriage(carriage: Node2D):
+	fade_object(carriage.get_node("CarriageFullUnscaled"), true)
+	print("Trying to Fade")
+
+func _on_player_exit_carriage(carriage: Node2D):
+	fade_object(carriage.get_node("CarriageFullUnscaled"), false)
+	print("Trying to Fade")
+
+func fade_object(target: Sprite2D, fadeout: bool):
+	var fade = create_tween()
+	print(target, fadeout)
+	fade.tween_property(target, "modulate:a", float(not fadeout), 1)
