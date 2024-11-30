@@ -30,12 +30,16 @@ static func generate_characters(
 	current_town: GridRailwayVertex, available_towns: Array[GridRailwayVertex]
 ) -> Array[int]:
 	var characters: Array[int] = []
-	available_towns.erase(current_town)
+	# We don't want to modify the array while iterating through it, so we duplicate it.
+	var available_towns_copy = available_towns.duplicate()
+	available_towns_copy.erase(current_town)
 
 	for count in range(randi_range(MIN_CHARACTERS, MAX_CHARACTERS)):
 		var money = randi_range(MIN_MONEY, MAX_MONEY)
 		var hunger = randi_range(MIN_HUNGER, MAX_HUNGER)
-		var destination_town = available_towns[randi_range(0, available_towns.size() - 1)]
+		var destination_town = available_towns_copy[
+			randi_range(0, available_towns_copy.size() - 1)
+		]
 		var generated_character := (
 			CharacterData
 			. new(
