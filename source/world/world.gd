@@ -110,4 +110,3 @@ func fade_object(target: Sprite2D, fadeout: bool):
 	var fade = create_tween()
 	print(target, fadeout)
 	fade.tween_property(target, "modulate:a", float(not fadeout), 1)
-	
