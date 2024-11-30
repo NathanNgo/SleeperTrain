@@ -17,11 +17,14 @@ func _init(vertexes_init: Array[Node], edges_init: Array[Node]) -> void:
 		add_vertex(vertex)
 
 	var town_vertexes := get_all_vertex_by_type(Globals.VertexType.TOWN)
+
+	for vertex in town_vertexes:
+		vertex.available_resources = Generation.generate_resources()
+
 	for vertex in town_vertexes:
 		vertex.available_character_ids = Generation.generate_characters(
 			vertex, town_vertexes
 		)
-		vertex.available_resources = Generation.generate_resources()
 
 	for edge in edges_init:
 		add_edge(edge)
