@@ -1,6 +1,6 @@
 extends Node
 
-const DEFAULT_TRAVEL_TIME := 3
+const DEFAULT_TRAVEL_TIME := 1
 const DEFAULT_TOWN_NAME := "First Town"
 
 @export var _menu_manager: CanvasLayer

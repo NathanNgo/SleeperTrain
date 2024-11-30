@@ -4,6 +4,7 @@ signal carriage_added(carriage: Node2D)
 signal character_added
 
 const DEFAULT_CARRIAGE_AMOUNT := 1
+const DEFAULT_PASSENGER_LIMIT := 1
 const CARRIAGE_WIDTH_MULTIPLIER := 0.5
 const DEFAULT_COAL_CONSUMPTION := 5
 const MAX_CONSUMPTION_WAIT_TIME := 10.0
@@ -19,6 +20,8 @@ const MIN_CONSUMPTION_WAIT_TIME := 5.0
 var train_layout: Array[Node2D] = []
 # Dict[int, int]
 var character_id_to_carriage_id_mapping = {}
+# Dict[int, Array[int]]
+var carriage_id_to_character_ids_mapping = {}
 var total_carriages = 0
 
 
@@ -105,13 +108,15 @@ func remove_carriage_at(carriage_index: int) -> void:
 	# We should probably maintain a reverse mapping of carriage_id to character_id.
 	# That will mean we don't have to check every character to see if they exist
 	# on the carriage we're trying to delete.
-	for character_id in character_id_to_carriage_id_mapping:
-		var carriage_id = character_id_to_carriage_id_mapping[character_id]
+	var carriage_id = train_layout[carriage_index].carriage_id
 
-		if carriage_id == train_layout[carriage_index].carriage_id:
-			# TODO: Display message to user.
-			print("Cannot remove carriage with passengers assigned.")
-			return
+	if (
+		carriage_id in carriage_id_to_character_ids_mapping
+		and not carriage_id_to_character_ids_mapping[carriage_id]
+	):
+		# TODO: Display message to user.
+		print("Cannot remove carriage with passengers assigned.")
+		return
 
 	var train_carriage = train_layout.pop_at(carriage_index)
 
@@ -120,18 +125,35 @@ func remove_carriage_at(carriage_index: int) -> void:
 
 
 func add_character_to_carriage(character_id: int, carriage_index: int) -> void:
-	character_id_to_carriage_id_mapping[character_id] = (
-		train_layout[carriage_index].carriage_id
-	)
+	var carriage_id = train_layout[carriage_index].carriage_id
+
+	if carriage_id not in carriage_id_to_character_ids_mapping:
+		carriage_id_to_character_ids_mapping[carriage_id] = []
+
+	if carriage_id_to_character_ids_mapping[carriage_id].size() > DEFAULT_PASSENGER_LIMIT:
+		# TODO: Display to player
+		print("Carriage is full")
+		return
+
+	character_id_to_carriage_id_mapping[character_id] = carriage_id
+	carriage_id_to_character_ids_mapping[carriage_id] += [character_id]
+
 	character_added.emit()
 
 
 func remove_character(character_id: int) -> void:
-	character_id_to_carriage_id_mapping.erase(character_id)
+	var carriage_id = character_id_to_carriage_id_mapping[character_id]
+
+	if character_id in character_id_to_carriage_id_mapping:
+		character_id_to_carriage_id_mapping.erase(character_id)
+
+	if carriage_id in carriage_id_to_character_ids_mapping:
+		carriage_id_to_character_ids_mapping[carriage_id].erase(character_id)
 
 
 func remove_all_characters() -> void:
 	character_id_to_carriage_id_mapping.clear()
+	carriage_id_to_character_ids_mapping.clear()
 
 
 func move_character_to_carriage(character_id: int, carriage_index: int) -> void:
