@@ -37,9 +37,9 @@ static func generate_characters(
 	for count in range(randi_range(MIN_CHARACTERS, MAX_CHARACTERS)):
 		var money = randi_range(MIN_MONEY, MAX_MONEY)
 		var hunger = randi_range(MIN_HUNGER, MAX_HUNGER)
-		var destination_town = available_towns_copy[
-			randi_range(0, available_towns_copy.size() - 1)
-		]
+		var destination_town = available_towns_copy[randi_range(
+			0, available_towns_copy.size() - 1
+		)]
 		var generated_character := (
 			CharacterData
 			. new(

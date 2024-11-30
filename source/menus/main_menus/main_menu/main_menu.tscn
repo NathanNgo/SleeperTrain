@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cc6n5h7po41on"]
 
-[ext_resource type="Script" path="res://source/menus/main_menu/main_menu.gd" id="1_lgmpb"]
+[ext_resource type="Script" path="res://source/menus/main_menus/main_menu/main_menu.gd" id="1_lgmpb"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("_map_button", "_how_to_play_button", "_train_management_button", "_passenger_management_button", "_resource_management_menu")]
 layout_mode = 3

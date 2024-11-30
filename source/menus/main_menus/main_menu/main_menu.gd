@@ -28,20 +28,20 @@ func disable_town_buttons() -> void:
 
 
 func _on_map_button_pressed() -> void:
-	transition.emit(Globals.Menus.OVERWORLD_NAVIGATION_MENU)
+	transition.emit(Globals.MainMenus.OVERWORLD_NAVIGATION_MENU)
 
 
 func _on_how_to_play_button_pressed() -> void:
-	transition.emit(Globals.Menus.HOW_TO_PLAY_MENU)
+	transition.emit(Globals.MainMenus.HOW_TO_PLAY_MENU)
 
 
 func _on_train_management_button_pressed() -> void:
-	transition.emit(Globals.Menus.TRAIN_MANAGEMENT_MENU)
+	transition.emit(Globals.MainMenus.TRAIN_MANAGEMENT_MENU)
 
 
 func _on_passenger_management_button_pressed() -> void:
-	transition.emit(Globals.Menus.PASSENGER_MANAGEMENT_MENU)
+	transition.emit(Globals.MainMenus.PASSENGER_MANAGEMENT_MENU)
 
 
 func _on_resource_management_button_pressed() -> void:
-	transition.emit(Globals.Menus.RESOURCE_MANAGEMENT_MENU)
+	transition.emit(Globals.MainMenus.RESOURCE_MANAGEMENT_MENU)

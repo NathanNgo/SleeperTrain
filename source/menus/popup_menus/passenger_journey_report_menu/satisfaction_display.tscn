@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://vom8bu7m7tfc"]
+
+[ext_resource type="Texture2D" uid="uid://bgejglpwpnbue" path="res://assets/graphics/icons/satisfaction_food.png" id="1_dsbdj"]
+[ext_resource type="Script" path="res://source/menus/popup_menus/passenger_journey_report_menu/satisfaction_display.gd" id="1_gj344"]
+
+[node name="SatisfactionDisplay" type="HBoxContainer" node_paths=PackedStringArray("_satisfaction_label", "_satisfaction_texture")]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gj344")
+_satisfaction_label = NodePath("ColorRect/SatisfactionLabel")
+_satisfaction_texture = NodePath("ColorRect2/SatisfactionTexture")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="SatisfactionTexture" type="TextureRect" parent="ColorRect2"]
+layout_mode = 2
+offset_right = 50.0
+offset_bottom = 50.0
+texture = ExtResource("1_dsbdj")
+stretch_mode = 3
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(92, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+color = Color(0.121569, 0.121569, 0.121569, 0.52549)
+
+[node name="SatisfactionLabel" type="Label" parent="ColorRect"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -15.0
+offset_right = 50.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1

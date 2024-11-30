@@ -1,0 +1,30 @@
+[gd_scene load_steps=8 format=3 uid="uid://bfybk2e44api1"]
+
+[ext_resource type="Script" path="res://source/managers/menu_manager/main_menu_manager/main_menu_manager.gd" id="1_mp6io"]
+[ext_resource type="PackedScene" uid="uid://cc6n5h7po41on" path="res://source/menus/main_menus/main_menu/main_menu.tscn" id="2_p7uxg"]
+[ext_resource type="PackedScene" uid="uid://bi8r6dsx64nty" path="res://source/menus/main_menus/overworld_navigation_menu/overworld_navigation_menu.tscn" id="3_dwipw"]
+[ext_resource type="PackedScene" uid="uid://b6083nkr8l11q" path="res://source/menus/main_menus/how_to_play_menu/how_to_play_menu.tscn" id="4_t0akl"]
+[ext_resource type="PackedScene" uid="uid://dh116m477jfgh" path="res://source/menus/main_menus/passenger_management_menu/passenger_management_menu.tscn" id="6_jq5i6"]
+[ext_resource type="PackedScene" uid="uid://50hbrfsqyer4" path="res://source/menus/main_menus/train_management_menu/train_management_menu.tscn" id="7_lhjcm"]
+[ext_resource type="PackedScene" uid="uid://bdkeua2fgp65a" path="res://source/menus/main_menus/resource_management_menu/resource_management_menu.tscn" id="7_pbss5"]
+
+[node name="MainMenuManager" type="CanvasLayer" node_paths=PackedStringArray("_main_menu", "_overworld_navigation_menu", "_how_to_play_menu", "_train_management_menu", "_passenger_management_menu", "_resource_management_menu")]
+script = ExtResource("1_mp6io")
+_main_menu = NodePath("MainMenu")
+_overworld_navigation_menu = NodePath("OverworldNavigationMenu")
+_how_to_play_menu = NodePath("HowToPlayMenu")
+_train_management_menu = NodePath("TrainManagementMenu")
+_passenger_management_menu = NodePath("PassengerManagementMenu")
+_resource_management_menu = NodePath("ResourceManagementMenu")
+
+[node name="MainMenu" parent="." instance=ExtResource("2_p7uxg")]
+
+[node name="OverworldNavigationMenu" parent="." instance=ExtResource("3_dwipw")]
+
+[node name="HowToPlayMenu" parent="." instance=ExtResource("4_t0akl")]
+
+[node name="PassengerManagementMenu" parent="." instance=ExtResource("6_jq5i6")]
+
+[node name="TrainManagementMenu" parent="." instance=ExtResource("7_lhjcm")]
+
+[node name="ResourceManagementMenu" parent="." instance=ExtResource("7_pbss5")]

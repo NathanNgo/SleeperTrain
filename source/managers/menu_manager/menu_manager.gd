@@ -1,31 +1,4 @@
-extends CanvasLayer
-
-const DEFAULT_MENU = Globals.Menus.MAIN_MENU
-const DEFAULT_ESCAPE_ACTION = "escape"
-
-@export var _main_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.MAIN_MENU] = menu
-
-@export var _overworld_navigation_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.OVERWORLD_NAVIGATION_MENU] = menu
-
-@export var _how_to_play_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.HOW_TO_PLAY_MENU] = menu
-
-@export var _train_management_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.TRAIN_MANAGEMENT_MENU] = menu
-
-@export var _passenger_management_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.PASSENGER_MANAGEMENT_MENU] = menu
-
-@export var _resource_management_menu: ManagedMenu:
-	set(menu):
-		menus[Globals.Menus.RESOURCE_MANAGEMENT_MENU] = menu
+class_name MenuManager extends CanvasLayer
 
 var menus = {}
 var menu_open = false
@@ -33,27 +6,24 @@ var menu_open = false
 
 func _ready() -> void:
 	_setup_all()
-	_hide_all()
-	transition(DEFAULT_MENU)
+	hide_all()
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed(DEFAULT_ESCAPE_ACTION):
-		if menu_open:
-			_hide_all()
-			menu_open = false
-		else:
-			transition(DEFAULT_MENU)
-
-
-func transition(menu: Globals.Menus) -> void:
-	_hide_all()
+# These should be types as "Variant" and set in the subclasses, but Godot doesn't like
+# doing that, so we remove the typing here and just type them in the overriding function.
+func transition(menu) -> void:
+	hide_all()
 	menus[menu].show()
 	menu_open = true
 
 
-func get_menu(menu: Globals.Menus) -> ManagedMenu:
+func get_menu(menu) -> ManagedMenu:
 	return menus[menu]
+
+
+func hide_all() -> void:
+	for key in menus:
+		menus[key].hide()
 
 
 func _setup_all() -> void:
@@ -61,10 +31,5 @@ func _setup_all() -> void:
 		menus[key].transition.connect(_on_transition)
 
 
-func _hide_all() -> void:
-	for key in menus:
-		menus[key].hide()
-
-
-func _on_transition(menu: Globals.Menus) -> void:
+func _on_transition(menu) -> void:
 	transition(menu)

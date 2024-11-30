@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmu6g87qlns5e"]
 
-[ext_resource type="Script" path="res://source/menus/passenger_management_menu/character_display.gd" id="1_ldcne"]
-[ext_resource type="PackedScene" uid="uid://t7vjlxweuy6a" path="res://source/menus/passenger_management_menu/character_button.tscn" id="1_rjkvc"]
+[ext_resource type="Script" path="res://source/menus/main_menus/passenger_management_menu/character_display.gd" id="1_ldcne"]
+[ext_resource type="PackedScene" uid="uid://t7vjlxweuy6a" path="res://source/menus/main_menus/passenger_management_menu/character_button.tscn" id="1_rjkvc"]
 
 [node name="CharacterDisplay" type="VBoxContainer" node_paths=PackedStringArray("character_button", "destination_label")]
 offset_left = -64.0
