@@ -95,6 +95,7 @@ func add_carriage_at(
 	_push_at(carriage_index, train_carriage)
 	carriage_added.emit(train_carriage)
 	_organize_train()
+	
 
 
 func remove_carriage_at(carriage_index: int) -> void:

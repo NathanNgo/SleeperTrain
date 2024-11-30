@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlp16dmu4srkf"
-path="res://.godot/imported/tilemap.png-0ecba5f1a047e5f0cab0df4faff83c9f.ctex"
+uid="uid://paei0ifxtf7e"
+path="res://.godot/imported/luggage_rack.png-271c2098f1f423dcb1cebf90b679db60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilemap/tilemap.png"
-dest_files=["res://.godot/imported/tilemap.png-0ecba5f1a047e5f0cab0df4faff83c9f.ctex"]
+source_file="res://assets/graphics/luggage_rack.png"
+dest_files=["res://.godot/imported/luggage_rack.png-271c2098f1f423dcb1cebf90b679db60.ctex"]
 
 [params]
 

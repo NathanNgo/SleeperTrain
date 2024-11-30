@@ -81,6 +81,7 @@ func _populate_resource_management_menu() -> void:
 
 func _on_carriage_added(carriage: Node2D) -> void:
 	_world.train_container.add_child(carriage)
+	_world.connect_carriage_signals()
 	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
 
 
