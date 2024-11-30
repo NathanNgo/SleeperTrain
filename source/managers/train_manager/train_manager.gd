@@ -104,10 +104,6 @@ func remove_carriage_at(carriage_index: int) -> void:
 	if carriage_index >= len(train_layout):
 		return
 
-	# TODO:
-	# We should probably maintain a reverse mapping of carriage_id to character_id.
-	# That will mean we don't have to check every character to see if they exist
-	# on the carriage we're trying to delete.
 	var carriage_id = train_layout[carriage_index].carriage_id
 
 	if (
