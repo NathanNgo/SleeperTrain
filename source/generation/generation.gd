@@ -36,14 +36,17 @@ static func generate_characters(
 		var money = randi_range(MIN_MONEY, MAX_MONEY)
 		var hunger = randi_range(MIN_HUNGER, MAX_HUNGER)
 		var destination_town = available_towns[randi_range(0, available_towns.size() - 1)]
-		var generated_character: CharacterData = CharacterData.new(
-			DEFAULT_CHARACTER_NAME,
-			_passenger_menu_image,
-			_passenger_world_representation,
-			current_town,
-			destination_town,
-			money,
-			hunger,
+		var generated_character: CharacterData = (
+			CharacterData
+			. new(
+				DEFAULT_CHARACTER_NAME,
+				_passenger_menu_image,
+				_passenger_world_representation,
+				current_town,
+				destination_town,
+				money,
+				hunger,
+			)
 		)
 		characters.append(generated_character.character_id)
 
