@@ -97,8 +97,8 @@ func _on_purchase_button_pressed() -> void:
 	var food_amount = purchase_amount[Globals.ResourceType.FOOD]
 
 	_train_resources.add_resources(Globals.ResourceType.COAL, coal_amount)
-	_train_resources.add_resources(Globals.ResourceType.LUXURIES, coal_amount)
-	_train_resources.add_resources(Globals.ResourceType.FOOD, coal_amount)
+	_train_resources.add_resources(Globals.ResourceType.LUXURIES, luxuries_amount)
+	_train_resources.add_resources(Globals.ResourceType.FOOD, food_amount)
 
 	# FIXME:
 	# This can cause bugs as we now have 2 sources of truth. The menu, and the vertex.
