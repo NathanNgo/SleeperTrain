@@ -1,12 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://g7jyh30m7qrl"]
+[gd_scene load_steps=3 format=3 uid="uid://g7jyh30m7qrl"]
 
 [ext_resource type="Script" path="res://source/menus/popup_menus/passenger_journey_report_menu/passenger_journey_report_menu.gd" id="1_j2tja"]
-[ext_resource type="PackedScene" uid="uid://vom8bu7m7tfc" path="res://source/menus/popup_menus/passenger_journey_report_menu/satisfaction_display.tscn" id="2_2euk5"]
-[ext_resource type="Texture2D" uid="uid://bgejglpwpnbue" path="res://assets/graphics/icons/satisfaction_food.png" id="3_mr54x"]
-[ext_resource type="Texture2D" uid="uid://dt0y6j7t4dao1" path="res://assets/graphics/icons/satisfaction_service.png" id="4_n1hit"]
-[ext_resource type="Texture2D" uid="uid://c4o6x3doxwkpr" path="res://assets/graphics/icons/satisfaction_room.png" id="5_f8uxp"]
-[ext_resource type="Texture2D" uid="uid://kxu7fthfnmmh" path="res://assets/graphics/icons/satisfaction_scenery.png" id="6_gwoe3"]
-[ext_resource type="Texture2D" uid="uid://cfns4arjla1pt" path="res://assets/graphics/icons/satisfaction_luxury.png" id="7_8wqcy"]
+[ext_resource type="PackedScene" uid="uid://vom8bu7m7tfc" path="res://source/menus/common/resource_display/resource_display.tscn" id="2_2euk5"]
 
 [node name="PassengerJourneyReportMenu" type="Control" node_paths=PackedStringArray("_room_satisfaction_display", "_service_satisfaction_display", "_food_satisfaction_display", "_scenery_satisfaction_display", "_time_satisfaction_display")]
 layout_mode = 3
@@ -24,31 +19,29 @@ _time_satisfaction_display = NodePath("HBoxContainer/SatisfactionTime")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
+anchor_top = 0.142
 anchor_right = 0.5
+anchor_bottom = 0.142
 offset_left = -373.0
-offset_top = 128.0
+offset_top = -25.36
 offset_right = 373.0
-offset_bottom = 178.0
+offset_bottom = 24.64
 grow_horizontal = 2
+theme_override_constants/separation = 50
 
 [node name="SatisfactionFood" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
-satisfaction_texture_image = ExtResource("3_mr54x")
 
 [node name="SatisfactionService" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
-satisfaction_texture_image = ExtResource("4_n1hit")
 
 [node name="SatisfactionRoom" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
-satisfaction_texture_image = ExtResource("5_f8uxp")
 
 [node name="SatisfactionScenery" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
-satisfaction_texture_image = ExtResource("6_gwoe3")
 
 [node name="SatisfactionTime" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
-satisfaction_texture_image = ExtResource("7_8wqcy")

@@ -30,6 +30,10 @@ func get_menu(menu: Globals.PopupMenus) -> ManagedMenu:
 	return super(menu)
 
 
+func pin_menu(menu: Globals.PopupMenus) -> void:
+	super(menu)
+
+
 func _on_transition(menu: Globals.PopupMenus) -> void:
 	super(menu)
 

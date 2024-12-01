@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://b0ma0e86o86yl"]
+
+[ext_resource type="PackedScene" uid="uid://vom8bu7m7tfc" path="res://source/menus/common/resource_display/resource_display.tscn" id="1_jtbsk"]
+[ext_resource type="Script" path="res://source/menus/gui_menus/resource_gui_menu/resource_gui_menu.gd" id="1_s1206"]
+[ext_resource type="Texture2D" uid="uid://wksbt4nx04fi" path="res://assets/graphics/icons/icon_money.png" id="3_oocnu"]
+[ext_resource type="Texture2D" uid="uid://e3c3nhdggohd" path="res://assets/graphics/icons/icon_reputation.png" id="4_d3ysp"]
+[ext_resource type="Texture2D" uid="uid://cfffdmhlur2f1" path="res://assets/graphics/icons/icon_coal.png" id="5_iiyjo"]
+[ext_resource type="Texture2D" uid="uid://bgejglpwpnbue" path="res://assets/graphics/icons/satisfaction_food.png" id="6_3kdsd"]
+[ext_resource type="Texture2D" uid="uid://cfns4arjla1pt" path="res://assets/graphics/icons/satisfaction_luxury.png" id="7_j0ygn"]
+
+[node name="ResourceGuiMenu" type="HBoxContainer" node_paths=PackedStringArray("_money_display", "_reputation_display", "_coal_display", "_food_display", "_luxuries_display")]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 358.0
+offset_bottom = 66.0
+theme_override_constants/separation = 20
+script = ExtResource("1_s1206")
+_money_display = NodePath("MoneyDisplay")
+_reputation_display = NodePath("ReputationDisplay")
+_coal_display = NodePath("CoalDisplay")
+_food_display = NodePath("FoodDisplay")
+_luxuries_display = NodePath("LuxuriesDisplay")
+
+[node name="MoneyDisplay" parent="." instance=ExtResource("1_jtbsk")]
+layout_mode = 2
+resource_texture_image = ExtResource("3_oocnu")
+
+[node name="ReputationDisplay" parent="." instance=ExtResource("1_jtbsk")]
+layout_mode = 2
+resource_texture_image = ExtResource("4_d3ysp")
+
+[node name="CoalDisplay" parent="." instance=ExtResource("1_jtbsk")]
+layout_mode = 2
+resource_texture_image = ExtResource("5_iiyjo")
+
+[node name="FoodDisplay" parent="." instance=ExtResource("1_jtbsk")]
+layout_mode = 2
+resource_texture_image = ExtResource("6_3kdsd")
+
+[node name="LuxuriesDisplay" parent="." instance=ExtResource("1_jtbsk")]
+layout_mode = 2
+resource_texture_image = ExtResource("7_j0ygn")

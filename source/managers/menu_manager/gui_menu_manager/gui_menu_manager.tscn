@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://hgx7x4lnbqt6"]
+
+[ext_resource type="Script" path="res://source/managers/menu_manager/gui_menu_manager/gui_menu_manager.gd" id="1_om2nj"]
+[ext_resource type="PackedScene" uid="uid://b0ma0e86o86yl" path="res://source/menus/gui_menus/resource_gui_menu/resource_gui_menu.tscn" id="2_52lv8"]
+
+[node name="GuiMenuManager" type="CanvasLayer" node_paths=PackedStringArray("_resource_gui_menu")]
+script = ExtResource("1_om2nj")
+_resource_gui_menu = NodePath("ResourceGuiMenu")
+
+[node name="ResourceGuiMenu" parent="." instance=ExtResource("2_52lv8")]

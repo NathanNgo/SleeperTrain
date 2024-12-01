@@ -1,7 +1,8 @@
 class_name MenuManager extends CanvasLayer
 
-var menus = {}
-var menu_open = false
+var menus := {}
+var pinned_menus := []
+var menu_open := false
 
 
 func _ready() -> void:
@@ -17,12 +18,18 @@ func transition(menu) -> void:
 	menu_open = true
 
 
+func pin_menu(menu) -> void:
+	pinned_menus.append(menu)
+
+
 func get_menu(menu) -> ManagedMenu:
 	return menus[menu]
 
 
 func hide_all() -> void:
 	for key in menus:
+		if key in pinned_menus:
+			continue
 		menus[key].hide()
 
 

@@ -46,6 +46,10 @@ func transition(menu: Globals.MainMenus) -> void:
 	super(menu)
 
 
+func pin_menu(menu: Globals.MainMenus) -> void:
+	super(menu)
+
+
 func get_menu(menu: Globals.MainMenus) -> ManagedMenu:
 	return super(menu)
 

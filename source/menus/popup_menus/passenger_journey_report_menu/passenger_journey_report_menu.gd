@@ -8,18 +8,18 @@ extends ManagedMenu
 
 
 func set_satisfaction_scores(satisfaction_scores: Variant) -> void:
-	_room_satisfaction_display.satisfaction_amount = satisfaction_scores[
+	_room_satisfaction_display.resource_amount = satisfaction_scores[
 		Globals.SatisfactionType.ROOM
 	]
-	_service_satisfaction_display.satisfaction_amount = satisfaction_scores[
+	_service_satisfaction_display.resource_amount = satisfaction_scores[
 		Globals.SatisfactionType.SERVICE
 	]
-	_food_satisfaction_display.satisfaction_amount = satisfaction_scores[
+	_food_satisfaction_display.resource_amount = satisfaction_scores[
 		Globals.SatisfactionType.FOOD
 	]
-	_scenery_satisfaction_display.satisfaction_amount = satisfaction_scores[
+	_scenery_satisfaction_display.resource_amount = satisfaction_scores[
 		Globals.SatisfactionType.SCENERY
 	]
-	_time_satisfaction_display.satisfaction_amount = satisfaction_scores[
+	_time_satisfaction_display.resource_amount = satisfaction_scores[
 		Globals.SatisfactionType.TIME
 	]

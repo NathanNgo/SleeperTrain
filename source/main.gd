@@ -1,10 +1,11 @@
 extends Node
 
-const DEFAULT_TRAVEL_TIME := 1
+const DEFAULT_TRAVEL_TIME := 60
 const DEFAULT_TOWN_NAME := "First Town"
 
 @export var _main_menu_manager: CanvasLayer
 @export var _popup_menu_manager: CanvasLayer
+@export var _gui_menu_manager: CanvasLayer
 @export var _train_manager: Node
 @export var _world: Node2D
 @export var _train_resources: Resource
@@ -28,6 +29,9 @@ var _main_menu: ManagedMenu = _main_menu_manager.get_menu(Globals.MainMenus.MAIN
 @onready var _passenger_journey_report_menu: ManagedMenu = _popup_menu_manager.get_menu(
 	Globals.PopupMenus.PASSENGER_JOURNEY_REPORT_MENU
 )
+@onready var _resource_gui_menu: ManagedMenu = _gui_menu_manager.get_menu(
+	Globals.GUIMenus.RESOURCE_GUI_MENU
+)
 
 
 func _ready() -> void:
@@ -35,8 +39,10 @@ func _ready() -> void:
 	_setup_overworld_navigation_menu()
 	_setup_train_manager()
 	_setup_resource_management_menu()
+	_setup_train_resources()
 	_populate_passenger_management_menu()
 	_populate_resource_management_menu()
+	_populate_resource_gui_menu(_train_resources.resources)
 	_world.set_background_town()
 
 
@@ -69,6 +75,10 @@ func _setup_resource_management_menu() -> void:
 	_resource_management_menu.resource_purchased.connect(_on_resource_purchased)
 
 
+func _setup_train_resources() -> void:
+	SignalBus.train_resources_changed.connect(_on_train_resources_changed)
+
+
 func _populate_passenger_management_menu() -> void:
 	_passenger_management_menu.set_available_character_list(
 		_current_vertex.available_character_ids
@@ -92,6 +102,10 @@ func _populate_passenger_journey_report_menu(satisfaction_scores: Variant) -> vo
 			Globals.PopupMenus.PASSENGER_JOURNEY_REPORT_MENU,
 		)
 	)
+
+
+func _populate_resource_gui_menu(resource_amounts: Variant) -> void:
+	_resource_gui_menu.set_resource_amounts(resource_amounts)
 
 
 func _disembark_passengers() -> void:
@@ -193,3 +207,7 @@ func _on_town_selection_pressed(destination_vertex_name: String) -> void:
 
 func _on_train_arrived() -> void:
 	_stop_train_journey()
+
+
+func _on_train_resources_changed() -> void:
+	_populate_resource_gui_menu(_train_resources.resources)

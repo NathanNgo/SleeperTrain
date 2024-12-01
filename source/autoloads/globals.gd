@@ -13,6 +13,10 @@ enum PopupMenus {
 	PASSENGER_JOURNEY_REPORT_MENU,
 }
 
+enum GUIMenus {
+	RESOURCE_GUI_MENU,
+}
+
 enum VertexType { TOWN, JUNCTION }
 
 enum TrainCarriageType { BASIC, SHORT }

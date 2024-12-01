@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://vom8bu7m7tfc"]
 
 [ext_resource type="Texture2D" uid="uid://bgejglpwpnbue" path="res://assets/graphics/icons/satisfaction_food.png" id="1_dsbdj"]
-[ext_resource type="Script" path="res://source/menus/popup_menus/passenger_journey_report_menu/satisfaction_display.gd" id="1_gj344"]
+[ext_resource type="Script" path="res://source/menus/common/resource_display/resource_display.gd" id="1_gj344"]
 
-[node name="SatisfactionDisplay" type="HBoxContainer" node_paths=PackedStringArray("_satisfaction_label", "_satisfaction_texture")]
+[node name="ResourceDisplay" type="HBoxContainer" node_paths=PackedStringArray("_resource_label", "_resource_texture")]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_gj344")
-_satisfaction_label = NodePath("ColorRect/SatisfactionLabel")
-_satisfaction_texture = NodePath("ColorRect2/SatisfactionTexture")
+_resource_label = NodePath("ColorRect/ResourceLabel")
+_resource_texture = NodePath("ColorRect2/ResourceTexture")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(50, 50)
@@ -16,7 +16,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 color = Color(0.121569, 0.121569, 0.121569, 0.52549)
 
-[node name="SatisfactionTexture" type="TextureRect" parent="ColorRect2"]
+[node name="ResourceTexture" type="TextureRect" parent="ColorRect2"]
 layout_mode = 2
 offset_right = 50.0
 offset_bottom = 50.0
@@ -29,7 +29,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 color = Color(0.121569, 0.121569, 0.121569, 0.52549)
 
-[node name="SatisfactionLabel" type="Label" parent="ColorRect"]
+[node name="ResourceLabel" type="Label" parent="ColorRect"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 1
 anchors_preset = 8
