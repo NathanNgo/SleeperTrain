@@ -96,6 +96,9 @@ func add_carriage_at(
 	train_carriage.carriage_id = total_carriages
 
 	_push_at(carriage_index, train_carriage)
+	# We need the train carriage to be added to the scene tree before we organise the
+	# train. Otherwise, _ready() doesn't get run, and none of the member variables we
+	# rely on to calculate the carriage offsets are initialized.
 	carriage_added.emit(train_carriage)
 	_organize_train()
 
