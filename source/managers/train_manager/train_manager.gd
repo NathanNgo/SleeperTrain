@@ -14,6 +14,7 @@ const MIN_CONSUMPTION_WAIT_TIME := 5.0
 @export var _train_carriage_short_scene: PackedScene
 @export var _consumption_timer: Timer
 @export var _train_resources: Resource
+@export var _building_grid: TileMapLayer
 
 # Index 0 will always be the back of the train. len(train_layout) - 1 will always
 # be the front of the train.
@@ -40,6 +41,12 @@ func _ready() -> void:
 	SignalBus.add_character_to_carriage.connect(_on_add_character_to_carriage)
 	SignalBus.remove_character.connect(_on_remove_character)
 	SignalBus.remove_all_characters.connect(_on_remove_all_characters)
+
+	SignalBus.add_division_to_carriage.connect(_on_add_division_to_carriage)
+	SignalBus.remove_division_from_carriage.connect(_on_remove_division_from_carraige)
+	SignalBus.remove_all_divisions_from_carriage.connect(
+		_on_remove_all_divisions_from_carriage
+	)
 
 	_consumption_timer.timeout.connect(_on_consumption_timer_timeout)
 
@@ -124,6 +131,8 @@ func remove_carriage_at(carriage_index: int) -> void:
 
 
 func add_character_to_carriage(character_id: int, carriage_index: int) -> void:
+	# We identify carriages by carriage_id and not carriage_index as the index can change
+	# when we add or remove carriages. The id remains consistent.
 	var carriage_id = train_layout[carriage_index].carriage_id
 
 	if carriage_id not in carriage_id_to_character_ids_mapping:
@@ -211,6 +220,31 @@ func _on_remove_character(character_id: int) -> void:
 
 func _on_remove_all_characters() -> void:
 	remove_all_characters()
+
+
+func _on_add_division_to_carriage(
+	position: Vector2, level: int, carriage_index: int
+) -> void:
+	var carriage = train_layout[carriage_index]
+	var local_position = _building_grid.to_local(position)
+	var map_coordinates = _building_grid.local_to_map(local_position)
+
+	carriage.add_division_on_level(map_coordinates.x, level)
+
+
+func _on_remove_division_from_carraige(
+	position: Vector2, level: int, carriage_index: int
+) -> void:
+	var carriage = train_layout[carriage_index]
+	var local_position = _building_grid.to_local(position)
+	var map_coordinates = _building_grid.local_to_map(local_position)
+
+	carriage.remove_division_on_level(map_coordinates.x, level)
+
+
+func _on_remove_all_divisions_from_carriage(carriage_index: Node2D) -> void:
+	var carriage = train_layout[carriage_index]
+	carriage.remove_all_divisions()
 
 
 func _push_at(carriage_index: int, item: Node2D) -> void:
