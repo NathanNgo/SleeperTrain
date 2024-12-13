@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://54tiafx830dd"]
+
+[ext_resource type="Shader" path="res://source/shaders/transparency/transparency.gdshader" id="1_37v44"]
+
+[resource]
+shader = ExtResource("1_37v44")
+shader_parameter/bottom_left = null
+shader_parameter/top_right = null
+shader_parameter/intensity = null

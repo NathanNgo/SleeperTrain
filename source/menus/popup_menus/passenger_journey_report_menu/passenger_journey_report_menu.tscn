@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://g7jyh30m7qrl"]
+[gd_scene load_steps=8 format=3 uid="uid://g7jyh30m7qrl"]
 
 [ext_resource type="Script" path="res://source/menus/popup_menus/passenger_journey_report_menu/passenger_journey_report_menu.gd" id="1_j2tja"]
 [ext_resource type="PackedScene" uid="uid://vom8bu7m7tfc" path="res://source/menus/common/resource_display/resource_display.tscn" id="2_2euk5"]
+[ext_resource type="Texture2D" uid="uid://bgejglpwpnbue" path="res://assets/graphics/icons/satisfaction_food.png" id="3_6tdgb"]
+[ext_resource type="Texture2D" uid="uid://dt0y6j7t4dao1" path="res://assets/graphics/icons/satisfaction_service.png" id="4_4clb0"]
+[ext_resource type="Texture2D" uid="uid://c4o6x3doxwkpr" path="res://assets/graphics/icons/satisfaction_room.png" id="5_vcaow"]
+[ext_resource type="Texture2D" uid="uid://kxu7fthfnmmh" path="res://assets/graphics/icons/satisfaction_scenery.png" id="6_knv1a"]
+[ext_resource type="Texture2D" uid="uid://cfns4arjla1pt" path="res://assets/graphics/icons/satisfaction_luxury.png" id="7_f3ff2"]
 
 [node name="PassengerJourneyReportMenu" type="Control" node_paths=PackedStringArray("_room_satisfaction_display", "_service_satisfaction_display", "_food_satisfaction_display", "_scenery_satisfaction_display", "_time_satisfaction_display")]
 layout_mode = 3
@@ -33,15 +38,20 @@ theme_override_constants/separation = 50
 
 [node name="SatisfactionFood" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
+resource_texture_image = ExtResource("3_6tdgb")
 
 [node name="SatisfactionService" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
+resource_texture_image = ExtResource("4_4clb0")
 
 [node name="SatisfactionRoom" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
+resource_texture_image = ExtResource("5_vcaow")
 
 [node name="SatisfactionScenery" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
+resource_texture_image = ExtResource("6_knv1a")
 
 [node name="SatisfactionTime" parent="HBoxContainer" instance=ExtResource("2_2euk5")]
 layout_mode = 2
+resource_texture_image = ExtResource("7_f3ff2")

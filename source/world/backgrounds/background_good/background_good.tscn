@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://08wmaujqxydq"]
 
 [ext_resource type="Script" path="res://source/world/backgrounds/background.gd" id="1_mhhlk"]
-[ext_resource type="Material" uid="uid://bnql5b7qr02n8" path="res://source/shaders/smooth_pixel.tres" id="2_q4dqh"]
+[ext_resource type="Material" uid="uid://bnql5b7qr02n8" path="res://source/shaders/smooth_pixel/smooth_pixel.tres" id="2_q4dqh"]
 [ext_resource type="Texture2D" uid="uid://cidgla3oqkmoa" path="res://assets/background/super/sky.png" id="3_sgf0t"]
 [ext_resource type="Texture2D" uid="uid://bbw3l7ns3qacb" path="res://assets/background/super/far-clouds.png" id="4_yqk4w"]
 [ext_resource type="Texture2D" uid="uid://nei8g3fblyr7" path="res://assets/background/super/near-clouds.png" id="5_in5vp"]
