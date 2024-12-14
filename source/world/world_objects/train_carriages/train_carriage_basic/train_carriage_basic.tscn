@@ -10,9 +10,9 @@ size = Vector2(1424, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
 size = Vector2(1424, 248)
 
-[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("_train_carriage_shape")]
+[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("train_carriage_shapes")]
 script = ExtResource("1_8vhu3")
-_train_carriage_shape = NodePath("TrainCarriageArea/TrainCarriageShape")
+train_carriage_shapes = [NodePath("TrainCarriageArea/TrainCarriageShape")]
 
 [node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
 texture_filter = 1

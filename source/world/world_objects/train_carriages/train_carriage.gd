@@ -1,45 +1,83 @@
 extends Node2D
 
-@export var _train_carriage_shape: CollisionShape2D
+@export var train_carriage_shapes: Array[CollisionShape2D]
 
 var carriage_id: int
-# Array[Array[int]], carriage_divisions[carraige_level, division_position]
-var carriage_divisions = []
+var carriage_cabins: Array[TrainCabin] = []
+# Array[Dict[str, int]]
+var grid_carriage_bounds_by_level: Array[Dictionary]
+var max_train_carriage_length := 0.0
 
-@onready var train_carriage_length := _train_carriage_shape.shape.get_rect().size.x
+@onready var max_carriage_levels: int = train_carriage_shapes.size()
 
 
-func add_division_on_level(division_position: int, level: int) -> void:
+func _ready() -> void:
+	for train_carriage_shape in train_carriage_shapes:
+		var train_carriage_length = train_carriage_shape.shape.get_rect().size.x
+		if train_carriage_length > max_train_carriage_length:
+			max_train_carriage_length = train_carriage_length
+
+
+func add_cabin(start: int, end: int, level: int) -> void:
+	if grid_carriage_bounds_by_level.size() != max_carriage_levels:
+		print("Carriage has not been initialized with building grid")
+		return
+
+	if level >= max_carriage_levels:
+		# TODO: Error out or show to player.
+		print("Level does not exist on carriage")
+		return
+
+	var carriage_bounds = grid_carriage_bounds_by_level[level]
+
+	if start < carriage_bounds.start or end > carriage_bounds.end:
+		# TODO: Error out or show to player.
+		print("Cabin is out of bounds")
+		return
+
+	if abs(start - end) <= 1:
+		# TODO: Error out or show to player.
+		print("Cabin is too small")
+		return
+
+	for cabin in carriage_cabins:
+		if start < cabin.cabin_end or end > cabin.cabin_start:
+			# TODO: Error out or show to player.
+			print("Cabin overlaps with an existing cabin")
+			return
+
+	var cabin = TrainCabin.new(start, end, level)
+	carriage_cabins.append(cabin)
+
+
+func remove_cabin(removal_position: int, level: int) -> void:
+	if level >= max_carriage_levels:
+		# TODO: Error out or show to player.
+		print("Level does not exist on carriage")
+		return
+
+	for cabin in carriage_cabins:
+		if removal_position > cabin.cabin_start and removal_position < cabin.cabin_end:
+			cabin.queue_free()
+
+	
+func add_level(start: int, end: int, level: int) -> void:
 	# level > size, discontinuous array.
 	# level == size, creating a new item in the array by appending onto the end.
 	# level < size, accessing existing item.
 
-	if level > carriage_divisions.size():
+	if level > max_carriage_levels:
 		# TODO: Error out or show to player.
 		print("Cannot create discontinuous level")
 		return
 
-	if level == carriage_divisions.size():
-		carriage_divisions.append([])
-
-	if carriage_divisions[level].has(division_position):
-		# TODO: Error out or show to player.
-		print("Division already exists on level")
-		return
-
-	carriage_divisions[level].append(division_position)
-	carriage_divisions.sort()
+	grid_carriage_bounds_by_level.append({start: start, end: end})
 
 
-func remove_division_on_level(division_position: int, level: int) -> void:
-	if level >= carriage_divisions.size():
+func remove_level(level: int) -> void:
+	if level >= max_carriage_levels:
 		# TODO: Error out or show to player.
 		print("Level does not exist")
 		return
 
-	carriage_divisions[level].erase(division_position)
-	carriage_divisions.sort()
-
-
-func remove_all_divisions() -> void:
-	carriage_divisions.clear()
+	grid_carriage_bounds_by_level.erase(level)

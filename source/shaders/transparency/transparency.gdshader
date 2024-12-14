@@ -13,6 +13,6 @@ void fragment()
 		(position_x > bottom_left.x) && (position_x < top_right.x)
 		&& (position_y > bottom_left.y) && (position_y < top_right.y)
 	) {
-		COLOR = vec4(intensity);
+		COLOR.a = intensity;
 	}
 }
