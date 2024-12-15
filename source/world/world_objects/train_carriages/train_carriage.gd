@@ -1,5 +1,7 @@
 extends Node2D
 
+const MIN_CABIN_SIZE = 2
+
 @export var train_carriage_shapes: Array[CollisionShape2D]
 
 var carriage_id: int
@@ -35,7 +37,7 @@ func add_cabin(start: int, end: int, level: int) -> void:
 		print("Cabin is out of bounds")
 		return
 
-	if abs(start - end) <= 1:
+	if abs(start - end) < MIN_CABIN_SIZE:
 		# TODO: Error out or show to player.
 		print("Cabin is too small")
 		return
@@ -60,7 +62,7 @@ func remove_cabin(removal_position: int, level: int) -> void:
 		if removal_position > cabin.cabin_start and removal_position < cabin.cabin_end:
 			cabin.queue_free()
 
-	
+
 func add_level(start: int, end: int, level: int) -> void:
 	# level > size, discontinuous array.
 	# level == size, creating a new item in the array by appending onto the end.

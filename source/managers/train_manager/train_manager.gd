@@ -260,7 +260,9 @@ func _populate_carriage_bounds_by_level() -> void:
 
 		var level = 0
 		for train_carriage_shape in carriage.train_carriage_shapes:
-			var train_carriage_length: float= train_carriage_shape.shape.get_rect().size.x
+			var train_carriage_length: float = (
+				train_carriage_shape.shape.get_rect().size.x
+			)
 			var half_carriage_length: float = train_carriage_length / 2
 
 			var start_carriage_position: Vector2 = Vector2(

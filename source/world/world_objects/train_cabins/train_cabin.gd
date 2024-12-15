@@ -8,6 +8,7 @@ var cabin_end: int
 var level: int
 
 
-func _init(cabin_start_init: int, cabin_end_init: int, level_init) -> void:
-    self.cabin_start = cabin_start_init
-    self.cabin_end = cabin_end_init
+func _init(cabin_start_init: int, cabin_end_init: int, level_init: int) -> void:
+	self.cabin_start = cabin_start_init
+	self.cabin_end = cabin_end_init
+	self.level = level_init
