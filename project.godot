@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 Globals="*res://source/autoloads/globals.gd"
 SignalBus="*res://source/autoloads/signal_bus.gd"
 CharacterRegistry="*res://source/autoloads/character_registry.gd"
+BuildingGrid="*res://source/autoloads/building_grid.gd"
 
 [display]
 

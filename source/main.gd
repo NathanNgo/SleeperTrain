@@ -109,7 +109,6 @@ func _populate_resource_gui_menu(resource_amounts: Variant) -> void:
 
 
 func _disembark_passengers() -> void:
-	# We don't want to modify the dict we're iterating through, so we duplicate it.
 	var satisfaction_scores = {
 		Globals.SatisfactionType.ROOM: 0,
 		Globals.SatisfactionType.SERVICE: 0,
@@ -119,6 +118,7 @@ func _disembark_passengers() -> void:
 	}
 	var character_departed = false
 
+	# We don't want to modify the dict we're iterating through, so we duplicate it.
 	for character_id in _train_manager.character_id_to_carriage_id_mapping.duplicate():
 		var character_data := CharacterRegistry.get_character_data(character_id)
 		character_data.current_town = _current_vertex

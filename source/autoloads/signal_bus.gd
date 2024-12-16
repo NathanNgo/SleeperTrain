@@ -1,5 +1,6 @@
 extends Node
 
+# Train Manager Signals
 signal add_train_carriage_at(carriage_index: int, type: String)
 signal remove_train_carriage_at(carriage_index: int)
 signal add_train_carriage_at_front(type: String)
@@ -17,4 +18,5 @@ signal add_cabin_to_carriage(
 signal remove_cabin_from_carriage(position: Vector2, level: int, carriage_index: int)
 signal remove_all_cabins_from_carriage(carriage_index: int)
 
+# Train Resource Signals
 signal train_resources_changed

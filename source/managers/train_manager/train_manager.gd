@@ -14,7 +14,6 @@ const MIN_CONSUMPTION_WAIT_TIME := 5.0
 @export var _train_carriage_short_scene: PackedScene
 @export var _consumption_timer: Timer
 @export var _train_resources: Resource
-@export var _building_grid: TileMapLayer
 
 # Index 0 will always be the back of the train. len(train_layout) - 1 will always
 # be the front of the train.
@@ -105,7 +104,6 @@ func add_carriage_at(
 	# rely on to calculate the carriage offsets are initialized.
 	carriage_added.emit(train_carriage)
 	_organize_train()
-	_populate_carriage_bounds_by_level()
 
 
 func remove_carriage_at(carriage_index: int) -> void:
@@ -224,8 +222,8 @@ func _on_add_cabin_to_carriage(
 	start_position: Vector2, end_position: Vector2, level: int, carriage_index: int
 ) -> void:
 	var carriage = train_layout[carriage_index]
-	var start_grid_coordinates = _pixel_position_to_grid(start_position)
-	var end_grid_coordinates = _pixel_position_to_grid(end_position)
+	var start_grid_coordinates = BuildingGrid.global_position_to_grid(start_position)
+	var end_grid_coordinates = BuildingGrid.global_position_to_grid(end_position)
 
 	carriage.add_cabin(start_grid_coordinates.x, end_grid_coordinates.x, level)
 
@@ -234,7 +232,7 @@ func _on_remove_cabin_from_carraige(
 	position: Vector2, level: int, carriage_index: int
 ) -> void:
 	var carriage = train_layout[carriage_index]
-	var grid_coordinates = _pixel_position_to_grid(position)
+	var grid_coordinates = BuildingGrid.global_position_to_grid(position)
 
 	carriage.remove_cabin(grid_coordinates.x, level)
 
@@ -252,33 +250,3 @@ func _on_consumption_timer_timeout() -> void:
 	_consumption_timer.wait_time = randf_range(
 		MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME
 	)
-
-
-func _populate_carriage_bounds_by_level() -> void:
-	for carriage in train_layout:
-		carriage.grid_carriage_bounds_by_level.clear()
-
-		var level = 0
-		for train_carriage_shape in carriage.train_carriage_shapes:
-			var train_carriage_length: float = (
-				train_carriage_shape.shape.get_rect().size.x
-			)
-			var half_carriage_length: float = train_carriage_length / 2
-
-			var start_carriage_position: Vector2 = Vector2(
-				carriage.position.x - half_carriage_length, carriage.position.y
-			)
-			var end_carriage_position: Vector2 = Vector2(
-				carriage.position.x + half_carriage_length, carriage.position.y
-			)
-
-			var start = _pixel_position_to_grid(start_carriage_position)
-			var end = _pixel_position_to_grid(end_carriage_position)
-
-			carriage.add_level(start.x, end.x, level)
-			level += 1
-
-
-func _pixel_position_to_grid(position: Vector2) -> Vector2:
-	var local_position = _building_grid.to_local(position)
-	return _building_grid.local_to_map(local_position)

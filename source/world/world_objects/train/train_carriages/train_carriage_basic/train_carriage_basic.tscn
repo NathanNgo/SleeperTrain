@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://fhlqrgvrjs57"]
 
-[ext_resource type="Script" path="res://source/world/world_objects/train_carriages/train_carriage.gd" id="1_8vhu3"]
+[ext_resource type="Script" path="res://source/world/world_objects/train/train_carriages/train_carriage.gd" id="1_8vhu3"]
 [ext_resource type="Texture2D" uid="uid://bobq80y6vk04m" path="res://assets/graphics/carriage_full_unscaled.png" id="2_q5pyk"]
 [ext_resource type="Texture2D" uid="uid://c51riroqftx84" path="res://assets/graphics/carriage_backwall_unscaled.png" id="3_bhohw"]
 
@@ -10,9 +10,8 @@ size = Vector2(1424, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
 size = Vector2(1424, 248)
 
-[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("train_carriage_shapes")]
+[node name="TrainCarriageBasic" type="Node2D"]
 script = ExtResource("1_8vhu3")
-train_carriage_shapes = [NodePath("TrainCarriageArea/TrainCarriageShape")]
 
 [node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
 texture_filter = 1
