@@ -37,12 +37,7 @@ enum SatisfactionType {
 	TIME,
 }
 
-enum GridPositionType {
-	LEFT,
-	RIGHT,
-	TOP,
-	BOTTOM
-}
+enum GridPositionType { LEFT, RIGHT, TOP, BOTTOM }
 
 const FIRST_VERTEX_ID_IN_EDGE_ID := 0
 const SECOND_VERTEX_ID_IN_EDGE_ID := 1

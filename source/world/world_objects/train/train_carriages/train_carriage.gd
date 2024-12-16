@@ -18,15 +18,17 @@ func get_carriage_level(grid_position: Vector2) -> TrainCarriageLevel:
 	for carriage_level in carriage_levels:
 		var carriage_level_grid_positions = carriage_level.get_grid_positions()
 		if (
-			grid_position.y < carriage_level_grid_positions[
-				Globals.GridPositionType.BOTTOM
-			]
-			or grid_position.y > carriage_level_grid_positions[
-				Globals.GridPositionType.TOP
-			]
+			(
+				grid_position.y
+				< carriage_level_grid_positions[Globals.GridPositionType.BOTTOM]
+			)
+			or (
+				grid_position.y
+				> carriage_level_grid_positions[Globals.GridPositionType.TOP]
+			)
 		):
 			continue
-		
+
 		return carriage_level
 	return null
 

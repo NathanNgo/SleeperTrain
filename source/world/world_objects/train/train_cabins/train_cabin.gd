@@ -18,7 +18,10 @@ func add_object_to_cabin(
 	grid_position: Vector2,
 ) -> void:
 	for carriage_level in carriage_levels:
-		if grid_position.y < carriage_level.grid_level_floor or grid_position.y > carriage_level.grid_level_ceiling:
+		if (
+			grid_position.y < carriage_level.grid_level_floor
+			or grid_position.y > carriage_level.grid_level_ceiling
+		):
 			continue
 
 		carriage_level.get_cabin(grid_position).add_object(object)
@@ -26,7 +29,10 @@ func add_object_to_cabin(
 
 func remove_object_from_cabin(grid_position: Vector2) -> void:
 	for carriage_level in carriage_levels:
-		if grid_position.y < carriage_level.grid_level_floor or grid_position.y > carriage_level.grid_level_ceiling:
+		if (
+			grid_position.y < carriage_level.grid_level_floor
+			or grid_position.y > carriage_level.grid_level_ceiling
+		):
 			continue
 
 		carriage_level.get_cabin(grid_position).remove_object(grid_position)
@@ -34,13 +40,14 @@ func remove_object_from_cabin(grid_position: Vector2) -> void:
 
 func get_objects_from_cabin(grid_position: Vector2) -> Array[int]:
 	for carriage_level in carriage_levels:
-		if grid_position.y < carriage_level.grid_level_floor or grid_position.y > carriage_level.grid_level_ceiling:
+		if (
+			grid_position.y < carriage_level.grid_level_floor
+			or grid_position.y > carriage_level.grid_level_ceiling
+		):
 			continue
 
 		return carriage_level.get_cabin(grid_position).get_objects()
 	return []
-
-
 
 # class_name TrainCabin extends RefCounted
 #
