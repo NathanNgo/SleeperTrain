@@ -13,7 +13,7 @@ func get_grid_positions():
 	return BuildingGrid.get_grid_positions_for_shape(global_position, length, height)
 
 
-func add_object_to_cabin(
+func add_object(
 	object: Node2D,
 	grid_position: Vector2,
 ) -> void:
@@ -27,7 +27,7 @@ func add_object_to_cabin(
 		carriage_level.get_cabin(grid_position).add_object(object)
 
 
-func remove_object_from_cabin(grid_position: Vector2) -> void:
+func remove_object(grid_position: Vector2) -> void:
 	for carriage_level in carriage_levels:
 		if (
 			grid_position.y < carriage_level.grid_level_floor
@@ -38,7 +38,7 @@ func remove_object_from_cabin(grid_position: Vector2) -> void:
 		carriage_level.get_cabin(grid_position).remove_object(grid_position)
 
 
-func get_objects_from_cabin(grid_position: Vector2) -> Array[int]:
+func get_objects(grid_position: Vector2) -> Array[int]:
 	for carriage_level in carriage_levels:
 		if (
 			grid_position.y < carriage_level.grid_level_floor
