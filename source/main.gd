@@ -16,21 +16,21 @@ var _destination_vertex: GridRailwayVertex
 var _train_arrived := true
 
 @onready var _overworld_navigation_menu: ManagedMenu = _main_menu_manager.get_menu(
-	Globals.MainMenus.OVERWORLD_NAVIGATION_MENU
+	MainMenuManager.Menus.OVERWORLD_NAVIGATION_MENU
 )
 @onready var _passenger_management_menu: ManagedMenu = _main_menu_manager.get_menu(
-	Globals.MainMenus.PASSENGER_MANAGEMENT_MENU
+	MainMenuManager.Menus.PASSENGER_MANAGEMENT_MENU
 )
 @onready var _resource_management_menu: ManagedMenu = _main_menu_manager.get_menu(
-	Globals.MainMenus.RESOURCE_MANAGEMENT_MENU
+	MainMenuManager.Menus.RESOURCE_MANAGEMENT_MENU
 )
 @onready
-var _main_menu: ManagedMenu = _main_menu_manager.get_menu(Globals.MainMenus.MAIN_MENU)
+var _main_menu: ManagedMenu = _main_menu_manager.get_menu(MainMenuManager.Menus.MAIN_MENU)
 @onready var _passenger_journey_report_menu: ManagedMenu = _popup_menu_manager.get_menu(
-	Globals.PopupMenus.PASSENGER_JOURNEY_REPORT_MENU
+	PopupMenuManager.Menus.PASSENGER_JOURNEY_REPORT_MENU
 )
 @onready var _resource_gui_menu: ManagedMenu = _gui_menu_manager.get_menu(
-	Globals.GUIMenus.RESOURCE_GUI_MENU
+	GUIMenuManager.Menus.RESOURCE_GUI_MENU
 )
 
 
@@ -57,7 +57,7 @@ func _setup_graph() -> void:
 func _setup_train_manager() -> void:
 	_train_manager.carriage_added.connect(_on_carriage_added)
 	_train_manager.character_added.connect(_on_character_added)
-	_train_manager.setup(Globals.TrainCarriageType.BASIC)
+	_train_manager.setup(TrainCarriage.TrainCarriageType.BASIC)
 
 
 func _setup_overworld_navigation_menu() -> void:
@@ -99,7 +99,7 @@ func _populate_passenger_journey_report_menu(satisfaction_scores: Variant) -> vo
 	(
 		_popup_menu_manager
 		. transition_with_time_limit(
-			Globals.PopupMenus.PASSENGER_JOURNEY_REPORT_MENU,
+			PopupMenuManager.Menus.PASSENGER_JOURNEY_REPORT_MENU,
 		)
 	)
 

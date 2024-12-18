@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dwkorxdcb6hlb"]
+[gd_scene load_steps=3 format=3 uid="uid://dwkorxdcb6hlb"]
 
-[node name="TrainCabin" type="Node2D"]
+[ext_resource type="Script" path="res://source/world/world_objects/train/train_cabins/train_cabin.gd" id="1_r1b0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_juilv"]
+size = Vector2(1408, 256)
+
+[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_objects_container", "_characters_container", "_train_cabin_shape")]
+script = ExtResource("1_r1b0f")
+_objects_container = NodePath("ObjectsContainer")
+_characters_container = NodePath("CharactersContainer")
+_train_cabin_shape = NodePath("TrainCabinArea/TrainCabinShape")
+
+[node name="ObjectsContainer" type="Node2D" parent="."]
+
+[node name="CharactersContainer" type="Node2D" parent="."]
+
+[node name="TrainCabinArea" type="Area2D" parent="."]
+
+[node name="TrainCabinShape" type="CollisionShape2D" parent="TrainCabinArea"]
+shape = SubResource("RectangleShape2D_juilv")

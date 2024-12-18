@@ -1,4 +1,4 @@
-extends MenuManager
+class_name PopupMenuManager extends MenuManager
 
 const DEFAULT_TIME_LIMIT := 3.0
 
@@ -6,7 +6,11 @@ const DEFAULT_TIME_LIMIT := 3.0
 
 @export var _passenger_journey_report_menu: ManagedMenu:
 	set(menu):
-		menus[Globals.PopupMenus.PASSENGER_JOURNEY_REPORT_MENU] = menu
+		menus[PopupMenuManager.Menus.PASSENGER_JOURNEY_REPORT_MENU] = menu
+
+enum Menus {
+	PASSENGER_JOURNEY_REPORT_MENU,
+}
 
 
 func _ready() -> void:
@@ -15,26 +19,26 @@ func _ready() -> void:
 
 
 func transition_with_time_limit(
-	menu: Globals.PopupMenus, time_limit: float = DEFAULT_TIME_LIMIT
+	menu: PopupMenuManager.Menus, time_limit: float = DEFAULT_TIME_LIMIT
 ):
 	_popup_timer.wait_time = time_limit
 	_popup_timer.start()
 	transition(menu)
 
 
-func transition(menu: Globals.PopupMenus) -> void:
+func transition(menu: PopupMenuManager.Menus) -> void:
 	super(menu)
 
 
-func get_menu(menu: Globals.PopupMenus) -> ManagedMenu:
+func get_menu(menu: PopupMenuManager.Menus) -> ManagedMenu:
 	return super(menu)
 
 
-func pin_menu(menu: Globals.PopupMenus) -> void:
+func pin_menu(menu: PopupMenuManager.Menus) -> void:
 	super(menu)
 
 
-func _on_transition(menu: Globals.PopupMenus) -> void:
+func _on_transition(menu: PopupMenuManager.Menus) -> void:
 	super(menu)
 
 

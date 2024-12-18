@@ -6,10 +6,11 @@ class_name GridRailwayVertex extends Node2D
 @export var available_character_ids: Array[int]
 # Dict[Globals.ResourceType, int]
 @export var available_resources = {}
-@export var vertex_type: Globals.VertexType
+@export var vertex_type: VertexType
 
 @onready var id := position
 
+enum VertexType { TOWN, JUNCTION }
 
 func add_connection(connection: Array[Vector2]) -> void:
 	connections.append(connection)
@@ -17,7 +18,7 @@ func add_connection(connection: Array[Vector2]) -> void:
 
 func remove_connection(connection: Array[Vector2]) -> void:
 	var reverse_connection = [
-		id[Globals.SECOND_VERTEX_ID_IN_EDGE_ID], id[Globals.FIRST_VERTEX_ID_IN_EDGE_ID]
+		id[GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID], id[GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID]
 	]
 
 	if connection in connection:

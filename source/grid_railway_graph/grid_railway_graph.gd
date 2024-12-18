@@ -16,7 +16,7 @@ func _init(vertexes_init: Array[Node], edges_init: Array[Node]) -> void:
 	for vertex in vertexes_init:
 		add_vertex(vertex)
 
-	var town_vertexes := get_all_vertex_by_type(Globals.VertexType.TOWN)
+	var town_vertexes := get_all_vertex_by_type(GridRailwayVertex.VertexType.TOWN)
 	for vertex in town_vertexes:
 		vertex.available_resources = Generation.generate_resources()
 
@@ -56,10 +56,10 @@ func remove_vertex(id: Vector2) -> void:
 
 	for vertex_connection in vertex_connections:
 		var first_vertex_id: Vector2 = vertex_connection[
-			Globals.FIRST_VERTEX_ID_IN_EDGE_ID
+			GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID
 		]
 		var second_vertex_id: Vector2 = vertex_connection[
-			Globals.SECOND_VERTEX_ID_IN_EDGE_ID
+			GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID
 		]
 		var vertex_neighbour: GridRailwayVertex
 
@@ -76,8 +76,8 @@ func remove_vertex(id: Vector2) -> void:
 
 
 func remove_edge(id: Array[Vector2]) -> void:
-	var first_vertex_id := id[Globals.FIRST_VERTEX_ID_IN_EDGE_ID]
-	var second_vertex_id := id[Globals.SECOND_VERTEX_ID_IN_EDGE_ID]
+	var first_vertex_id := id[GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID]
+	var second_vertex_id := id[GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID]
 	var edge := get_edge(id)
 
 	if not edge:
@@ -107,7 +107,7 @@ func get_vertex_by_name(vertex_name: String) -> GridRailwayVertex:
 	return null
 
 
-func get_all_vertex_by_type(vertex_type: Globals.VertexType) -> Array[GridRailwayVertex]:
+func get_all_vertex_by_type(vertex_type: GridRailwayVertex.VertexType) -> Array[GridRailwayVertex]:
 	var vertexes_by_type: Array[GridRailwayVertex] = []
 
 	for vertex_key in vertexes:
@@ -121,7 +121,7 @@ func get_all_vertex_by_type(vertex_type: Globals.VertexType) -> Array[GridRailwa
 
 func get_edge(id: Array[Vector2]) -> GridRailwayEdge:
 	var reverse_id := [
-		id[Globals.SECOND_VERTEX_ID_IN_EDGE_ID], id[Globals.FIRST_VERTEX_ID_IN_EDGE_ID]
+		id[GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID], id[GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID]
 	]
 
 	if id in edges:

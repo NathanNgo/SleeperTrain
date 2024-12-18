@@ -1,36 +1,42 @@
 class_name TrainCarriage extends Node2D
 
-@export var carriage_levels: Array[TrainCarriageLevel]
+@export var _carriage_levels_container: Node2D
 
 var carriage_id: int
 var max_train_carriage_length := 0.0
 
-@onready var max_carriage_levels := carriage_levels.size()
+enum TrainCarriageType { BASIC, SHORT }
 
 
 func _ready() -> void:
-	for carriage_level in carriage_levels:
+	for carriage_level in _carriage_levels_container.get_children():
 		if carriage_level.length > max_train_carriage_length:
 			max_train_carriage_length = carriage_level.length
 
 
-func get_carriage_level(grid_position: Vector2) -> TrainCarriageLevel:
-	for carriage_level in carriage_levels:
+func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLevel:
+	for carriage_level in _carriage_levels_container.get_children():
 		var carriage_level_grid_positions = carriage_level.get_grid_positions()
 		if (
 			(
 				grid_position.y
-				< carriage_level_grid_positions[Globals.GridPositionType.BOTTOM]
+				< carriage_level_grid_positions[BuildingGrid.GridPositionType.BOTTOM]
 			)
 			or (
 				grid_position.y
-				> carriage_level_grid_positions[Globals.GridPositionType.TOP]
+				> carriage_level_grid_positions[BuildingGrid.GridPositionType.TOP]
 			)
 		):
 			continue
 
 		return carriage_level
 	return null
+
+
+func get_carriage_level(level: int) -> TrainCarriageLevel:
+	return _carriage_levels_container.get_children().pop_at(level)
+
+
 
 # const MIN_CABIN_SIZE = 2
 #

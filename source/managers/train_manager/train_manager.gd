@@ -1,4 +1,4 @@
-extends Node
+class_name TrainManager extends Node
 
 signal carriage_added(carriage: Node2D)
 signal character_added
@@ -25,7 +25,7 @@ var carriage_id_to_character_ids_mapping = {}
 var total_carriages = 0
 
 
-func setup(carriage_type: Globals.TrainCarriageType) -> void:
+func setup(carriage_type: TrainCarriage.TrainCarriageType) -> void:
 	add_carriage_at(0, carriage_type)
 
 
@@ -85,14 +85,14 @@ func get_carriage(carriage_id: int) -> Node2D:
 
 
 func add_carriage_at(
-	carriage_index: int, train_carriage_type: Globals.TrainCarriageType
+	carriage_index: int, train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
 	var train_carriage: Node2D
 
 	match train_carriage_type:
-		Globals.TrainCarriageType.BASIC:
+		TrainCarriage.TrainCarriageType.BASIC:
 			train_carriage = _train_carriage_scene.instantiate()
-		Globals.TrainCarriageType.SHORT:
+		TrainCarriage.TrainCarriageType.SHORT:
 			train_carriage = _train_carriage_short_scene.instantiate()
 
 	total_carriages += 1
@@ -155,7 +155,7 @@ func remove_character(character_id: int) -> void:
 		carriage_id_to_character_ids_mapping[carriage_id].erase(character_id)
 
 
-func remove_all_characters() -> void:
+func a_remove_all_characters() -> void:
 	character_id_to_carriage_id_mapping.clear()
 	carriage_id_to_character_ids_mapping.clear()
 
@@ -177,7 +177,7 @@ func stop_train_consumption() -> void:
 
 
 func _on_add_train_carriage_at(
-	carriage_index: int, train_carriage_type: Globals.TrainCarriageType
+	carriage_index: int, train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
 	add_carriage_at(carriage_index, train_carriage_type)
 
@@ -187,7 +187,7 @@ func _on_remove_train_carriage_at(carriage_index: int) -> void:
 
 
 func _on_add_train_carriage_at_front(
-	train_carriage_type: Globals.TrainCarriageType
+	train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
 	add_carriage_at(len(train_layout), train_carriage_type)
 
@@ -197,7 +197,7 @@ func _on_remove_train_carriage_at_front() -> void:
 
 
 func _on_add_train_carriage_at_back(
-	train_carriage_type: Globals.TrainCarriageType
+	train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
 	add_carriage_at(0, train_carriage_type)
 
@@ -215,7 +215,7 @@ func _on_remove_character(character_id: int) -> void:
 
 
 func _on_remove_all_characters() -> void:
-	remove_all_characters()
+	a_remove_all_characters()
 
 
 func _on_add_cabin_to_carriage(

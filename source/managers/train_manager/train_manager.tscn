@@ -7,13 +7,12 @@
 
 [sub_resource type="TileSet" id="TileSet_akv64"]
 
-[node name="TrainManager" type="Node" node_paths=PackedStringArray("_consumption_timer", "_building_grid")]
+[node name="TrainManager" type="Node" node_paths=PackedStringArray("_consumption_timer")]
 script = ExtResource("1_oagmk")
 _train_carriage_scene = ExtResource("2_wjklg")
 _train_carriage_short_scene = ExtResource("3_6o4nr")
 _consumption_timer = NodePath("ConsumptionTimer")
 _train_resources = ExtResource("4_5xp6e")
-_building_grid = NodePath("BuildingGrid")
 
 [node name="ConsumptionTimer" type="Timer" parent="."]
 

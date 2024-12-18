@@ -7,10 +7,11 @@
 size = Vector2(528, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
-size = Vector2(528, 248)
+size = Vector2(528, 256)
 
-[node name="TrainCarriageShort" type="Node2D"]
+[node name="TrainCarriageShort" type="Node2D" node_paths=PackedStringArray("_carriage_levels_container")]
 script = ExtResource("1_8d6vu")
+_carriage_levels_container = NodePath("CarriageLevelsContainer")
 
 [node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -27,3 +28,5 @@ shape = SubResource("RectangleShape2D_fws6n")
 
 [node name="TrainCarriageShape" type="CollisionShape2D" parent="TrainCarriageArea"]
 shape = SubResource("RectangleShape2D_jtscl")
+
+[node name="CarriageLevelsContainer" type="Node2D" parent="."]

@@ -1,9 +1,16 @@
 extends TileMapLayer
 
+enum GridPositionType { LEFT, RIGHT, TOP, BOTTOM }
+
 
 func global_position_to_grid(global_position_input: Vector2) -> Vector2:
 	var local_position = to_local(global_position_input)
 	return local_to_map(local_position)
+
+
+func grid_to_global_position(grid_position: Vector2) -> Vector2:
+	var local_position = map_to_local(grid_position)
+	return to_global(local_position)
 
 
 func get_grid_positions_for_shape(
@@ -17,8 +24,8 @@ func get_grid_positions_for_shape(
 	var grid_position_top = global_position_input.y + half_height
 
 	return {
-		Globals.GridPositionType.LEFT: global_position_to_grid(grid_position_left),
-		Globals.GridPositionType.RIGHT: global_position_to_grid(grid_position_right),
-		Globals.GridPositionType.TOP: global_position_to_grid(grid_position_top),
-		Globals.GridPositionType.BOTTOM: global_position_to_grid(grid_position_bottom)
+		GridPositionType.LEFT: global_position_to_grid(grid_position_left),
+		GridPositionType.RIGHT: global_position_to_grid(grid_position_right),
+		GridPositionType.TOP: global_position_to_grid(grid_position_top),
+		GridPositionType.BOTTOM: global_position_to_grid(grid_position_bottom)
 	}

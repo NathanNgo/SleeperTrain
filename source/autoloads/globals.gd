@@ -1,26 +1,5 @@
 extends Node
 
-enum MainMenus {
-	MAIN_MENU,
-	OVERWORLD_NAVIGATION_MENU,
-	HOW_TO_PLAY_MENU,
-	TRAIN_MANAGEMENT_MENU,
-	PASSENGER_MANAGEMENT_MENU,
-	RESOURCE_MANAGEMENT_MENU
-}
-
-enum PopupMenus {
-	PASSENGER_JOURNEY_REPORT_MENU,
-}
-
-enum GUIMenus {
-	RESOURCE_GUI_MENU,
-}
-
-enum VertexType { TOWN, JUNCTION }
-
-enum TrainCarriageType { BASIC, SHORT }
-
 enum ResourceType {
 	COAL,
 	FOOD,
@@ -36,8 +15,3 @@ enum SatisfactionType {
 	SCENERY,
 	TIME,
 }
-
-enum GridPositionType { LEFT, RIGHT, TOP, BOTTOM }
-
-const FIRST_VERTEX_ID_IN_EDGE_ID := 0
-const SECOND_VERTEX_ID_IN_EDGE_ID := 1
