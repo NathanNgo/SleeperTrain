@@ -155,7 +155,7 @@ func remove_character(character_id: int) -> void:
 		carriage_id_to_character_ids_mapping[carriage_id].erase(character_id)
 
 
-func a_remove_all_characters() -> void:
+func remove_all_characters() -> void:
 	character_id_to_carriage_id_mapping.clear()
 	carriage_id_to_character_ids_mapping.clear()
 
@@ -215,7 +215,7 @@ func _on_remove_character(character_id: int) -> void:
 
 
 func _on_remove_all_characters() -> void:
-	a_remove_all_characters()
+	remove_all_characters()
 
 
 func _on_add_cabin_to_carriage(

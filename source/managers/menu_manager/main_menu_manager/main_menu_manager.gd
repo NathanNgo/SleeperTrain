@@ -12,7 +12,6 @@ enum Menus {
 	RESOURCE_MANAGEMENT_MENU
 }
 
-
 @export var _main_menu: ManagedMenu:
 	set(menu):
 		menus[MainMenuManager.Menus.MAIN_MENU] = menu

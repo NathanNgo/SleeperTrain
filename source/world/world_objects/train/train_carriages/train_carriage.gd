@@ -1,6 +1,6 @@
 class_name TrainCarriage extends Node2D
 
-@export var _carriage_levels_container: Node2D
+@export var _train_carriage_levels_container: Node2D
 
 var carriage_id: int
 var max_train_carriage_length := 0.0
@@ -9,23 +9,17 @@ enum TrainCarriageType { BASIC, SHORT }
 
 
 func _ready() -> void:
-	for carriage_level in _carriage_levels_container.get_children():
+	for carriage_level in _train_carriage_levels_container.get_children():
 		if carriage_level.length > max_train_carriage_length:
 			max_train_carriage_length = carriage_level.length
 
 
 func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLevel:
-	for carriage_level in _carriage_levels_container.get_children():
+	for carriage_level in _train_carriage_levels_container.get_children():
 		var carriage_level_grid_positions = carriage_level.get_grid_positions()
 		if (
-			(
-				grid_position.y
-				< carriage_level_grid_positions[BuildingGrid.GridPositionType.BOTTOM]
-			)
-			or (
-				grid_position.y
-				> carriage_level_grid_positions[BuildingGrid.GridPositionType.TOP]
-			)
+			(grid_position.y < carriage_level_grid_positions[Side.SIDE_BOTTOM])
+			or (grid_position.y > carriage_level_grid_positions[Side.SIDE_TOP])
 		):
 			continue
 
@@ -34,11 +28,8 @@ func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLeve
 
 
 func get_carriage_level(level: int) -> TrainCarriageLevel:
-	return _carriage_levels_container.get_children().pop_at(level)
+	return _train_carriage_levels_container.get_children().pop_at(level)
 
-
-
-# const MIN_CABIN_SIZE = 2
 #
 # @export var train_carriage_shapes: Array[CollisionShape2D]
 #

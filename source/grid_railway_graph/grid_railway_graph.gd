@@ -107,7 +107,9 @@ func get_vertex_by_name(vertex_name: String) -> GridRailwayVertex:
 	return null
 
 
-func get_all_vertex_by_type(vertex_type: GridRailwayVertex.VertexType) -> Array[GridRailwayVertex]:
+func get_all_vertex_by_type(
+	vertex_type: GridRailwayVertex.VertexType
+) -> Array[GridRailwayVertex]:
 	var vertexes_by_type: Array[GridRailwayVertex] = []
 
 	for vertex_key in vertexes:
@@ -121,7 +123,8 @@ func get_all_vertex_by_type(vertex_type: GridRailwayVertex.VertexType) -> Array[
 
 func get_edge(id: Array[Vector2]) -> GridRailwayEdge:
 	var reverse_id := [
-		id[GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID], id[GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID]
+		id[GridRailwayEdge.SECOND_VERTEX_ID_IN_EDGE_ID],
+		id[GridRailwayEdge.FIRST_VERTEX_ID_IN_EDGE_ID]
 	]
 
 	if id in edges:

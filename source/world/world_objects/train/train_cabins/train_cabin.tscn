@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwkorxdcb6hlb"]
+[gd_scene load_steps=5 format=3 uid="uid://dwkorxdcb6hlb"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train/train_cabins/train_cabin.gd" id="1_r1b0f"]
+[ext_resource type="Texture2D" uid="uid://e0lg0teh6s31" path="res://assets/background/wood.PNG" id="2_vgqta"]
+[ext_resource type="Material" uid="uid://54tiafx830dd" path="res://source/shaders/transparency/transparency.tres" id="3_y4kry"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_juilv"]
 size = Vector2(1408, 256)
@@ -11,11 +13,17 @@ _objects_container = NodePath("ObjectsContainer")
 _characters_container = NodePath("CharactersContainer")
 _train_cabin_shape = NodePath("TrainCabinArea/TrainCabinShape")
 
-[node name="ObjectsContainer" type="Node2D" parent="."]
-
-[node name="CharactersContainer" type="Node2D" parent="."]
+[node name="TrainCabinBackground" type="Sprite2D" parent="."]
+material = ExtResource("3_y4kry")
+position = Vector2(3.05176e-05, 4.76837e-06)
+scale = Vector2(2.05248, 1.13947)
+texture = ExtResource("2_vgqta")
 
 [node name="TrainCabinArea" type="Area2D" parent="."]
 
 [node name="TrainCabinShape" type="CollisionShape2D" parent="TrainCabinArea"]
 shape = SubResource("RectangleShape2D_juilv")
+
+[node name="ObjectsContainer" type="Node2D" parent="."]
+
+[node name="CharactersContainer" type="Node2D" parent="."]
