@@ -22,7 +22,7 @@ var train_layout: Array[Node2D] = []
 var character_id_to_carriage_id_mapping = {}
 # Dict[int, Array[int]]
 var carriage_id_to_character_ids_mapping = {}
-var total_carriages = 0
+var carriage_id_count = 0
 
 
 func setup(carriage_type: TrainCarriage.TrainCarriageType) -> void:
@@ -73,13 +73,9 @@ func _organize_train() -> void:
 
 
 func get_carriage(carriage_id: int) -> Node2D:
-	# TODO:
-	# Either maintain a mapping of chatacter_id --> carriage object, or
-	# do this search every time. For now this is probably fine.
-	# This gets slower the more carriages we have.
-	var filter_function = func(carriage_lambda):
-		return carriage_lambda.carriage_id == carriage_id
-	var carriage = train_layout.filter(filter_function)[0]
+	var carriage = train_layout.filter(
+		func(current_carriage): current_carriage.carriage_id = carriage_id
+	)[0]
 
 	return carriage
 
@@ -95,8 +91,8 @@ func add_carriage_at(
 		TrainCarriage.TrainCarriageType.SHORT:
 			train_carriage = _train_carriage_short_scene.instantiate()
 
-	total_carriages += 1
-	train_carriage.carriage_id = total_carriages
+	carriage_id_count  += 1
+	train_carriage.carriage_id = carriage_id_count
 
 	_push_at(carriage_index, train_carriage)
 	# We need the train carriage to be added to the scene tree before we organise the
