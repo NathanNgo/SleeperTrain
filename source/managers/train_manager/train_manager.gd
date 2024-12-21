@@ -60,7 +60,7 @@ func _organize_train() -> void:
 	var current_train_length := 0.0
 
 	for train_carriage in copy_train_layout:
-		var offset = (
+		var train_offset = (
 			current_train_length
 			+ (
 				CARRIAGE_WIDTH_MULTIPLIER
@@ -68,7 +68,8 @@ func _organize_train() -> void:
 			)
 		)
 
-		train_carriage.position.x = -offset
+		train_carriage.position.x = -train_offset
+		print(train_carriage.max_train_carriage_length)
 		current_train_length += train_carriage.max_train_carriage_length
 
 

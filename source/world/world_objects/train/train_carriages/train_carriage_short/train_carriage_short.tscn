@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://3pq1072o1fdo"]
+[gd_scene load_steps=6 format=3 uid="uid://3pq1072o1fdo"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train/train_carriages/train_carriage.gd" id="1_8d6vu"]
 [ext_resource type="Texture2D" uid="uid://bobq80y6vk04m" path="res://assets/graphics/carriage_full_unscaled.png" id="2_ncej3"]
+[ext_resource type="PackedScene" uid="uid://bsb4c1430qocc" path="res://source/world/world_objects/train/train_carriage_level/train_carriage_level.tscn" id="3_7u736"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(528, 8)
@@ -29,5 +30,7 @@ shape = SubResource("RectangleShape2D_fws6n")
 shape = SubResource("RectangleShape2D_jtscl")
 
 [node name="CarriageLevelsContainer" type="Node2D" parent="."]
+
+[node name="TrainCarriageLevel" parent="CarriageLevelsContainer" instance=ExtResource("3_7u736")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

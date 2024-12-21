@@ -1,5 +1,12 @@
 extends TileMapLayer
 
+const TILE_SIZE = 32
+
+
+func _ready() -> void:
+	tile_set = TileSet.new()
+	tile_set.tile_size = Vector2.ONE * TILE_SIZE
+
 
 func global_position_to_grid(global_position_input: Vector2) -> Vector2:
 	var local_position = to_local(global_position_input)
@@ -12,7 +19,7 @@ func grid_to_global_position(grid_position: Vector2) -> Vector2:
 
 
 func get_grid_positions_for_shape(
-	global_position_input: Vector2, length: float, height: float
+	global_position_input: Vector2, height: float, length: float
 ):
 	var half_length = length / 2
 	var half_height = height / 2

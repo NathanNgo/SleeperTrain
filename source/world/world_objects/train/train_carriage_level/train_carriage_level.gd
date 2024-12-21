@@ -1,4 +1,4 @@
-class_name TrainCarriageLevel extends Node2D
+class_name TrainCarriageLevel extends Polygon2D
 
 const MIN_CABIN_SIZE = 2
 
@@ -6,17 +6,47 @@ const MIN_CABIN_SIZE = 2
 @export var _train_cabins_container: Node2D
 @export var _objects_container: Node2D
 @export var _characters_container: Node2D
-@export var _train_carriage_level_shape: CollisionShape2D
 
 # Dict[Vector2, Node2D]
 var _grid_position_to_objects_mapping = {}
+var height: float
+var length: float
 
-@onready var length = _train_carriage_level_shape.shape.get_rect().size.x
-@onready var height = _train_carriage_level_shape.shape.get_rect().size.y
+
+func _ready() -> void:
+	_calculate_height_and_length()
+	add_cabin(
+		BuildingGrid.global_position_to_grid(global_position - (Vector2.ONE * 33)).x,
+		BuildingGrid.global_position_to_grid(global_position + (Vector2.ONE * 32)).x,
+	)
+	add_cabin(
+		BuildingGrid.global_position_to_grid(global_position - (Vector2.ONE * 500)).x,
+		BuildingGrid.global_position_to_grid(global_position - (Vector2.ONE * 300)).x,
+	)
+
+
+func _calculate_height_and_length() -> void:
+	var top := 0.0
+	var bottom := 0.0
+	var left := 0.0
+	var right := 0.0
+
+	for vertex in polygon:
+		if vertex.x < left:
+			left = vertex.x
+		if vertex.x > right:
+			right = vertex.x
+		if vertex.y > top:
+			top = vertex.y
+		if vertex.y < bottom:
+			bottom = vertex.y
+
+		height = abs(top - bottom)
+		length = abs(right - left)
 
 
 func get_grid_positions():
-	return BuildingGrid.get_grid_positions_for_shape(global_position, length, height)
+	return BuildingGrid.get_grid_positions_for_shape(global_position, height, length)
 
 
 func add_object(object: Node2D, grid_position: Vector2) -> void:
@@ -65,7 +95,7 @@ func get_characters() -> Array[Node]:
 func add_cabin(start_grid_position_x: int, end_grid_position_x: int) -> void:
 	var cabin := _train_cabin.instantiate()
 	_train_cabins_container.add_child(cabin)
-	cabin.setup(start_grid_position_x, end_grid_position_x)
+	cabin.setup(start_grid_position_x, end_grid_position_x, height)
 
 
 func remove_cabin(grid_position: Vector2) -> void:

@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://fhlqrgvrjs57"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train/train_carriages/train_carriage.gd" id="1_8vhu3"]
-[ext_resource type="Texture2D" uid="uid://bobq80y6vk04m" path="res://assets/graphics/carriage_full_unscaled.png" id="2_q5pyk"]
 [ext_resource type="PackedScene" uid="uid://bsb4c1430qocc" path="res://source/world/world_objects/train/train_carriage_level/train_carriage_level.tscn" id="3_ggp37"]
+[ext_resource type="Texture2D" uid="uid://c43gko6xfsiym" path="res://assets/graphics/carriage_shell.png" id="3_syt2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(1408, 8)
@@ -10,15 +10,11 @@ size = Vector2(1408, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
 size = Vector2(1408, 256)
 
-[node name="TrainCarriageBasic" type="Node2D" node_paths=PackedStringArray("_train_carriage_levels_container")]
+[node name="TrainCarriageBasic" type="Polygon2D" node_paths=PackedStringArray("_train_carriage_levels_container")]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-704, -128, 704, -128, 704, 128, -704, 128)
 script = ExtResource("1_8vhu3")
 _train_carriage_levels_container = NodePath("TrainCarriageLevelsContainer")
-
-[node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-4.96507e-05, -2.38419e-06)
-scale = Vector2(0.998582, 1.024)
-texture = ExtResource("2_q5pyk")
 
 [node name="Floor" type="StaticBody2D" parent="."]
 
@@ -27,6 +23,7 @@ position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_fws6n")
 
 [node name="TrainCarriageArea" type="Area2D" parent="."]
+visible = false
 
 [node name="TrainCarriageShape" type="CollisionShape2D" parent="TrainCarriageArea"]
 shape = SubResource("RectangleShape2D_jtscl")
@@ -34,3 +31,10 @@ shape = SubResource("RectangleShape2D_jtscl")
 [node name="TrainCarriageLevelsContainer" type="Node2D" parent="."]
 
 [node name="TrainCarriageLevel" parent="TrainCarriageLevelsContainer" instance=ExtResource("3_ggp37")]
+polygon = PackedVector2Array(-686.25, -103.75, 681.75, -103.75, 681.75, 104.25, -686.25, 104.25, -688, 0)
+
+[node name="CarriageShell" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -2.86102e-06)
+scale = Vector2(0.199716, 0.2)
+texture = ExtResource("3_syt2v")
