@@ -69,7 +69,6 @@ func _organize_train() -> void:
 		)
 
 		train_carriage.position.x = -train_offset
-		print(train_carriage.max_train_carriage_length)
 		current_train_length += train_carriage.max_train_carriage_length
 
 
