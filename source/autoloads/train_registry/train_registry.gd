@@ -113,6 +113,11 @@ func get_carriage(carriage_id: int) -> Node2D:
 	return carriage_registry[carriage_id]
 
 
+func get_random_cabin() -> Node2D:
+	var cabin_ids = cabin_registry.keys()
+	return  cabin_ids[randi_range(0, cabin_ids.size() - 1)]
+
+
 func get_cabin(cabin_id: int) -> Node2D:
 	return cabin_registry[cabin_id]
 
