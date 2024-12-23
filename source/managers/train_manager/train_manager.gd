@@ -73,11 +73,11 @@ func _organize_train() -> void:
 
 
 func get_carriage(carriage_id: int) -> Node2D:
-	var carriage = train_layout.filter(
-		func(current_carriage): current_carriage.carriage_id = carriage_id
-	)[0]
+	var filter_function = func(current_carriage):
+		return current_carriage.carriage_id == carriage_id
+	var carriages = train_layout.filter(filter_function)
 
-	return carriage
+	return carriages[0]
 
 
 func add_carriage_at(
@@ -91,7 +91,7 @@ func add_carriage_at(
 		TrainCarriage.TrainCarriageType.SHORT:
 			train_carriage = _train_carriage_short_scene.instantiate()
 
-	carriage_id_count  += 1
+	carriage_id_count += 1
 	train_carriage.carriage_id = carriage_id_count
 
 	_push_at(carriage_index, train_carriage)

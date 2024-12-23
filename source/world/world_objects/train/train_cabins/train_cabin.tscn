@@ -7,11 +7,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d321f"]
 size = Vector2(1408, 256)
 
-[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_objects_container", "_characters_container", "_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground")]
+[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_objects_container", "_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground")]
 texture_repeat = 2
 script = ExtResource("1_r1b0f")
 _objects_container = NodePath("ObjectsContainer")
-_characters_container = NodePath("CharactersContainer")
 _train_cabin_shape = NodePath("TrainCabinArea/TrainCabinShape")
 _train_cabin_background = NodePath("TrainCabinBackground")
 _train_cabin_foreground = NodePath("TrainCabinForeground")
@@ -27,8 +26,6 @@ region_enabled = true
 shape = SubResource("RectangleShape2D_d321f")
 
 [node name="ObjectsContainer" type="Node2D" parent="."]
-
-[node name="CharactersContainer" type="Node2D" parent="."]
 
 [node name="TrainCabinForeground" type="Sprite2D" parent="."]
 z_index = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://fhlqrgvrjs57"]
+[gd_scene load_steps=5 format=3 uid="uid://fhlqrgvrjs57"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train/train_carriages/train_carriage.gd" id="1_8vhu3"]
 [ext_resource type="PackedScene" uid="uid://bsb4c1430qocc" path="res://source/world/world_objects/train/train_carriage_level/train_carriage_level.tscn" id="3_ggp37"]
@@ -6,9 +6,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(1408, 8)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jtscl"]
-size = Vector2(1408, 256)
 
 [node name="TrainCarriageBasic" type="Polygon2D" node_paths=PackedStringArray("_train_carriage_levels_container")]
 color = Color(1, 1, 1, 0)
@@ -22,16 +19,9 @@ _train_carriage_levels_container = NodePath("TrainCarriageLevelsContainer")
 position = Vector2(0, 100)
 shape = SubResource("RectangleShape2D_fws6n")
 
-[node name="TrainCarriageArea" type="Area2D" parent="."]
-visible = false
-
-[node name="TrainCarriageShape" type="CollisionShape2D" parent="TrainCarriageArea"]
-shape = SubResource("RectangleShape2D_jtscl")
-
 [node name="TrainCarriageLevelsContainer" type="Node2D" parent="."]
 
 [node name="TrainCarriageLevel" parent="TrainCarriageLevelsContainer" instance=ExtResource("3_ggp37")]
-polygon = PackedVector2Array(-686.25, -103.75, 681.75, -103.75, 681.75, 104.25, -686.25, 104.25, -688, 0)
 
 [node name="CarriageShell" type="Sprite2D" parent="."]
 z_index = 2

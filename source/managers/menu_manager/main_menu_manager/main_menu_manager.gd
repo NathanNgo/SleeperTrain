@@ -1,16 +1,17 @@
 class_name MainMenuManager extends MenuManager
 
-const DEFAULT_MENU = Menus.MAIN_MENU
-const DEFAULT_ESCAPE_ACTION = "escape"
-
 enum Menus {
 	MAIN_MENU,
 	OVERWORLD_NAVIGATION_MENU,
 	HOW_TO_PLAY_MENU,
 	TRAIN_MANAGEMENT_MENU,
 	PASSENGER_MANAGEMENT_MENU,
-	RESOURCE_MANAGEMENT_MENU
+	RESOURCE_MANAGEMENT_MENU,
+	BUILDING_MODE_MENU
 }
+
+const DEFAULT_MENU = Menus.MAIN_MENU
+const DEFAULT_ESCAPE_ACTION = "escape"
 
 @export var _main_menu: ManagedMenu:
 	set(menu):
@@ -36,6 +37,10 @@ enum Menus {
 	set(menu):
 		menus[MainMenuManager.Menus.RESOURCE_MANAGEMENT_MENU] = menu
 
+@export var _building_mode_menu: ManagedMenu:
+	set(menu):
+		menus[MainMenuManager.Menus.BUILDING_MODE_MENU] = menu
+
 
 func _ready() -> void:
 	super._ready()
@@ -45,6 +50,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(DEFAULT_ESCAPE_ACTION):
 		if menu_open:
+			Globals.game_mode = Globals.GameModeType.NORMAL
 			hide_all()
 			menu_open = false
 		else:

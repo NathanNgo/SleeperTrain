@@ -1,5 +1,9 @@
 class_name PopupMenuManager extends MenuManager
 
+enum Menus {
+	PASSENGER_JOURNEY_REPORT_MENU,
+}
+
 const DEFAULT_TIME_LIMIT := 3.0
 
 @export var _popup_timer: Timer
@@ -7,10 +11,6 @@ const DEFAULT_TIME_LIMIT := 3.0
 @export var _passenger_journey_report_menu: ManagedMenu:
 	set(menu):
 		menus[PopupMenuManager.Menus.PASSENGER_JOURNEY_REPORT_MENU] = menu
-
-enum Menus {
-	PASSENGER_JOURNEY_REPORT_MENU,
-}
 
 
 func _ready() -> void:

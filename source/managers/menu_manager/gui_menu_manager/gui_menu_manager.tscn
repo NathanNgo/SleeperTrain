@@ -8,3 +8,4 @@ script = ExtResource("1_om2nj")
 _resource_gui_menu = NodePath("ResourceGuiMenu")
 
 [node name="ResourceGuiMenu" parent="." instance=ExtResource("2_52lv8")]
+mouse_filter = 2

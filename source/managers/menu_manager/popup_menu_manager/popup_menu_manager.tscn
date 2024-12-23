@@ -9,5 +9,6 @@ _popup_timer = NodePath("PopupTimer")
 _passenger_journey_report_menu = NodePath("PassengerJourneyReportMenu")
 
 [node name="PassengerJourneyReportMenu" parent="." instance=ExtResource("1_ubgie")]
+mouse_filter = 2
 
 [node name="PopupTimer" type="Timer" parent="."]

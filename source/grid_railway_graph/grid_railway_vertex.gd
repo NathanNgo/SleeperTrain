@@ -1,5 +1,7 @@
 class_name GridRailwayVertex extends Node2D
 
+enum VertexType { TOWN, JUNCTION }
+
 # Array[Array[Vector2]]
 @export var connections = []
 @export var vertex_name: String
@@ -9,8 +11,6 @@ class_name GridRailwayVertex extends Node2D
 @export var vertex_type: VertexType
 
 @onready var id := position
-
-enum VertexType { TOWN, JUNCTION }
 
 
 func add_connection(connection: Array[Vector2]) -> void:

@@ -1,14 +1,14 @@
 class_name GUIMenuManager extends MenuManager
 
+enum Menus {
+	RESOURCE_GUI_MENU,
+}
+
 const DEFAULT_MENU = GUIMenuManager.Menus.RESOURCE_GUI_MENU
 
 @export var _resource_gui_menu: ManagedMenu:
 	set(menu):
 		menus[GUIMenuManager.Menus.RESOURCE_GUI_MENU] = menu
-
-enum Menus {
-	RESOURCE_GUI_MENU,
-}
 
 
 func _ready() -> void:

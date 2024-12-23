@@ -1,23 +1,35 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsb4c1430qocc"]
+[gd_scene load_steps=5 format=3 uid="uid://bsb4c1430qocc"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/train/train_carriage_level/train_carriage_level.gd" id="1_ciwvq"]
-[ext_resource type="Texture2D" uid="uid://c51riroqftx84" path="res://assets/graphics/carriage_backwall_unscaled.png" id="1_ga3y6"]
 [ext_resource type="PackedScene" uid="uid://dwkorxdcb6hlb" path="res://source/world/world_objects/train/train_cabins/train_cabin.tscn" id="2_3juoi"]
+[ext_resource type="Texture2D" uid="uid://tko7isyihj2s" path="res://assets/graphics/carriage_wall_texture.png" id="3_ostlf"]
 
-[node name="TrainCarriageLevel" type="Polygon2D" node_paths=PackedStringArray("_train_cabins_container", "_objects_container", "_characters_container")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8vg"]
+
+[node name="TrainCarriageLevel" type="Polygon2D" node_paths=PackedStringArray("_train_cabins_container", "_objects_container", "_train_carriage_level_area", "_train_carriage_level_shape", "_train_carriage_level_background")]
 color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(-688, -120, 688, -120, 688, 112, -688, 112, -688, 0)
+polygon = PackedVector2Array(-688, -104, 688, -104, 688, 96, -688, 96, -688, 0)
 script = ExtResource("1_ciwvq")
 _train_cabin = ExtResource("2_3juoi")
 _train_cabins_container = NodePath("TrainCabinsContainer")
 _objects_container = NodePath("ObjectsContainer")
-_characters_container = NodePath("CharactersContainer")
+_train_carriage_level_area = NodePath("Area2D")
+_train_carriage_level_shape = NodePath("Area2D/TrainCarriageLevelArea")
+_train_carriage_level_background = NodePath("TrainCarriageLevelBackground")
 
-[node name="CarriageBackwallUnscaled" type="Sprite2D" parent="."]
-texture = ExtResource("1_ga3y6")
+[node name="TrainCarriageLevelBackground" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(2.40803e-05, -1.01967e-05)
+scale = Vector2(1.00993, 1.024)
+texture = ExtResource("3_ostlf")
+region_enabled = true
+region_rect = Rect2(0, 0, 1410, 250)
 
 [node name="TrainCabinsContainer" type="Node2D" parent="."]
 
 [node name="ObjectsContainer" type="Node2D" parent="."]
 
-[node name="CharactersContainer" type="Node2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="TrainCarriageLevelArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gf8vg")

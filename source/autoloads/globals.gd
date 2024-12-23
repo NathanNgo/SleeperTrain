@@ -1,5 +1,7 @@
 extends Node
 
+enum GameModeType { NORMAL, BUILDING }
+
 enum ResourceType {
 	COAL,
 	FOOD,
@@ -15,3 +17,5 @@ enum SatisfactionType {
 	SCENERY,
 	TIME,
 }
+
+var game_mode := GameModeType.NORMAL

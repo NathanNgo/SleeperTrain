@@ -1,11 +1,11 @@
 class_name TrainCarriage extends Polygon2D
 
+enum TrainCarriageType { BASIC, SHORT }
+
 @export var _train_carriage_levels_container: Node2D
 
 var carriage_id: int
 var max_train_carriage_length := 0.0
-
-enum TrainCarriageType { BASIC, SHORT }
 
 
 func _ready() -> void:
