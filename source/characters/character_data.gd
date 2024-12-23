@@ -18,6 +18,10 @@ var hunger: int
 var current_town: GridRailwayVertex
 var destination_town: GridRailwayVertex
 var world_position: Vector2
+# int or null
+var assigned_carriage_id: Variant
+# int or null
+var assigned_cabin_id: Variant
 
 var world_representation: PackedScene
 var menu_image: Resource
@@ -31,7 +35,8 @@ func _init(
 	destination_town_init: GridRailwayVertex,
 	money_init: int = 0,
 	hunger_init: int = 0,
-	satisfaction_init: Variant = DEFAULT_SATISFACTION
+	satisfaction_init: Variant = DEFAULT_SATISFACTION,
+	assigned_cabin_id_init: Variant = null
 ) -> void:
 	self.character_id = CharacterRegistry.register(self)
 	self.character_name = character_name_init
@@ -42,6 +47,7 @@ func _init(
 	self.destination_town = destination_town_init
 	self.hunger = hunger_init
 	self.world_representation = world_representation_init
+	self.assigned_cabin_id = assigned_cabin_id_init
 
 
 func get_satisfaction_score() -> int:

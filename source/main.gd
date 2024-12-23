@@ -6,7 +6,6 @@ const DEFAULT_TOWN_NAME := "First Town"
 @export var _main_menu_manager: CanvasLayer
 @export var _popup_menu_manager: CanvasLayer
 @export var _gui_menu_manager: CanvasLayer
-@export var _train_manager: Node
 @export var _world: Node2D
 @export var _train_resources: Resource
 
@@ -37,7 +36,7 @@ var _main_menu: ManagedMenu = _main_menu_manager.get_menu(MainMenuManager.Menus.
 func _ready() -> void:
 	_setup_graph()
 	_setup_overworld_navigation_menu()
-	_setup_train_manager()
+	_setup_train_registry()
 	_setup_resource_management_menu()
 	_setup_train_resources()
 	_populate_passenger_management_menu()
@@ -54,10 +53,10 @@ func _setup_graph() -> void:
 	_current_vertex = _graph.get_vertex_by_name(DEFAULT_TOWN_NAME)
 
 
-func _setup_train_manager() -> void:
-	_train_manager.carriage_added.connect(_on_carriage_added)
-	_train_manager.character_added.connect(_on_character_added)
-	_train_manager.setup(TrainCarriage.TrainCarriageType.BASIC)
+func _setup_train_registry() -> void:
+	TrainRegistry.carriage_added.connect(_on_carriage_added)
+	TrainRegistry.character_added.connect(_on_character_added)
+	TrainRegistry.setup(TrainCarriage.TrainCarriageType.BASIC)
 
 
 func _setup_overworld_navigation_menu() -> void:
@@ -83,7 +82,7 @@ func _populate_passenger_management_menu() -> void:
 	_passenger_management_menu.set_available_character_list(
 		_current_vertex.available_character_ids
 	)
-	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
+	_passenger_management_menu.total_carriages = TrainRegistry.train_layout.size()
 
 
 func _populate_resource_management_menu() -> void:
@@ -119,14 +118,14 @@ func _disembark_passengers() -> void:
 	var character_departed = false
 
 	# We don't want to modify the dict we're iterating through, so we duplicate it.
-	for character_id in _train_manager.character_id_to_carriage_id_mapping.duplicate():
+	for character_id in TrainRegistry.characters_on_train.duplicate():
 		var character_data := CharacterRegistry.get_character_data(character_id)
 		character_data.current_town = _current_vertex
 
 		if character_data.destination_town == _current_vertex:
 			character_departed = true
 
-			_train_manager.remove_character(character_id)
+			TrainRegistry.remove_character_from_train(character_id)
 			_train_resources.add_resources(
 				Globals.ResourceType.MONEY, character_data.money
 			)
@@ -145,12 +144,8 @@ func _disembark_passengers() -> void:
 func _reload_train_characters() -> void:
 	_world.clear_world_characters()
 
-	for character_id in _train_manager.character_id_to_carriage_id_mapping:
-		var carriage_id: int = (
-			_train_manager.character_id_to_carriage_id_mapping[character_id]
-		)
-		var carriage: Node2D = _train_manager.get_carriage(carriage_id)
-
+	for character_id in TrainRegistry.characters_on_train:
+		var carriage: Node2D = TrainRegistry.get_random_carriage()
 		_world.spawn_world_character(character_id, carriage.position)
 
 
@@ -159,7 +154,7 @@ func _start_train_journey(destination_vertex_name: String) -> void:
 	var full_path := _graph.get_full_path(_current_vertex.id, _destination_vertex.id)
 
 	_overworld_navigation_menu.overworld.move_train(full_path, DEFAULT_TRAVEL_TIME)
-	_train_manager.start_train_consumption()
+	TrainRegistry.start_train_consumption()
 	_world.start_character_consumption()
 	_world.set_background_journey()
 	_main_menu.disable_town_buttons()
@@ -171,7 +166,7 @@ func _stop_train_journey() -> void:
 	_overworld_navigation_menu.current_location_name = _current_vertex.vertex_name
 	_populate_passenger_management_menu()
 	_populate_resource_management_menu()
-	_train_manager.stop_train_consumption()
+	TrainRegistry.stop_train_consumption()
 	_world.stop_character_consumption()
 	_world.set_background_town()
 	_main_menu.enable_town_buttons()
@@ -182,7 +177,7 @@ func _stop_train_journey() -> void:
 
 func _on_carriage_added(carriage: Node2D) -> void:
 	_world.train_container.add_child(carriage)
-	_passenger_management_menu.total_carriages = _train_manager.train_layout.size()
+	_passenger_management_menu.total_carriages = TrainRegistry.train_layout.size()
 
 
 func _on_resource_purchased(resource_type: Globals.ResourceType, amount: int) -> void:

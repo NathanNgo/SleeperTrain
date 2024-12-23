@@ -9,6 +9,7 @@ var max_train_carriage_length := 0.0
 
 
 func _ready() -> void:
+	carriage_id = TrainRegistry.register_carriage(self)
 	_calculate_max_length()
 
 

@@ -25,13 +25,13 @@ func _ready() -> void:
 	_train_carriage_level_area.mouse_entered.connect(_on_mouse_entered)
 	_train_carriage_level_area.mouse_exited.connect(_on_mouse_exited)
 
-	var cabin_sprite_rect = Rect2(
+	var carriage_level_sprite_rect = Rect2(
 		CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_X,
 		CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y,
 		length,
 		height
 	)
-	_train_carriage_level_background.set_region_rect(cabin_sprite_rect)
+	_train_carriage_level_background.set_region_rect(carriage_level_sprite_rect)
 
 
 func _input(event: InputEvent) -> void:

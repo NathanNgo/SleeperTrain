@@ -43,6 +43,10 @@ func setup(
 	_train_cabin_foreground.set_region_rect(cabin_sprite_rect)
 
 
+func _ready() -> void:
+	cabin_id = TrainRegistry.register_cabin(self)
+
+
 func set_train_cabin_background(background: Resource) -> void:
 	_train_cabin_background.texture = background
 

@@ -21,6 +21,7 @@ Globals="*res://source/autoloads/globals.gd"
 SignalBus="*res://source/autoloads/signal_bus.gd"
 CharacterRegistry="*res://source/autoloads/character_registry.gd"
 BuildingGrid="*res://source/autoloads/building_grid.gd"
+TrainRegistry="*res://source/autoloads/train_registry/train_registry.tscn"
 
 [display]
 
