@@ -18,6 +18,10 @@ func grid_to_global_position(grid_position: Vector2) -> Vector2:
 	return to_global(local_position)
 
 
+func center_global_position(global_position_input: Vector2) -> Vector2:
+	return grid_to_global_position(global_position_to_grid(global_position_input))
+
+
 func get_grid_positions_for_shape(
 	global_position_input: Vector2, height: float, length: float
 ):

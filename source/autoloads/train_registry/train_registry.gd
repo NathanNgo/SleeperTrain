@@ -17,12 +17,22 @@ const MIN_CONSUMPTION_WAIT_TIME := 5.0
 # Index 0 will always be the back of the train. len(train_layout) - 1 will always
 # be the front of the train.
 var train_layout: Array[Node2D] = []
-var total_carriages = 0
-var total_cabins = 0
 var characters_on_train: Array[int] = []
-var carriage_registry = {}
-var cabin_registry = {}
 var max_train_capacity := 0
+
+# We maintain a carriage registry as a convenience, so we don't have to search train_layout
+# every time.
+var carriage_registry = {}
+var total_carriages = 0
+
+var cabin_registry = {}
+var total_cabins = 0
+
+var world_object_registry = {}
+var total_world_objects = 0
+
+var portal_registry = {}
+var total_portals = 0
 
 
 func setup(carriage_type: TrainCarriage.TrainCarriageType) -> void:
@@ -39,10 +49,41 @@ func register_carriage(carriage: TrainCarriage) -> int:
 	return total_carriages
 
 
+func unregister_carriage(carriage_id: int) -> void:
+	carriage_registry.erase(carriage_id)
+
+
 func register_cabin(cabin: TrainCabin) -> int:
 	total_cabins += 1
 	cabin_registry[total_cabins] = cabin
 	return total_cabins
+
+
+func unregister_cabin(cabin_id: int) -> void:
+	cabin_registry.erase(cabin_id)
+
+
+func register_world_object(world_object: WorldObject) -> int:
+	total_world_objects += 1
+	world_object_registry[total_world_objects] = world_object
+	return total_world_objects
+
+
+func unregister_world_object(world_object_id: int) -> void:
+	world_object_registry.erase(world_object_id)
+
+
+func register_portal(portal: Portal) -> int:
+	total_portals += 1
+	portal_registry[total_portals] = portal
+
+	portal.player_body_transitioned_in.connect(_on_player_body_transitioned_in.bind(portal))
+	portal.player_body_transitioned_out.connect(_on_player_body_transitioned_out.bind(portal))
+	return total_portals
+
+
+func unregister_portal(portal_id: int) -> void:
+	portal_registry.erase(portal_id)
 
 
 func _organize_train() -> void:
@@ -225,3 +266,21 @@ func _on_consumption_timer_timeout() -> void:
 	_consumption_timer.wait_time = randf_range(
 		MIN_CONSUMPTION_WAIT_TIME, MAX_CONSUMPTION_WAIT_TIME
 	)
+
+
+func _on_player_body_transitioned_in(portal: Portal) -> void:
+	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
+	for cabin_id in cabin_registry:
+		var cabin = cabin_registry[cabin_id]
+		
+		if cabin.grid_position_in_cabin(portal_grid_postion):
+			cabin.hide_foreground()
+
+
+func _on_player_body_transitioned_out(portal: Portal) -> void:
+	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
+	for cabin_id in cabin_registry:
+		var cabin = cabin_registry[cabin_id]
+		
+		if cabin.grid_position_in_cabin(portal_grid_postion):
+			cabin.show_foreground()

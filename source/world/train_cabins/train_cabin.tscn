@@ -1,16 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwkorxdcb6hlb"]
 
-[ext_resource type="Script" path="res://source/world/world_objects/train/train_cabins/train_cabin.gd" id="1_r1b0f"]
+[ext_resource type="Script" path="res://source/world/train_cabins/train_cabin.gd" id="1_r1b0f"]
 [ext_resource type="Texture2D" uid="uid://e0lg0teh6s31" path="res://assets/background/wood.PNG" id="2_vgqta"]
-[ext_resource type="Texture2D" uid="uid://bo5an86ku72l0" path="res://assets/graphics/cabin_front.png" id="3_522r2"]
+[ext_resource type="Texture2D" uid="uid://bn4w1fl1nawow" path="res://assets/graphics/cabin_front.png" id="3_522r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d321f"]
 size = Vector2(1408, 256)
 
-[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_objects_container", "_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground")]
+[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground")]
 texture_repeat = 2
 script = ExtResource("1_r1b0f")
-_objects_container = NodePath("ObjectsContainer")
 _train_cabin_shape = NodePath("TrainCabinArea/TrainCabinShape")
 _train_cabin_background = NodePath("TrainCabinBackground")
 _train_cabin_foreground = NodePath("TrainCabinForeground")

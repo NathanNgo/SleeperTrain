@@ -7,6 +7,7 @@ const DEFAULT_SATISFACTION = {
 	Globals.SatisfactionType.SCENERY: true,
 	Globals.SatisfactionType.TIME: true
 }
+const DEFAULT_LAYER := Globals.Layers.CARRIAGE
 
 var character_id: int
 
@@ -22,6 +23,7 @@ var world_position: Vector2
 var assigned_carriage_id: Variant
 # int or null
 var assigned_cabin_id: Variant
+var layer: Globals.Layers = DEFAULT_LAYER
 
 var world_representation: PackedScene
 var menu_image: Resource
@@ -36,7 +38,8 @@ func _init(
 	money_init: int = 0,
 	hunger_init: int = 0,
 	satisfaction_init: Variant = DEFAULT_SATISFACTION,
-	assigned_cabin_id_init: Variant = null
+	assigned_cabin_id_init: Variant = null,
+	layer_init: Globals.Layers = DEFAULT_LAYER
 ) -> void:
 	self.character_id = CharacterRegistry.register(self)
 	self.character_name = character_name_init
@@ -48,6 +51,7 @@ func _init(
 	self.hunger = hunger_init
 	self.world_representation = world_representation_init
 	self.assigned_cabin_id = assigned_cabin_id_init
+	self.layer = layer_init
 
 
 func get_satisfaction_score() -> int:
