@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/menus/main_menus/building_mode_menu/building_mode_menu.gd" id="1_u1us2"]
 
-[node name="BuildingModeMenu" type="Control" node_paths=PackedStringArray("_back_button", "_door_button", "_cabin_button")]
+[node name="BuildingModeMenu" type="Control" node_paths=PackedStringArray("_back_button", "_door_button", "_cabin_button", "_table_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ script = ExtResource("1_u1us2")
 _back_button = NodePath("VBoxContainer/BackButton")
 _door_button = NodePath("VBoxContainer/DoorButton")
 _cabin_button = NodePath("VBoxContainer/CabinButton")
+_table_button = NodePath("VBoxContainer/TableButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,3 +40,7 @@ text = "Cabin"
 [node name="DoorButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Door"
+
+[node name="TableButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Table"

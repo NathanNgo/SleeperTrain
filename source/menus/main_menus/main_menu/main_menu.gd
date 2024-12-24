@@ -52,5 +52,4 @@ func _on_resource_management_button_pressed() -> void:
 
 
 func _on_building_mode_menu_button_pressed() -> void:
-	Globals.game_mode = Globals.GameModeType.BUILDING
 	transition.emit(MainMenuManager.Menus.BUILDING_MODE_MENU)
