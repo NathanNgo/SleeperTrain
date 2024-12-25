@@ -16,7 +16,7 @@ func setup(centered_global_position: Vector2) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_mouse_click"):
-		if (Globals.game_mode != Globals.GameModeType.DEMOLISHING_CARRIAGE_LAYER):
+		if Globals.game_mode != Globals.GameModeType.DEMOLISHING_CARRIAGE_LAYER:
 			return
 
 		if not _currently_selected:

@@ -77,8 +77,12 @@ func register_portal(portal: Portal) -> int:
 	total_portals += 1
 	portal_registry[total_portals] = portal
 
-	portal.player_body_transitioned_in.connect(_on_player_body_transitioned_in.bind(portal))
-	portal.player_body_transitioned_out.connect(_on_player_body_transitioned_out.bind(portal))
+	portal.player_body_transitioned_in.connect(
+		_on_player_body_transitioned_in.bind(portal)
+	)
+	portal.player_body_transitioned_out.connect(
+		_on_player_body_transitioned_out.bind(portal)
+	)
 	return total_portals
 
 
@@ -156,7 +160,7 @@ func get_carriage(carriage_id: int) -> Node2D:
 
 func get_random_cabin() -> Node2D:
 	var cabin_ids = cabin_registry.keys()
-	return  cabin_ids[randi_range(0, cabin_ids.size() - 1)]
+	return cabin_ids[randi_range(0, cabin_ids.size() - 1)]
 
 
 func get_cabin(cabin_id: int) -> Node2D:
@@ -165,7 +169,7 @@ func get_cabin(cabin_id: int) -> Node2D:
 
 func add_character_to_train(character_id: int) -> void:
 	if characters_on_train.size() >= max_train_capacity:
- 		# TODO: Display to player
+		# TODO: Display to player
 		print("Train is full")
 		return
 
@@ -178,12 +182,12 @@ func add_character_to_cabin(character_id: int, cabin_id: int) -> void:
 	var character_data = CharacterRegistry.get_character_data(character_id)
 
 	if character_id not in characters_on_train:
- 		# TODO: Display to player
+		# TODO: Display to player
 		print("Character is not on the train")
 		return
 
 	if cabin.assigned_characters.size() >= cabin.max_cabin_capacity:
- 		# TODO: Display to player
+		# TODO: Display to player
 		print("Cabin is full")
 		return
 
@@ -216,7 +220,7 @@ func remove_character_from_cabin(character_id: int) -> void:
 
 func remove_all_characters() -> void:
 	characters_on_train.clear()
-	
+
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
 		cabin.assigned_characters.clear()
@@ -272,7 +276,7 @@ func _on_player_body_transitioned_in(portal: Portal) -> void:
 	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
-		
+
 		if cabin.grid_position_in_cabin(portal_grid_postion):
 			cabin.hide_foreground()
 
@@ -281,6 +285,6 @@ func _on_player_body_transitioned_out(portal: Portal) -> void:
 	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
-		
+
 		if cabin.grid_position_in_cabin(portal_grid_postion):
 			cabin.show_foreground()

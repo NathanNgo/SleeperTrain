@@ -11,7 +11,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		for body in _bodies:
 			if "player_character" not in body or not body.player_character:
 				continue
-			
+
 			transition(body)
 
 

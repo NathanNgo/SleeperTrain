@@ -23,7 +23,8 @@ func setup(
 	height: float
 ) -> void:
 	var average_global_position: Vector2 = (
-		(start_centered_global_position_setup + end_centered_global_position_setup) / NUMBER_OF_GRID_POSTITIONS
+		(start_centered_global_position_setup + end_centered_global_position_setup)
+		/ NUMBER_OF_GRID_POSTITIONS
 	)
 
 	position.x = to_local(average_global_position).x
@@ -38,10 +39,22 @@ func setup(
 	_train_cabin_background.set_region_rect(cabin_sprite_rect)
 	_train_cabin_foreground.set_region_rect(cabin_sprite_rect)
 
-	left_grid_position = BuildingGrid.global_position_to_grid(start_centered_global_position_setup).x
-	right_grid_position = BuildingGrid.global_position_to_grid(end_centered_global_position_setup).x
-	bottom_grid_position = BuildingGrid.global_position_to_grid(global_position - Vector2.ONE * (height / 2.0)).y
-	top_grid_position = BuildingGrid.global_position_to_grid(global_position + Vector2.ONE * (height / 2.0)).y
+	left_grid_position = (
+		BuildingGrid.global_position_to_grid(start_centered_global_position_setup).x
+	)
+	right_grid_position = (
+		BuildingGrid.global_position_to_grid(end_centered_global_position_setup).x
+	)
+	bottom_grid_position = (
+		BuildingGrid
+		. global_position_to_grid(global_position - Vector2.ONE * (height / 2.0))
+		. y
+	)
+	top_grid_position = (
+		BuildingGrid
+		. global_position_to_grid(global_position + Vector2.ONE * (height / 2.0))
+		. y
+	)
 
 
 func remove() -> void:
