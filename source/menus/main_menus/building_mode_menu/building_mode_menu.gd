@@ -19,15 +19,15 @@ func _on_back_button_pressed() -> void:
 
 
 func _on_cabin_button_pressed() -> void:
-	Globals.game_mode = Globals.GameModeType.BUILDING_CARRIAGE_LAYER
+	Globals.game_mode = Globals.GameModeType.BUILDING
 	Globals.building_object_type = Globals.ObjectType.CABIN
 
 
 func _on_door_button_pressed() -> void:
-	Globals.game_mode = Globals.GameModeType.BUILDING_CARRIAGE_LAYER
+	Globals.game_mode = Globals.GameModeType.BUILDING
 	Globals.building_object_type = Globals.ObjectType.PORTAL
 
 
 func _on_table_button_pressed() -> void:
-	Globals.game_mode = Globals.GameModeType.BUILDING_CARRIAGE_LAYER
+	Globals.game_mode = Globals.GameModeType.BUILDING
 	Globals.building_object_type = Globals.ObjectType.WORLD_OBJECT

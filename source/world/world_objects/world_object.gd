@@ -7,7 +7,7 @@ var world_object_id: int
 var layer: Globals.Layers = Globals.Layers.CARRIAGE
 var pin_grid_position: Vector2
 var height: float
-var width: int
+var width: float
 var _currently_selected := false
 
 
@@ -20,20 +20,12 @@ func setup(centered_global_position: Vector2) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_mouse_click"):
 		if (
-			Globals.game_mode != Globals.GameModeType.DEMOLISHING_CARRIAGE_LAYER
-			or Globals.game_mode != Globals.GameModeType.DEMOLISHING_CABIN_LAYER
+			Globals.game_mode != Globals.GameModeType.DEMOLISHING
 		):
 			return
 
 		if (
-			Globals.game_mode == Globals.GameModeType.DEMOLISHING_CABIN_LAYER
-			and layer != Globals.Layers.CABIN
-		):
-			return
-
-		if (
-			Globals.game_mode == Globals.GameModeType.DEMOLISHING_CARRIAGE_LAYER
-			and layer != Globals.Layers.CARRIAGE
+			layer != Globals.Layers.CABIN or layer != Globals.Layers.CARRIAGE
 		):
 			return
 
@@ -48,7 +40,7 @@ func remove() -> void:
 	queue_free()
 
 
-func _calculate_pin_position() -> Vector2:
+func _calculate_pin_position() -> void:
 	pin_grid_position = Vector2(
 		position.x - (width / 2.0) + (BuildingGrid.TILE_SIZE / 2.0),
 		position.y + (height /2.0) - (BuildingGrid.TILE_SIZE / 2.0)
