@@ -5,7 +5,7 @@ class_name WorldObject extends Node2D
 
 var world_object_id: int
 var layer: Globals.Layers = Globals.Layers.CARRIAGE
-var pin_grid_position: Vector2
+var pin_position: Vector2
 var height: float
 var width: float
 var _currently_selected := false
@@ -41,16 +41,21 @@ func remove() -> void:
 
 
 func _calculate_pin_position() -> void:
-	pin_grid_position = Vector2(
+	pin_position = Vector2(
 		position.x - (width / 2.0) + (BuildingGrid.TILE_SIZE / 2.0),
 		position.y + (height /2.0) - (BuildingGrid.TILE_SIZE / 2.0)
 	)
 
 
 func _center_pin_position() -> void:
-	if to_global(pin_grid_position) == BuildingGrid.center_global_position(pin_grid_position):
-		pass
-	pass
+	var global_pin_position = to_global(pin_position)
+	var global_center_pin_position = BuildingGrid.center_global_position(global_pin_position)
+
+	if global_pin_position == global_center_pin_position:
+		return
+
+	var difference = global_center_pin_position - global_pin_position
+	position += difference
 
 
 func _ready() -> void:
