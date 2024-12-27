@@ -5,7 +5,6 @@ class_name WorldObject extends Node2D
 
 var world_object_id: int
 var layer: Globals.Layers = Globals.Layers.CARRIAGE
-var global_pin_position: Vector2
 var height: float
 var width: float
 var _currently_selected := false
@@ -47,24 +46,6 @@ func _unhandled_input(event: InputEvent) -> void:
 func remove() -> void:
 	TrainRegistry.unregister_world_object(world_object_id)
 	queue_free()
-
-
-func _calculate_global_pin_position(centered_global_position) -> void:
-	global_pin_position = Vector2(
-		centered_global_position.x - (width / 2.0) + (BuildingGrid.TILE_SIZE / 2.0),
-		centered_global_position.y + (height /2.0) - (BuildingGrid.TILE_SIZE / 2.0)
-	)
-
-
-func _center_pin_position() -> void:
-	var global_center_pin_position = BuildingGrid.center_global_position(global_pin_position)
-
-	if global_pin_position == global_center_pin_position:
-		return
-
-	var difference = global_center_pin_position - global_pin_position
-	# The pin position will always be in the top left.
-	position += difference
 
 
 func _on_mouse_entered() -> void:
