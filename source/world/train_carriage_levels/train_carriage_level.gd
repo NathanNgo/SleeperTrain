@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_mouse_click"):
-		if Globals.game_mode != Globals.GameModeType.BUILDING_CARRIAGE_LAYER:
+		if Globals.game_mode != Globals.GameModeType.BUILDING:
 			return
 
 		if not _currently_selected:

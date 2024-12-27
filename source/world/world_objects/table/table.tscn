@@ -4,11 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://couoc7o3wlxr1" path="res://assets/graphics/table_dining.png" id="1_qxwqi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxp5j"]
-size = Vector2(48, 32)
+size = Vector2(64, 32)
 
-[node name="Table" type="Node2D" node_paths=PackedStringArray("_world_object_area")]
+[node name="Table" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
 script = ExtResource("1_p6kun")
 _world_object_area = NodePath("Area2D")
+_world_object_shape = NodePath("Area2D/CollisionShape2D")
 
 [node name="TableDining" type="Sprite2D" parent="."]
 position = Vector2(0, -16)

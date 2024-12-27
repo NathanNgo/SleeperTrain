@@ -6,9 +6,10 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esrqb"]
 size = Vector2(64, 96)
 
-[node name="Door" type="Node2D" node_paths=PackedStringArray("_portal_area")]
+[node name="Door" type="Node2D" node_paths=PackedStringArray("_portal_area", "_portal_shape")]
 script = ExtResource("1_b4ij1")
 _portal_area = NodePath("PortalArea")
+_portal_shape = NodePath("PortalArea/CollisionShape2D")
 
 [node name="Portal" type="Sprite2D" parent="."]
 position = Vector2(-2.38419e-07, 2.86102e-06)
