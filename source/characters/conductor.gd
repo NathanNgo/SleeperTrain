@@ -3,6 +3,9 @@ extends CharacterBody2D
 @export var conductor_sprite: Sprite2D
 @export var conductor_animation: AnimationPlayer
 
+var player_character := true
+var layer := Globals.Layers.CARRIAGE
+
 
 func _physics_process(_delta: float) -> void:
 	if Input.is_action_pressed("right") and Input.is_action_pressed("left"):

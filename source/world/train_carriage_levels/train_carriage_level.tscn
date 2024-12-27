@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://bsb4c1430qocc"]
+
+[ext_resource type="Script" path="res://source/world/train_carriage_levels/train_carriage_level.gd" id="1_ciwvq"]
+[ext_resource type="PackedScene" uid="uid://dwkorxdcb6hlb" path="res://source/world/train_cabins/train_cabin.tscn" id="2_3juoi"]
+[ext_resource type="PackedScene" uid="uid://dumkj6pcppnq1" path="res://source/world/portals/door/door.tscn" id="3_11yxg"]
+[ext_resource type="Texture2D" uid="uid://tko7isyihj2s" path="res://assets/graphics/carriage_wall_texture.png" id="3_ostlf"]
+[ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table/table.tscn" id="4_lh4m3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8vg"]
+
+[node name="TrainCarriageLevel" type="Polygon2D" node_paths=PackedStringArray("_train_cabins_container", "_world_objects_container", "_portals_container", "_train_carriage_level_area", "_train_carriage_level_shape", "_train_carriage_level_background")]
+color = Color(1, 1, 1, 0)
+polygon = PackedVector2Array(-688, -104, 688, -104, 688, 96, -688, 96, -688, 0)
+script = ExtResource("1_ciwvq")
+_train_cabin = ExtResource("2_3juoi")
+_door_portal = ExtResource("3_11yxg")
+_placeholder_world_object = ExtResource("4_lh4m3")
+_train_cabins_container = NodePath("TrainCabinsContainer")
+_world_objects_container = NodePath("WorldObjectsContainer")
+_portals_container = NodePath("PortalContainer")
+_train_carriage_level_area = NodePath("Area2D")
+_train_carriage_level_shape = NodePath("Area2D/TrainCarriageLevelArea")
+_train_carriage_level_background = NodePath("TrainCarriageLevelBackground")
+
+[node name="TrainCarriageLevelBackground" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(2.40803e-05, -1.01967e-05)
+scale = Vector2(1.00993, 1.024)
+texture = ExtResource("3_ostlf")
+region_enabled = true
+region_rect = Rect2(0, 0, 1410, 250)
+
+[node name="TrainCabinsContainer" type="Node2D" parent="."]
+
+[node name="WorldObjectsContainer" type="Node2D" parent="."]
+
+[node name="PortalContainer" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="TrainCarriageLevelArea" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_gf8vg")

@@ -1,10 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dh116m477jfgh"]
+[gd_scene load_steps=3 format=3 uid="uid://dh116m477jfgh"]
 
 [ext_resource type="Script" path="res://source/menus/main_menus/passenger_management_menu/passenger_management_menu.gd" id="1_n5wrw"]
 [ext_resource type="PackedScene" uid="uid://cmu6g87qlns5e" path="res://source/menus/main_menus/passenger_management_menu/character_display.tscn" id="2_c5rl1"]
-[ext_resource type="PackedScene" uid="uid://cm20vamj531m0" path="res://source/menus/common/number_select/number_select.tscn" id="3_1lmur"]
 
-[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_submit_button", "_number_select")]
+[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_submit_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +14,6 @@ script = ExtResource("1_n5wrw")
 _passengers_container = NodePath("MarginContainer/VBoxContainer/Passengers")
 _character_display = ExtResource("2_c5rl1")
 _submit_button = NodePath("MarginContainer/VBoxContainer/Submit/Button")
-_number_select = NodePath("MarginContainer/VBoxContainer/CarriagesNumberSelect")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -33,9 +31,6 @@ theme_override_constants/separation = 20
 [node name="Passengers" type="HFlowContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 alignment = 1
-
-[node name="CarriagesNumberSelect" parent="MarginContainer/VBoxContainer" instance=ExtResource("3_1lmur")]
-layout_mode = 2
 
 [node name="Submit" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

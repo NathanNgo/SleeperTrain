@@ -1,10 +1,14 @@
-extends MenuManager
+class_name GUIMenuManager extends MenuManager
 
-const DEFAULT_MENU = Globals.GUIMenus.RESOURCE_GUI_MENU
+enum Menus {
+	RESOURCE_GUI_MENU,
+}
+
+const DEFAULT_MENU = GUIMenuManager.Menus.RESOURCE_GUI_MENU
 
 @export var _resource_gui_menu: ManagedMenu:
 	set(menu):
-		menus[Globals.GUIMenus.RESOURCE_GUI_MENU] = menu
+		menus[GUIMenuManager.Menus.RESOURCE_GUI_MENU] = menu
 
 
 func _ready() -> void:
@@ -12,17 +16,17 @@ func _ready() -> void:
 	transition(DEFAULT_MENU)
 
 
-func transition(menu: Globals.GUIMenus) -> void:
+func transition(menu: GUIMenuManager.Menus) -> void:
 	super(menu)
 
 
-func get_menu(menu: Globals.GUIMenus) -> ManagedMenu:
+func get_menu(menu: GUIMenuManager.Menus) -> ManagedMenu:
 	return super(menu)
 
 
-func pin_menu(menu: Globals.GUIMenus) -> void:
+func pin_menu(menu: GUIMenuManager.Menus) -> void:
 	super(menu)
 
 
-func _on_transition(menu: Globals.GUIMenus) -> void:
+func _on_transition(menu: GUIMenuManager.Menus) -> void:
 	super(menu)

@@ -1,25 +1,10 @@
 extends Node
 
-enum MainMenus {
-	MAIN_MENU,
-	OVERWORLD_NAVIGATION_MENU,
-	HOW_TO_PLAY_MENU,
-	TRAIN_MANAGEMENT_MENU,
-	PASSENGER_MANAGEMENT_MENU,
-	RESOURCE_MANAGEMENT_MENU
+enum GameModeType {
+	NORMAL,
+	BUILDING,
+	DEMOLISHING,
 }
-
-enum PopupMenus {
-	PASSENGER_JOURNEY_REPORT_MENU,
-}
-
-enum GUIMenus {
-	RESOURCE_GUI_MENU,
-}
-
-enum VertexType { TOWN, JUNCTION }
-
-enum TrainCarriageType { BASIC, SHORT }
 
 enum ResourceType {
 	COAL,
@@ -37,5 +22,10 @@ enum SatisfactionType {
 	TIME,
 }
 
-const FIRST_VERTEX_ID_IN_EDGE_ID := 0
-const SECOND_VERTEX_ID_IN_EDGE_ID := 1
+enum Layers { CABIN = 1, CARRIAGE = 2 }
+
+enum ObjectType { CABIN, PORTAL, WORLD_OBJECT }
+
+var game_mode := GameModeType.NORMAL
+var building_layer := Layers.CARRIAGE
+var building_object_type := ObjectType.CABIN

@@ -1,5 +1,8 @@
 class_name GridRailwayEdge extends Line2D
 
+const FIRST_VERTEX_ID_IN_EDGE_ID := 0
+const SECOND_VERTEX_ID_IN_EDGE_ID := 1
+
 @export var edge_name: String
 @export var weight := 1.0
 

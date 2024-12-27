@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dlp16dmu4srkf"
-path="res://.godot/imported/tilemap.png-0ecba5f1a047e5f0cab0df4faff83c9f.ctex"
+uid="uid://tko7isyihj2s"
+path="res://.godot/imported/carriage_wall_texture.png-3788f73228acea4a57dec12bca35b6df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Tilemap/tilemap.png"
-dest_files=["res://.godot/imported/tilemap.png-0ecba5f1a047e5f0cab0df4faff83c9f.ctex"]
+source_file="res://assets/graphics/carriage_wall_texture.png"
+dest_files=["res://.godot/imported/carriage_wall_texture.png-3788f73228acea4a57dec12bca35b6df.ctex"]
 
 [params]
 

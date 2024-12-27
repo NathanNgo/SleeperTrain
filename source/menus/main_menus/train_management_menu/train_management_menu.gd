@@ -12,12 +12,12 @@ func _ready() -> void:
 
 
 func _on_add_carriage_button_pressed() -> void:
-	SignalBus.add_train_carriage_at_back.emit(Globals.TrainCarriageType.BASIC)
+	TrainRegistry.add_train_carriage_at_back(TrainCarriage.TrainCarriageType.BASIC)
 
 
 func _on_add_short_carriage_button_pressed() -> void:
-	SignalBus.add_train_carriage_at_back.emit(Globals.TrainCarriageType.SHORT)
+	TrainRegistry.add_train_carriage_at_back(TrainCarriage.TrainCarriageType.SHORT)
 
 
 func _on_remove_carriage_button_pressed() -> void:
-	SignalBus.remove_train_carriage_at_back.emit()
+	TrainRegistry.remove_train_carriage_at_back()
