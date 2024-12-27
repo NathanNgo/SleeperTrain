@@ -28,7 +28,11 @@ func setup(
 	)
 
 	position.x = to_local(average_global_position).x
-	length = end_centered_global_position_setup.x - start_centered_global_position_setup.x
+	length = (
+		end_centered_global_position_setup.x
+		- start_centered_global_position_setup.x
+		+ BuildingGrid.TILE_SIZE
+	)
 
 	_train_cabin_shape.shape = _train_cabin_shape.shape.duplicate()
 	_train_cabin_shape.shape.set_size(Vector2(length, height))

@@ -14,7 +14,9 @@ func setup(centered_global_position: Vector2) -> void:
 	position = to_local(centered_global_position)
 	# The object is placed in the center of a grid square, and so
 	# centered_global_position == global_center_position
-	position += BuildingGrid.get_shift_for_grid_alignment(centered_global_position, width, height)
+	position += BuildingGrid.get_shift_for_grid_alignment(
+		centered_global_position, width, height
+	)
 
 
 func _ready() -> void:
@@ -27,14 +29,10 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_mouse_click"):
-		if (
-			Globals.game_mode != Globals.GameModeType.DEMOLISHING
-		):
+		if Globals.game_mode != Globals.GameModeType.DEMOLISHING:
 			return
 
-		if (
-			layer != Globals.Layers.CABIN or layer != Globals.Layers.CARRIAGE
-		):
+		if layer != Globals.Layers.CABIN or layer != Globals.Layers.CARRIAGE:
 			return
 
 		if not _currently_selected:

@@ -15,7 +15,9 @@ var _bodies: Array[Node2D] = []
 
 func setup(centered_global_position: Vector2) -> void:
 	position = to_local(centered_global_position)
-	position += BuildingGrid.get_shift_for_grid_alignment(centered_global_position, width, height)
+	position += BuildingGrid.get_shift_for_grid_alignment(
+		centered_global_position, width, height
+	)
 
 
 func _unhandled_input(event: InputEvent) -> void:

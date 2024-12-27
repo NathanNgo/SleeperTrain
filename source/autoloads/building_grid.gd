@@ -40,17 +40,23 @@ func get_grid_positions_for_shape(
 	}
 
 
-func _calculate_global_pin_position(global_center_position: Vector2, width: float, height: float) -> Vector2:
+func _calculate_global_pin_position(
+	global_center_position: Vector2, width: float, height: float
+) -> Vector2:
 	# centered_global_position: A global position centered on the square of the grid.
 	# global_center_position: The position of the shapes center, in global coordinates.
 	return Vector2(
 		global_center_position.x - (width / 2.0) + (BuildingGrid.TILE_SIZE / 2.0),
-		global_center_position.y + (height /2.0) - (BuildingGrid.TILE_SIZE / 2.0)
+		global_center_position.y + (height / 2.0) - (BuildingGrid.TILE_SIZE / 2.0)
 	)
 
 
-func get_shift_for_grid_alignment(global_center_position: Vector2, width: float, height: float) -> Vector2:
-	var global_pin_position = _calculate_global_pin_position(global_center_position, width, height)
+func get_shift_for_grid_alignment(
+	global_center_position: Vector2, width: float, height: float
+) -> Vector2:
+	var global_pin_position = _calculate_global_pin_position(
+		global_center_position, width, height
+	)
 	var global_center_pin_position = center_global_position(global_pin_position)
 
 	if global_pin_position == global_center_pin_position:
