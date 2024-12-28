@@ -30,8 +30,8 @@ void fragment() {
 
 	float position_x = UV.x;
 	float position_y = UV.y;
-	bool transparent_location; 
-	
+	bool transparent_location;
+
 	if (interior_is_transparent) {
 		transparent_location = (left < position_x) && (position_x < right)
 		&& (bottom < position_y) && (position_y < top);
@@ -44,4 +44,3 @@ void fragment() {
 		COLOR.a = intensity;
 	}
 }
-
