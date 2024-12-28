@@ -18,7 +18,7 @@ var money: int
 var hunger: int
 var current_town: GridRailwayVertex
 var destination_town: GridRailwayVertex
-var world_position: Vector2
+var global_world_position: Vector2
 # int or null
 var assigned_carriage_id: Variant
 # int or null

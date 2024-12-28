@@ -18,10 +18,10 @@ const MIN_CAMERA_ZOOM = 1
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("move_camera_left"):
 		_camera.position.x -= CAMERA_PAN_SPEED
 		$Conductor.position.x -= CAMERA_PAN_SPEED
-	if Input.is_action_pressed("right"):
+	if Input.is_action_pressed("move_camera_right"):
 		_camera.position.x += CAMERA_PAN_SPEED
 		$Conductor.position.x += CAMERA_PAN_SPEED
 	_background_pivot.position = _camera.position
@@ -48,7 +48,8 @@ func spawn_world_character(character_id: int, world_position: Vector2) -> void:
 	var character_world_representation := CharacterRegistry.get_world_representation(
 		character_id
 	)
-	character_world_representation.world_position = world_position
+	character_world_representation.position = world_position
+	character_world_representation.character_data.global_world_position = to_global(world_position)
 	character_world_representation.consume_resource.connect(
 		_on_character_consume_resource
 	)

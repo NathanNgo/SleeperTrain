@@ -7,7 +7,7 @@ const DEFAULT_TRANSITION_LAYER = Globals.Layers.CABIN
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("E"):
+	if event.is_action_pressed("enter_poral"):
 		for body in _bodies:
 			if "player_character" not in body or not body.player_character:
 				continue

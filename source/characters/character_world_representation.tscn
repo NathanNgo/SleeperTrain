@@ -1,22 +1,88 @@
-[gd_scene load_steps=4 format=3 uid="uid://c58sr4duma0r0"]
+[gd_scene load_steps=8 format=3 uid="uid://c58sr4duma0r0"]
 
 [ext_resource type="Script" path="res://source/characters/character_world_representation.gd" id="1_lnf6b"]
-[ext_resource type="Texture2D" uid="uid://bfq2581n0g3sn" path="res://assets/graphics/Passenger.png" id="1_npw2e"]
+[ext_resource type="Texture2D" uid="uid://cami0no7jxnfe" path="res://assets/graphics/passenger_1_sheet.png" id="2_48xym"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_cmy0b"]
 radius = 32.0
-height = 160.0
+height = 128.0
 
-[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_consumption_timer")]
+[sub_resource type="Animation" id="Animation_xdsio"]
+resource_name = "idle"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h334m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_y1cni"]
+resource_name = "walk"
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CharacterSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w48cb"]
+_data = {
+"RESET": SubResource("Animation_h334m"),
+"idle": SubResource("Animation_xdsio"),
+"walk": SubResource("Animation_y1cni")
+}
+
+[node name="Character" type="CharacterBody2D" node_paths=PackedStringArray("_consumption_timer", "_random_walk_timer", "_animation_player", "_sprites")]
 script = ExtResource("1_lnf6b")
 _consumption_timer = NodePath("ConsumptionTimer")
+_random_walk_timer = NodePath("RandomWalkTimer")
+_animation_player = NodePath("AnimationPlayer")
+_sprites = NodePath("CharacterSprite")
 
 [node name="CharacterSprite" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_npw2e")
+position = Vector2(1.0842e-19, -4.81482e-35)
+scale = Vector2(2, 2)
+texture = ExtResource("2_48xym")
+hframes = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_cmy0b")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w48cb")
+}
+
 [node name="ConsumptionTimer" type="Timer" parent="."]
 wait_time = 5.0
+
+[node name="RandomWalkTimer" type="Timer" parent="."]

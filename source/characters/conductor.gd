@@ -8,11 +8,11 @@ var layer := Globals.Layers.CARRIAGE
 
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_pressed("right") and Input.is_action_pressed("left"):
+	if Input.is_action_pressed("move_right") and Input.is_action_pressed("move_left"):
 		move_conductor("stop")
-	elif Input.is_action_pressed("right"):
+	elif Input.is_action_pressed("move_right"):
 		move_conductor("right")
-	elif Input.is_action_pressed("left"):
+	elif Input.is_action_pressed("move_left"):
 		move_conductor("left")
 	else:
 		move_conductor("stop")
