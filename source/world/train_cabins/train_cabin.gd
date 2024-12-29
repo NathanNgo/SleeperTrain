@@ -7,6 +7,10 @@ const NUMBER_OF_GRID_POSTITIONS = 2
 @export var _train_cabin_shape: CollisionShape2D
 @export var _train_cabin_background: Sprite2D
 @export var _train_cabin_foreground: Sprite2D
+@export var _first_wall: StaticBody2D
+@export var _second_wall: StaticBody2D
+@export var _first_wall_shape: CollisionShape2D
+@export var _second_wall_shape: CollisionShape2D
 
 var cabin_id: int
 # Dict[Vector2, Node2D]
@@ -43,11 +47,25 @@ func setup(
 	_train_cabin_background.set_region_rect(cabin_sprite_rect)
 	_train_cabin_foreground.set_region_rect(cabin_sprite_rect)
 
+	_calculate_grid_positions(start_centered_global_position_setup, end_centered_global_position_setup, height)
+
+	_first_wall_shape.shape = _first_wall_shape.shape.duplicate()
+	_first_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
+	_first_wall_shape.position.x = to_local(start_centered_global_position_setup).x
+	_second_wall_shape.shape = _second_wall_shape.shape.duplicate()
+	_second_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
+	_second_wall_shape.position.x = to_local(end_centered_global_position_setup).x
+
+
+
+func _calculate_grid_positions(
+	start_centered_global_position: Vector2, end_centered_global_position: Vector2, height: float
+) -> void:
 	left_grid_position = (
-		BuildingGrid.global_position_to_grid(start_centered_global_position_setup).x
+		BuildingGrid.global_position_to_grid(start_centered_global_position).x
 	)
 	right_grid_position = (
-		BuildingGrid.global_position_to_grid(end_centered_global_position_setup).x
+		BuildingGrid.global_position_to_grid(end_centered_global_position).x
 	)
 	bottom_grid_position = (
 		BuildingGrid

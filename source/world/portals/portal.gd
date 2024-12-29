@@ -55,6 +55,8 @@ func _transition(body: Node2D, layer: Globals.Layers) -> void:
 
 	body.z_index = layer
 	body.layer = layer
+	print(layer)
+	body.collision_mask = layer
 
 
 func _on_mouse_entered() -> void:

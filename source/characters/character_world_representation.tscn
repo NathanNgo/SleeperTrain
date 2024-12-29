@@ -7,9 +7,8 @@
 radius = 32.0
 height = 128.0
 
-[sub_resource type="Animation" id="Animation_xdsio"]
-resource_name = "idle"
-step = 0.125
+[sub_resource type="Animation" id="Animation_h334m"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,8 +22,9 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_h334m"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_xdsio"]
+resource_name = "idle"
+step = 0.125
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true

@@ -117,10 +117,6 @@ func _calculate_height_and_length() -> void:
 		length = abs(right - left)
 
 
-func get_grid_positions():
-	return BuildingGrid.get_grid_positions_for_shape(global_position, height, length)
-
-
 func _on_mouse_entered() -> void:
 	_currently_selected = true
 

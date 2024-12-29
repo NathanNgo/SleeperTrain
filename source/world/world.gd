@@ -20,10 +20,8 @@ const MIN_CAMERA_ZOOM = 1
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("move_camera_left"):
 		_camera.position.x -= CAMERA_PAN_SPEED
-		$Conductor.position.x -= CAMERA_PAN_SPEED
 	if Input.is_action_pressed("move_camera_right"):
 		_camera.position.x += CAMERA_PAN_SPEED
-		$Conductor.position.x += CAMERA_PAN_SPEED
 	_background_pivot.position = _camera.position
 
 

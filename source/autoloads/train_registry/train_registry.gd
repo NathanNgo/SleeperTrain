@@ -174,6 +174,12 @@ func add_character_to_train(character_id: int) -> void:
 		print("Train is full")
 		return
 
+	for existing_character_id in characters_on_train:
+		if character_id == existing_character_id:
+			# TODO: Display to player
+			print("Character is already on train")
+			return
+
 	characters_on_train.append(character_id)
 	character_added.emit()
 
