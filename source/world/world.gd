@@ -47,7 +47,9 @@ func spawn_world_character(character_id: int, world_position: Vector2) -> void:
 		character_id
 	)
 	character_world_representation.position = world_position
-	character_world_representation.character_data.global_world_position = to_global(world_position)
+	character_world_representation.character_data.global_world_position = to_global(
+		world_position
+	)
 	character_world_representation.consume_resource.connect(
 		_on_character_consume_resource
 	)

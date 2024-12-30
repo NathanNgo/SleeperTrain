@@ -2,7 +2,7 @@ class_name CharacterWorldRepresentation extends CharacterBody2D
 
 signal consume_resource(resource_type: Globals.ResourceType, amount: int)
 
-enum States {IDLE, WALKING}
+enum States { IDLE, WALKING }
 
 const DEFAULT_FOOD_CONSUMPTION := 5
 const MAX_CONSUMPTION_WAIT_TIME := 10.0
@@ -12,7 +12,7 @@ const MIN_RANDOM_WALK_WAIT_TIME := 1.0
 const AXIS_NEUTRAL := 0
 const BOOLEAN_DIVISOR := 2
 # Stringed Enum's aren't a thing yet :(
-const animations = {
+const ANIMATIONS = {
 	IDLE = "idle",
 	WALK = "walk",
 }
@@ -88,11 +88,11 @@ func _set_random_direction_vector() -> void:
 
 
 func _idle() -> void:
-	_animation_player.play(animations.IDLE)
+	_animation_player.play(ANIMATIONS.IDLE)
 
 
 func _move() -> void:
-	_animation_player.play(animations.WALK)
+	_animation_player.play(ANIMATIONS.WALK)
 
 	if move_direction.x > AXIS_NEUTRAL:
 		_sprites.scale.x = abs(_sprites.scale.x)
