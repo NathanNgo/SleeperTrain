@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var conductor_sprite: Sprite2D
 @export var conductor_animation: AnimationPlayer
-@export var speed := 250
+@export var speed := 275
 
 var player_character := true
 var layer := Globals.Layers.CARRIAGE
