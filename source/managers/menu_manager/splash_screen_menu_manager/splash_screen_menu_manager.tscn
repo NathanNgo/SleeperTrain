@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkqaspa2mn8p1"]
+
+[ext_resource type="Script" path="res://source/managers/menu_manager/splash_screen_menu_manager/splash_screen_menu_manager.gd" id="1_m54y5"]
+[ext_resource type="PackedScene" uid="uid://eqnnls4snvif" path="res://source/menus/splash_screen_menus/splash_screen_menu/splash_screen_menu.tscn" id="2_auitn"]
+
+[node name="SplashScreenMenuManager" type="CanvasLayer" node_paths=PackedStringArray("_splash_screen_menu")]
+script = ExtResource("1_m54y5")
+_splash_screen_menu = NodePath("SplashScreenMenu")
+
+[node name="SplashScreenMenu" parent="." instance=ExtResource("2_auitn")]

@@ -1,0 +1,24 @@
+[gd_scene load_steps=7 format=3 uid="uid://bfvvce0x58vns"]
+
+[ext_resource type="Script" path="res://source/managers/game_manager/game_manager.gd" id="1_i4j3w"]
+[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources/train_resources.tres" id="2_bf41e"]
+[ext_resource type="PackedScene" uid="uid://hgx7x4lnbqt6" path="res://source/managers/menu_manager/gui_menu_manager/gui_menu_manager.tscn" id="3_jbflk"]
+[ext_resource type="PackedScene" uid="uid://316wsd84fv1l" path="res://source/managers/menu_manager/popup_menu_manager/popup_menu_manager.tscn" id="4_sdsu2"]
+[ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/main_menu_manager/main_menu_manager.tscn" id="5_xu0ry"]
+[ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/world/world.tscn" id="6_h1rd5"]
+
+[node name="GameManager" type="Node" node_paths=PackedStringArray("_main_menu_manager", "_popup_menu_manager", "_gui_menu_manager", "_world")]
+script = ExtResource("1_i4j3w")
+_main_menu_manager = NodePath("MainMenuManager")
+_popup_menu_manager = NodePath("PopupMenuManager")
+_gui_menu_manager = NodePath("GuiMenuManager")
+_world = NodePath("World")
+_train_resources = ExtResource("2_bf41e")
+
+[node name="GuiMenuManager" parent="." instance=ExtResource("3_jbflk")]
+
+[node name="PopupMenuManager" parent="." instance=ExtResource("4_sdsu2")]
+
+[node name="MainMenuManager" parent="." instance=ExtResource("5_xu0ry")]
+
+[node name="World" parent="." instance=ExtResource("6_h1rd5")]
