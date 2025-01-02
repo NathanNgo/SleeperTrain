@@ -98,9 +98,7 @@ func setup(
 	_train_cabin_background.set_region_rect(cabin_sprite_rect)
 	_train_cabin_foreground.set_region_rect(cabin_sprite_rect)
 
-	_calculate_grid_positions_for_cabin(
-		start_centered_global_position_setup, end_centered_global_position_setup, height
-	)
+	_calculate_grid_positions_for_cabin(to_global(position), height)
 
 	_first_wall_shape.shape = _first_wall_shape.shape.duplicate()
 	_first_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
@@ -111,26 +109,17 @@ func setup(
 
 
 func _calculate_grid_positions_for_cabin(
-	start_centered_global_position: Vector2,
-	end_centered_global_position: Vector2,
+	shape_center_global_position: Vector2,
 	height: float
 ) -> void:
-	left_grid_position = (
-		BuildingGrid.global_position_to_grid(start_centered_global_position).x
+	var shape_grid_positions: Dictionary = BuildingGrid.get_grid_positions_for_shape(
+		shape_center_global_position, height, length
 	)
-	right_grid_position = (
-		BuildingGrid.global_position_to_grid(end_centered_global_position).x
-	)
-	bottom_grid_position = (
-		BuildingGrid
-		. global_position_to_grid(global_position - Vector2.ONE * (height / 2.0))
-		. y
-	)
-	top_grid_position = (
-		BuildingGrid
-		. global_position_to_grid(global_position + Vector2.ONE * (height / 2.0))
-		. y
-	)
+
+	left_grid_position = shape_grid_positions[Side.SIDE_LEFT]
+	right_grid_position = shape_grid_positions[Side.SIDE_RIGHT]
+	top_grid_position = shape_grid_positions[Side.SIDE_TOP]
+	bottom_grid_position = shape_grid_positions[Side.SIDE_BOTTOM]
 
 
 func remove() -> void:

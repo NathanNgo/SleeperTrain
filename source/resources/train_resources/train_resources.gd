@@ -16,21 +16,23 @@ func set_resource(resource_type: Globals.ResourceType, amount: int) -> void:
 	# against out "push down" pattern we've adopted. Maybe we switch to this pattern instead?
 	SignalBus.train_resources_changed.emit()
 
-	if not Globals.ResourceSchema.parse(resources):
-		push_error("Setting resource amount failed validation")
-
+	_validate_or_throw(resources)
 
 func add_resources(resource_type: Globals.ResourceType, amount: int) -> void:
 	resources[resource_type] += amount
 	SignalBus.train_resources_changed.emit()
 
-	if not Globals.ResourceSchema.parse(resources):
-		push_error("Adding resource amount failed validation")
+	_validate_or_throw(resources)
 
 
 func remove_resources(resource_type: Globals.ResourceType, amount: int) -> void:
 	resources[resource_type] -= amount
 	SignalBus.train_resources_changed.emit()
 
-	if not Globals.ResourceSchema.parse(resources):
-		push_error("Removing resource amount failed validation")
+	_validate_or_throw(resources)
+
+
+func _validate_or_throw(resources_for_validation: Variant) -> void:
+	var result = Globals.ResourceSchema.parse(resources_for_validation)
+	if not result.ok():
+		push_error(result.error)
