@@ -2,6 +2,7 @@ extends Node
 
 static var total_characters = 0
 
+# Dict[int, CharacterData]
 var registry = {}
 
 

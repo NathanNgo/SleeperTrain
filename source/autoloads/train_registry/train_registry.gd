@@ -23,15 +23,19 @@ var max_train_capacity := 0
 
 # We maintain a carriage registry as a convenience, so we don't have to search train_layout
 # every time.
+# Dict[int, TrainCarriage]
 var carriage_registry = {}
 var total_carriages = 0
 
+# Dict[int, TrainCabin]
 var cabin_registry = {}
 var total_cabins = 0
 
+# Dict[int, WorldObject]
 var world_object_registry = {}
 var total_world_objects = 0
 
+# Dict[int, Portal]
 var portal_registry = {}
 var total_portals = 0
 

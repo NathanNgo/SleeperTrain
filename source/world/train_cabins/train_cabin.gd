@@ -1,5 +1,28 @@
 class_name TrainCabin extends Node2D
 
+enum CabinQualityType {
+	AESTHETIC,
+	AMENITIES,
+	BEDDING,
+	SPACE
+}
+enum AmenitiesType {
+	STORAGE,
+	TOILET,
+	HYGIENE,
+	DESK,
+	SEATING
+}
+
+const AESTHETIC_MAX = 30
+const AMENITIES_MAX = 25
+const BEDDING_MAX = 30
+const SPACE_MAX = 30
+const AESTHETIC_MIN = 0
+const AMENITIES_MIN = 0
+const BEDDING_MIN = 0
+const SPACE_MIN = 0
+
 const CABIN_SPRITE_DEFAULT_OFFSET_X = 0
 const CABIN_SPRITE_DEFAULT_OFFSET_Y = 0
 const NUMBER_OF_GRID_POSTITIONS = 2
@@ -7,8 +30,6 @@ const NUMBER_OF_GRID_POSTITIONS = 2
 @export var _train_cabin_shape: CollisionShape2D
 @export var _train_cabin_background: Sprite2D
 @export var _train_cabin_foreground: Sprite2D
-@export var _first_wall: StaticBody2D
-@export var _second_wall: StaticBody2D
 @export var _first_wall_shape: CollisionShape2D
 @export var _second_wall_shape: CollisionShape2D
 
@@ -19,6 +40,36 @@ var right_grid_position: int
 var bottom_grid_position: int
 var top_grid_position: int
 var length: float
+
+var CabinQualitySchema = Z.schema({
+	CabinQualityType.AESTHETIC: Z.integer().minimum(AESTHETIC_MIN).maximum(AESTHETIC_MAX),
+	CabinQualityType.AMENITIES: Z.integer().minimum(AMENITIES_MIN).maximum(AMENITIES_MAX),
+	CabinQualityType.BEDDING: Z.integer().minimum(BEDDING_MIN).maximum(BEDDING_MAX),
+	CabinQualityType.SPACE: Z.integer().minimum(SPACE_MIN).maximum(SPACE_MAX),
+})
+
+var CabinAmenitiesSchema = Z.schema({
+	AmenitiesType.STORAGE: Z.boolean(),
+	AmenitiesType.TOILET: Z.boolean(),
+	AmenitiesType.HYGIENE: Z.boolean(),
+	AmenitiesType.DESK: Z.boolean(),
+	AmenitiesType.SEATING: Z.boolean()
+})
+
+var cabin_quality := {
+	CabinQualityType.AESTHETIC: 0,
+	CabinQualityType.AMENITIES: 0,
+	CabinQualityType.BEDDING: 0,
+	CabinQualityType.SPACE: 0,
+}
+
+var cabin_amenities := {
+	AmenitiesType.STORAGE: false,
+	AmenitiesType.TOILET: false,
+	AmenitiesType.HYGIENE: false,
+	AmenitiesType.DESK: false,
+	AmenitiesType.SEATING: false,
+}
 
 
 func setup(

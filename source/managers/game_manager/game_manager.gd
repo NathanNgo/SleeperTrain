@@ -108,12 +108,13 @@ func _populate_resource_gui_menu(resource_amounts: Variant) -> void:
 
 
 func _disembark_passengers() -> void:
-	var satisfaction_scores = {
+	var total_satisfaction_scores = {
 		Globals.SatisfactionType.ROOM: 0,
 		Globals.SatisfactionType.SERVICE: 0,
 		Globals.SatisfactionType.FOOD: 0,
+		Globals.SatisfactionType.TIME: 0,
 		Globals.SatisfactionType.SCENERY: 0,
-		Globals.SatisfactionType.TIME: 0
+		Globals.SatisfactionType.SAFETY: 0
 	}
 	var character_departed = false
 
@@ -122,23 +123,26 @@ func _disembark_passengers() -> void:
 		var character_data := CharacterRegistry.get_character_data(character_id)
 		character_data.current_town = _current_vertex
 
-		if character_data.destination_town == _current_vertex:
-			character_departed = true
+		if character_data.destination_town != _current_vertex:
+			continue
 
-			TrainRegistry.remove_character_from_train(character_id)
-			_train_resources.add_resources(
-				Globals.ResourceType.MONEY, character_data.money
-			)
-			_train_resources.add_resources(
-				Globals.ResourceType.REPUTATION, character_data.get_satisfaction_score()
-			)
+		character_departed = true
 
-			for satisfaction_type in character_data.satisfaction:
-				var satisfied: bool = character_data.satisfaction[satisfaction_type]
-				satisfaction_scores[satisfaction_type] += int(satisfied)
+		TrainRegistry.remove_character_from_train(character_id)
+		_train_resources.add_resources(
+			Globals.ResourceType.MONEY, character_data.money
+		)
+		_train_resources.add_resources(
+			Globals.ResourceType.REPUTATION, character_data.get_satisfaction_score()
+		)
+
+		for satisfaction_type in character_data.satisfaction:
+			total_satisfaction_scores[satisfaction_type] = character_data.satisfaction[
+				satisfaction_type
+			]
 
 	if character_departed:
-		_populate_passenger_journey_report_menu(satisfaction_scores)
+		_populate_passenger_journey_report_menu(total_satisfaction_scores)
 
 
 func _reload_train_characters() -> void:
