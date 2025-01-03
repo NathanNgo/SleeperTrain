@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/menus/main_menus/train_management_menu/train_management_menu.gd" id="1_if7d0"]
 
-[node name="TrainManagementMenu" type="Control" node_paths=PackedStringArray("_add_carriage_button", "_add_short_carriage_button", "_remove_carriage_button")]
+[node name="TrainManagementMenu" type="Control" node_paths=PackedStringArray("_add_carriage_button", "_remove_carriage_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_if7d0")
 _add_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/AddCarriageButton")
-_add_short_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/AddShortCarriageButton2")
 _remove_carriage_button = NodePath("MarginContainer/VBoxContainer/HBoxContainer/RemoveCarraigeButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -34,10 +33,6 @@ alignment = 1
 [node name="AddCarriageButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Add Carriage"
-
-[node name="AddShortCarriageButton2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
-layout_mode = 2
-text = "Add Short Carriage"
 
 [node name="RemoveCarraigeButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

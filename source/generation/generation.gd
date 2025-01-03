@@ -12,7 +12,7 @@ static var _passenger_world_representation: PackedScene = preload(
 	"res://source/characters/character_world_representation.tscn"
 )
 static var _passenger_menu_image: Resource = preload(
-	"res://assets/graphics/Passenger.png"
+	"res://assets/graphics/characters/Passenger.png"
 )
 
 

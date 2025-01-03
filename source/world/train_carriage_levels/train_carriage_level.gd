@@ -114,7 +114,9 @@ func build_world_object(mouse_position) -> void:
 
 
 func add_world_object(centered_global_position: Vector2) -> WorldObject:
-	var world_object := _placeholder_world_object.instantiate()
+	var world_object := WorldObjectFactory.create_world_object(
+		Globals.building_world_object_type
+	)
 	_world_objects_container.add_child(world_object)
 	world_object.setup(centered_global_position)
 	return world_object

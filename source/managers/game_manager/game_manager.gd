@@ -56,7 +56,6 @@ func _setup_graph() -> void:
 func _setup_train_registry() -> void:
 	TrainRegistry.carriage_added.connect(_on_carriage_added)
 	TrainRegistry.character_added.connect(_on_character_added)
-	TrainRegistry.setup(TrainCarriage.TrainCarriageType.BASIC)
 
 
 func _setup_overworld_navigation_menu() -> void:

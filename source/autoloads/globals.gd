@@ -46,6 +46,7 @@ const SAFETY_MIN = 0
 var game_mode := GameModeType.NORMAL
 var building_layer := Layers.CARRIAGE
 var building_object_type := ObjectType.CABIN
+var building_world_object_type := WorldObjectFactory.WorldObjectType.TABLE_CABIN
 
 var ResourceScema = Z.schema({
 	ResourceType.COAL: Z.integer().minimum(RESOURCE_MIN),

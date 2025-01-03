@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://source/world/train_carriage_levels/train_carriage_level.gd" id="1_ciwvq"]
 [ext_resource type="PackedScene" uid="uid://dwkorxdcb6hlb" path="res://source/world/train_cabins/train_cabin.tscn" id="2_3juoi"]
 [ext_resource type="PackedScene" uid="uid://dumkj6pcppnq1" path="res://source/world/portals/door/door.tscn" id="3_11yxg"]
-[ext_resource type="Texture2D" uid="uid://tko7isyihj2s" path="res://assets/graphics/carriage_wall_texture.png" id="3_ostlf"]
-[ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table/table.tscn" id="4_lh4m3"]
+[ext_resource type="Texture2D" uid="uid://tko7isyihj2s" path="res://assets/graphics/train/carriage_wall_texture.png" id="3_ostlf"]
+[ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table_dining/table_dining.tscn" id="4_lh4m3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gf8vg"]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://chdq82xwdb2vw"]
 
 [ext_resource type="Script" path="res://source/characters/conductor.gd" id="1_gxexe"]
-[ext_resource type="Texture2D" uid="uid://dfjylpb5rruxn" path="res://assets/graphics/conductor_sheet.png" id="1_l2rd4"]
+[ext_resource type="Texture2D" uid="uid://dfjylpb5rruxn" path="res://assets/graphics/characters/conductor_sheet.png" id="1_l2rd4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31cx1"]
 radius = 20.0

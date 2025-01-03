@@ -122,6 +122,10 @@ func _ready() -> void:
 	cabin_id = TrainRegistry.register_cabin(self)
 
 
+func _exit_tree() -> void:
+	TrainRegistry.unregister_cabin(cabin_id)
+
+
 func set_train_cabin_background(background: Resource) -> void:
 	_train_cabin_background.texture = background
 
