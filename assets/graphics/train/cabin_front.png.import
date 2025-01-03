@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bn4w1fl1nawow"
-path="res://.godot/imported/cabin_front.png-c6c3760217dde4175174a204d3f34263.ctex"
+path="res://.godot/imported/cabin_front.png-93b84b0947b19c6554edf14d95f0dcef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/cabin_front.png"
-dest_files=["res://.godot/imported/cabin_front.png-c6c3760217dde4175174a204d3f34263.ctex"]
+source_file="res://assets/graphics/train/cabin_front.png"
+dest_files=["res://.godot/imported/cabin_front.png-93b84b0947b19c6554edf14d95f0dcef.ctex"]
 
 [params]
 

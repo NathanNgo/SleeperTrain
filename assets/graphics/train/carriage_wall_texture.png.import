@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tko7isyihj2s"
-path="res://.godot/imported/carriage_wall_texture.png-3788f73228acea4a57dec12bca35b6df.ctex"
+path="res://.godot/imported/carriage_wall_texture.png-275f38183dde82dc3e73fc5defcb0c2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/carriage_wall_texture.png"
-dest_files=["res://.godot/imported/carriage_wall_texture.png-3788f73228acea4a57dec12bca35b6df.ctex"]
+source_file="res://assets/graphics/train/carriage_wall_texture.png"
+dest_files=["res://.godot/imported/carriage_wall_texture.png-275f38183dde82dc3e73fc5defcb0c2e.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2agf2s4c8cjg"
-path="res://.godot/imported/luggage_rack.png-271c2098f1f423dcb1cebf90b679db60.ctex"
+path="res://.godot/imported/luggage_rack.png-f7929d8419130f06ffb99ba4d3879887.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/luggage_rack.png"
-dest_files=["res://.godot/imported/luggage_rack.png-271c2098f1f423dcb1cebf90b679db60.ctex"]
+source_file="res://assets/graphics/furniture/luggage_rack.png"
+dest_files=["res://.godot/imported/luggage_rack.png-f7929d8419130f06ffb99ba4d3879887.ctex"]
 
 [params]
 

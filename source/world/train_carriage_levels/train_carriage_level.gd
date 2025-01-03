@@ -17,12 +17,18 @@ const CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y = 0
 # Dict[Vector2, Node2D]
 var height: float
 var length: float
+
+var shape_grid_positions: Dictionary
+
 var _initial_position: Vector2
 var _currently_selected: bool = false
 
 
 func _ready() -> void:
 	_calculate_height_and_length()
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+		_train_carriage_level_shape.global_position, height, length
+	)
 	_train_carriage_level_shape.shape = _train_carriage_level_shape.shape.duplicate()
 	_train_carriage_level_shape.shape.set_size(Vector2(length, height))
 	_train_carriage_level_area.mouse_entered.connect(_on_mouse_entered)
@@ -43,7 +49,6 @@ func _input(event: InputEvent) -> void:
 			return
 
 		if not _currently_selected:
-			_initial_position = Vector2.ZERO
 			return
 
 		var mouse_position = get_global_mouse_position()
@@ -78,23 +83,45 @@ func add_cabin(
 
 
 func build_portal(mouse_position: Vector2) -> void:
-	add_portal(BuildingGrid.center_global_position(mouse_position))
+	var portal = add_portal(BuildingGrid.center_global_position(mouse_position))
+
+	if not BuildingGrid.grid_bounds_in_bounds(
+		portal.shape_grid_positions, shape_grid_positions
+	):
+		portal.queue_free()
+		# TODO: Show to player
+		print("Portal out of bounds")
+		return
 
 
-func add_portal(centered_global_position: Vector2) -> void:
+func add_portal(centered_global_position: Vector2) -> Portal:
 	var portal := _door_portal.instantiate()
 	_portals_container.add_child(portal)
 	portal.setup(centered_global_position)
+	return portal
 
 
 func build_world_object(mouse_position) -> void:
-	add_world_object(BuildingGrid.center_global_position(mouse_position))
+	var world_object = add_world_object(BuildingGrid.center_global_position(mouse_position))
+
+	if not BuildingGrid.grid_bounds_in_bounds(
+		world_object.shape_grid_positions, shape_grid_positions
+	):
+		world_object.queue_free()
+		# TODO: Show to player
+		print("Object out of bounds")
+		return
 
 
-func add_world_object(centered_global_position: Vector2) -> void:
+func add_world_object(centered_global_position: Vector2) -> WorldObject:
 	var world_object := _placeholder_world_object.instantiate()
 	_world_objects_container.add_child(world_object)
 	world_object.setup(centered_global_position)
+	return world_object
+
+
+func commit_world_object() -> void:
+	pass
 
 
 func _calculate_height_and_length() -> void:

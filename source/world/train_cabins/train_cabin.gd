@@ -35,11 +35,9 @@ const NUMBER_OF_GRID_POSTITIONS = 2
 
 var cabin_id: int
 # Dict[Vector2, Node2D]
-var left_grid_position: int
-var right_grid_position: int
-var bottom_grid_position: int
-var top_grid_position: int
 var length: float
+var height: float
+var shape_grid_positions: Dictionary
 
 var CabinQualitySchema = Z.schema({
 	CabinQualityType.AESTHETIC: Z.integer().minimum(AESTHETIC_MIN).maximum(AESTHETIC_MAX),
@@ -75,7 +73,7 @@ var cabin_amenities := {
 func setup(
 	start_centered_global_position_setup: Vector2,
 	end_centered_global_position_setup: Vector2,
-	height: float
+	height_setup: float
 ) -> void:
 	var average_global_position: Vector2 = (
 		(start_centered_global_position_setup + end_centered_global_position_setup)
@@ -83,6 +81,8 @@ func setup(
 	)
 
 	position.x = to_local(average_global_position).x
+
+	height = height_setup
 	length = (
 		end_centered_global_position_setup.x
 		- start_centered_global_position_setup.x
@@ -98,7 +98,12 @@ func setup(
 	_train_cabin_background.set_region_rect(cabin_sprite_rect)
 	_train_cabin_foreground.set_region_rect(cabin_sprite_rect)
 
-	_calculate_grid_positions_for_cabin(to_global(position), height)
+	# to_global(position) will give incorrect results, as it's designed for the nodes
+	# children. We therefore need to use global_position instead.
+	# https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d-method-to-global
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+		_train_cabin_shape.global_position, height, length
+	)
 
 	_first_wall_shape.shape = _first_wall_shape.shape.duplicate()
 	_first_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
@@ -106,20 +111,6 @@ func setup(
 	_second_wall_shape.shape = _second_wall_shape.shape.duplicate()
 	_second_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
 	_second_wall_shape.position.x = to_local(end_centered_global_position_setup).x
-
-
-func _calculate_grid_positions_for_cabin(
-	shape_center_global_position: Vector2,
-	height: float
-) -> void:
-	var shape_grid_positions: Dictionary = BuildingGrid.get_grid_positions_for_shape(
-		shape_center_global_position, height, length
-	)
-
-	left_grid_position = shape_grid_positions[Side.SIDE_LEFT]
-	right_grid_position = shape_grid_positions[Side.SIDE_RIGHT]
-	top_grid_position = shape_grid_positions[Side.SIDE_TOP]
-	bottom_grid_position = shape_grid_positions[Side.SIDE_BOTTOM]
 
 
 func remove() -> void:
@@ -135,12 +126,12 @@ func set_train_cabin_background(background: Resource) -> void:
 	_train_cabin_background.texture = background
 
 
-func grid_position_in_cabin(grid_position) -> bool:
+func grid_position_in_cabin(grid_position: Vector2) -> bool:
 	if (
-		left_grid_position < grid_position.x
-		and grid_position.x < right_grid_position
-		and bottom_grid_position < grid_position.y
-		and grid_position.y < top_grid_position
+		shape_grid_positions[Side.SIDE_LEFT] < grid_position.x
+		and grid_position.x < shape_grid_positions[Side.SIDE_RIGHT]
+		and shape_grid_positions[Side.SIDE_BOTTOM] < grid_position.y
+		and grid_position.y < shape_grid_positions[Side.SIDE_TOP]
 	):
 		return true
 	return false

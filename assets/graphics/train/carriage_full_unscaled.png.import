@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bobq80y6vk04m"
-path="res://.godot/imported/carriage_full_unscaled.png-65755cd2e5ddb604a9bb10bf633c99dd.ctex"
+path="res://.godot/imported/carriage_full_unscaled.png-73538ac8484b67e9accf4778935a35d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/carriage_full_unscaled.png"
-dest_files=["res://.godot/imported/carriage_full_unscaled.png-65755cd2e5ddb604a9bb10bf633c99dd.ctex"]
+source_file="res://assets/graphics/train/carriage_full_unscaled.png"
+dest_files=["res://.godot/imported/carriage_full_unscaled.png-73538ac8484b67e9accf4778935a35d6.ctex"]
 
 [params]
 

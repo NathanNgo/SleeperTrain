@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://5b4d7md1ihoa"
-path="res://.godot/imported/table_cabin.png-859911d8bca5b6fbbb09379a9bb9696c.ctex"
+path="res://.godot/imported/table_cabin.png-d29e924bd29245cf59a75477767b01dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/table_cabin.png"
-dest_files=["res://.godot/imported/table_cabin.png-859911d8bca5b6fbbb09379a9bb9696c.ctex"]
+source_file="res://assets/graphics/furniture/table_cabin.png"
+dest_files=["res://.godot/imported/table_cabin.png-d29e924bd29245cf59a75477767b01dc.ctex"]
 
 [params]
 

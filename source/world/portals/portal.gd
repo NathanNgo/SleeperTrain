@@ -8,7 +8,8 @@ signal player_body_transitioned_out
 
 var portal_id: int
 var height: float
-var width: float
+var length: float
+var shape_grid_positions: Dictionary
 var _currently_selected := false
 var _bodies: Array[Node2D] = []
 
@@ -16,7 +17,10 @@ var _bodies: Array[Node2D] = []
 func setup(centered_global_position: Vector2) -> void:
 	position = to_local(centered_global_position)
 	position += BuildingGrid.get_shift_for_grid_alignment(
-		centered_global_position, width, height
+		centered_global_position, length, height
+	)
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+		_portal_shape.global_position, height, length
 	)
 
 
@@ -45,7 +49,7 @@ func _ready() -> void:
 	_portal_area.mouse_entered.connect(_on_mouse_entered)
 	_portal_area.mouse_exited.connect(_on_mouse_exited)
 
-	width = _portal_shape.shape.get_rect().size.x
+	length = _portal_shape.shape.get_rect().size.x
 	height = _portal_shape.shape.get_rect().size.y
 
 

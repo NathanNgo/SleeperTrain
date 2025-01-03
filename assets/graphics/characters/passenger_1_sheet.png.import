@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cami0no7jxnfe"
-path="res://.godot/imported/passenger_1_sheet.png-1081b0a63505b1ac67f2889bc40eda04.ctex"
+path="res://.godot/imported/passenger_1_sheet.png-ec5609dc644227d943b73742d38cb0a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/passenger_1_sheet.png"
-dest_files=["res://.godot/imported/passenger_1_sheet.png-1081b0a63505b1ac67f2889bc40eda04.ctex"]
+source_file="res://assets/graphics/characters/passenger_1_sheet.png"
+dest_files=["res://.godot/imported/passenger_1_sheet.png-ec5609dc644227d943b73742d38cb0a7.ctex"]
 
 [params]
 

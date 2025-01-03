@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c43gko6xfsiym"
-path="res://.godot/imported/carriage_shell.png-a06c70770376919fa73ecc783ab7b3c0.ctex"
+path="res://.godot/imported/carriage_shell.png-7c154c67640ad20ceabafcc5561821f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/carriage_shell.png"
-dest_files=["res://.godot/imported/carriage_shell.png-a06c70770376919fa73ecc783ab7b3c0.ctex"]
+source_file="res://assets/graphics/train/carriage_shell.png"
+dest_files=["res://.godot/imported/carriage_shell.png-7c154c67640ad20ceabafcc5561821f2.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://rbuu8rcyllf1"
-path="res://.godot/imported/bed_messy.png-086f5ddbe5bfb634431a953603e12d28.ctex"
+path="res://.godot/imported/bed_messy.png-263049915284cc42a4737546fe33a2d3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/bed_messy.png"
-dest_files=["res://.godot/imported/bed_messy.png-086f5ddbe5bfb634431a953603e12d28.ctex"]
+source_file="res://assets/graphics/furniture/bed_messy.png"
+dest_files=["res://.godot/imported/bed_messy.png-263049915284cc42a4737546fe33a2d3.ctex"]
 
 [params]
 
