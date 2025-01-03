@@ -36,7 +36,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func remove() -> void:
-	TrainRegistry.unregister_portal(portal_id)
 	queue_free()
 
 

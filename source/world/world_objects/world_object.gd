@@ -54,7 +54,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func remove() -> void:
-	TrainRegistry.unregister_world_object(world_object_id)
 	queue_free()
 
 

@@ -114,7 +114,6 @@ func setup(
 
 
 func remove() -> void:
-	TrainRegistry.unregister_cabin(cabin_id)
 	queue_free()
 
 
