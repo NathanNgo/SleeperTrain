@@ -157,7 +157,7 @@ position = Vector2(-576, 16)
 position = Vector2(-160, 32)
 
 [node name="Door2" parent="TrainContainer/TrainCarriageBasic2/TrainCarriageLevelsContainer/TrainCarriageLevel" index="5" instance=ExtResource("9_tp73u")]
-position = Vector2(120, 32)
+position = Vector2(128, 32)
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 864)
