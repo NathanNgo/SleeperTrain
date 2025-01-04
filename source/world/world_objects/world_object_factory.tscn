@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmqmg1ayfwnlo"]
+[gd_scene load_steps=8 format=3 uid="uid://bmqmg1ayfwnlo"]
 
 [ext_resource type="Script" path="res://source/world/world_objects/world_object_factory.gd" id="1_ori1p"]
 [ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table_dining/table_dining.tscn" id="2_c17c7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://prpbaxh73iq8" path="res://source/world/world_objects/bed/bed.tscn" id="4_wdwpm"]
 [ext_resource type="PackedScene" uid="uid://bm6xikbos7hw8" path="res://source/world/world_objects/lamp_wall/lamp_wall.tscn" id="5_ruuu5"]
 [ext_resource type="PackedScene" uid="uid://dt142jsrqk6sn" path="res://source/world/world_objects/luggage_rack/luggage_rack.tscn" id="6_gu5va"]
+[ext_resource type="PackedScene" uid="uid://mg6lgokxojdl" path="res://source/world/world_objects/chair_basic/chair_basic.tscn" id="7_wbp7w"]
 
 [node name="WorldObjectFactory" type="Node"]
 script = ExtResource("1_ori1p")
@@ -14,3 +15,4 @@ _table_dining = ExtResource("2_c17c7")
 _bed = ExtResource("4_wdwpm")
 _lamp_wall = ExtResource("5_ruuu5")
 _luggage_rack = ExtResource("6_gu5va")
+_chair_basic = ExtResource("7_wbp7w")

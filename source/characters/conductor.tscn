@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://dfjylpb5rruxn" path="res://assets/graphics/characters/conductor_sheet.png" id="1_l2rd4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_31cx1"]
-radius = 20.0
-height = 126.0
+radius = 13.0
+height = 64.0
 
 [sub_resource type="Animation" id="Animation_dvpwp"]
 length = 0.001
@@ -108,7 +108,6 @@ conductor_animation = NodePath("AnimationPlayer")
 
 [node name="ConductorSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(2, 2)
 texture = ExtResource("1_l2rd4")
 hframes = 9
 

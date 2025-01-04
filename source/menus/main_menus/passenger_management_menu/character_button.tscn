@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://t7vjlxweuy6a"]
 
 [ext_resource type="Script" path="res://source/menus/main_menus/passenger_management_menu/character_button.gd" id="1_8mff6"]
-[ext_resource type="Texture2D" uid="uid://bfq2581n0g3sn" path="res://assets/graphics/Passenger.png" id="1_ghvvb"]
+[ext_resource type="Texture2D" uid="uid://bfq2581n0g3sn" path="res://assets/graphics/characters/Passenger.png" id="1_ghvvb"]
 
 [node name="CharacterButton" type="Button" node_paths=PackedStringArray("_texture_rect")]
 custom_minimum_size = Vector2(128, 128)

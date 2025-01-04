@@ -12,9 +12,9 @@ _world_object_area = NodePath("Area2D")
 _world_object_shape = NodePath("Area2D/CollisionShape2D")
 
 [node name="LampWall" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(-3.8147e-06, -7.62939e-06)
-scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_7iijs")
 
 [node name="Area2D" type="Area2D" parent="."]

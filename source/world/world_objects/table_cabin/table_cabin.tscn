@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://5b4d7md1ihoa" path="res://assets/graphics/furniture/table_cabin.png" id="2_wyqr2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hu4f0"]
-size = Vector2(64, 64)
+size = Vector2(32, 32)
 
 [node name="TableCabin" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
 script = ExtResource("1_x7gcg")
@@ -13,11 +13,10 @@ _world_object_shape = NodePath("Area2D/CollisionShape2D")
 
 [node name="TableCabin" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -32)
-scale = Vector2(2, 2)
 texture = ExtResource("2_wyqr2")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
 shape = SubResource("RectangleShape2D_hu4f0")
