@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dumkj6pcppnq1"]
 
 [ext_resource type="Script" path="res://source/world/portals/door/door.gd" id="1_b4ij1"]
-[ext_resource type="Texture2D" uid="uid://dlopvufxtu1mq" path="res://assets/graphics/door.png" id="2_haqq1"]
+[ext_resource type="Texture2D" uid="uid://dlopvufxtu1mq" path="res://assets/graphics/train/door.png" id="2_haqq1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_esrqb"]
 size = Vector2(64, 128)

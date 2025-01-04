@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c51riroqftx84"
-path="res://.godot/imported/carriage_backwall_unscaled.png-26795be4a0816cd99984d8427c86eed1.ctex"
+uid="uid://b0x122dgs2iff"
+path="res://.godot/imported/Title_Candlelight_Express.png-8bb69ebf7651823fd8c6e23bb79029e3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/train/carriage_backwall_unscaled.png"
-dest_files=["res://.godot/imported/carriage_backwall_unscaled.png-26795be4a0816cd99984d8427c86eed1.ctex"]
+source_file="res://assets/graphics/ui/Title_Candlelight_Express.png"
+dest_files=["res://.godot/imported/Title_Candlelight_Express.png-8bb69ebf7651823fd8c6e23bb79029e3.ctex"]
 
 [params]
 

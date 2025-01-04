@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/world/train_carriages/train_carriage.gd" id="1_8vhu3"]
 [ext_resource type="PackedScene" uid="uid://bsb4c1430qocc" path="res://source/world/train_carriage_levels/train_carriage_level.tscn" id="3_ggp37"]
-[ext_resource type="Texture2D" uid="uid://c43gko6xfsiym" path="res://assets/graphics/carriage_shell.png" id="3_syt2v"]
+[ext_resource type="Texture2D" uid="uid://c43gko6xfsiym" path="res://assets/graphics/train/carriage_shell.png" id="3_syt2v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(1408, 8)
@@ -22,6 +22,7 @@ shape = SubResource("RectangleShape2D_fws6n")
 [node name="TrainCarriageLevelsContainer" type="Node2D" parent="."]
 
 [node name="TrainCarriageLevel" parent="TrainCarriageLevelsContainer" instance=ExtResource("3_ggp37")]
+polygon = PackedVector2Array(-688, -96, 688, -96, 688, 96, -688, 96, -688, 0)
 
 [node name="CarriageShell" type="Sprite2D" parent="."]
 z_index = 2

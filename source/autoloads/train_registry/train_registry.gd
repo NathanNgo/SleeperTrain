@@ -11,7 +11,6 @@ const MAX_CONSUMPTION_WAIT_TIME := 10.0
 const MIN_CONSUMPTION_WAIT_TIME := 5.0
 
 @export var _train_carriage_scene: PackedScene
-@export var _train_carriage_short_scene: PackedScene
 @export var _consumption_timer: Timer
 @export var _train_resources: Resource
 
@@ -40,10 +39,6 @@ var portal_registry = {}
 var total_portals = 0
 
 
-func setup(carriage_type: TrainCarriage.TrainCarriageType) -> void:
-	add_carriage_at(0, carriage_type)
-
-
 func _ready() -> void:
 	_consumption_timer.timeout.connect(_on_consumption_timer_timeout)
 
@@ -51,11 +46,19 @@ func _ready() -> void:
 func register_carriage(carriage: TrainCarriage) -> int:
 	total_carriages += 1
 	carriage_registry[total_carriages] = carriage
+	# We need the train carriage to be added to the scene tree before we organise the
+	# train. Otherwise, _ready() doesn't get run, and none of the member variables we
+	# rely on to calculate the carriage offsets are initialized.
+	_push_at(carriage.initial_carriage_index, carriage)
+	_organize_train()
+	max_train_capacity += DEFAULT_CARRIAGE_CAPACITY
+
 	return total_carriages
 
 
 func unregister_carriage(carriage_id: int) -> void:
 	carriage_registry.erase(carriage_id)
+	_organize_train()
 
 
 func register_cabin(cabin: TrainCabin) -> int:
@@ -116,11 +119,11 @@ func _organize_train() -> void:
 			)
 		)
 
-		train_carriage.position.x = -train_offset
+		train_carriage.position = Vector2(-train_offset, 0)
 		current_train_length += train_carriage.max_train_carriage_length
 
 
-func add_carriage_at(
+func add_train_carriage_at(
 	carriage_index: int, train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
 	var train_carriage: Node2D
@@ -128,31 +131,17 @@ func add_carriage_at(
 	match train_carriage_type:
 		TrainCarriage.TrainCarriageType.BASIC:
 			train_carriage = _train_carriage_scene.instantiate()
-		TrainCarriage.TrainCarriageType.SHORT:
-			train_carriage = _train_carriage_short_scene.instantiate()
+
+	train_carriage.initial_carriage_index = carriage_index
 
 	carriage_added.emit(train_carriage)
 
-	if train_carriage.carriage_id not in carriage_registry:
-		return
 
-	_push_at(carriage_index, train_carriage)
-	# We need the train carriage to be added to the scene tree before we organise the
-	# train. Otherwise, _ready() doesn't get run, and none of the member variables we
-	# rely on to calculate the carriage offsets are initialized.
-	_organize_train()
-	max_train_capacity += DEFAULT_CARRIAGE_CAPACITY
-
-
-func remove_carriage_at(carriage_index: int) -> void:
+func remove_train_carriage_at(carriage_index: int) -> void:
 	if carriage_index >= len(train_layout):
 		return
 
-	var train_carriage = train_layout.pop_at(carriage_index)
-
-	carriage_registry.erase(train_carriage.carriage_id)
-	train_carriage.queue_free()
-	_organize_train()
+	train_layout.pop_at(carriage_index).queue_free()
 
 
 func get_random_carriage() -> Node2D:
@@ -251,21 +240,21 @@ func stop_train_consumption() -> void:
 func add_train_carriage_at_front(
 	train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
-	add_carriage_at(len(train_layout), train_carriage_type)
+	add_train_carriage_at(len(train_layout), train_carriage_type)
 
 
 func remove_train_carriage_at_front() -> void:
-	remove_carriage_at(-1)
+	remove_train_carriage_at(-1)
 
 
 func add_train_carriage_at_back(
 	train_carriage_type: TrainCarriage.TrainCarriageType
 ) -> void:
-	add_carriage_at(0, train_carriage_type)
+	add_train_carriage_at(0, train_carriage_type)
 
 
 func remove_train_carriage_at_back() -> void:
-	remove_carriage_at(0)
+	remove_train_carriage_at(0)
 
 
 func _push_at(carriage_index: int, item: Node2D) -> void:
@@ -284,18 +273,22 @@ func _on_consumption_timer_timeout() -> void:
 
 
 func _on_player_body_transitioned_in(portal: Portal) -> void:
-	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
+	var portal_grid_position = BuildingGrid.global_position_to_grid(portal.global_position)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
 
-		if cabin.grid_position_in_cabin(portal_grid_postion):
+		if BuildingGrid.grid_position_in_bounds(
+			portal_grid_position, cabin.shape_grid_positions
+		):
 			cabin.hide_foreground()
 
 
 func _on_player_body_transitioned_out(portal: Portal) -> void:
-	var portal_grid_postion = BuildingGrid.global_position_to_grid(portal.global_position)
+	var portal_grid_position = BuildingGrid.global_position_to_grid(portal.global_position)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
 
-		if cabin.grid_position_in_cabin(portal_grid_postion):
+		if BuildingGrid.grid_position_in_bounds(
+			portal_grid_position, cabin.shape_grid_positions
+		):
 			cabin.show_foreground()
