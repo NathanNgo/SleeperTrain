@@ -12,7 +12,7 @@ _portal_area = NodePath("PortalArea")
 _portal_shape = NodePath("PortalArea/CollisionShape2D")
 
 [node name="Portal" type="Sprite2D" parent="."]
-z_index = 2
+z_index = 1
 position = Vector2(1.90735e-06, 0)
 scale = Vector2(0.761905, 0.88889)
 texture = ExtResource("2_haqq1")
