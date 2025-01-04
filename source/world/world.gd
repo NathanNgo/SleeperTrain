@@ -5,6 +5,8 @@ const CAMERA_ZOOM_INCREMENT = 2
 const CAMERA_ZOOM_OFFSET = 200
 const MAX_CAMERA_ZOOM = 2
 const MIN_CAMERA_ZOOM = 1
+const INITIAL_CARRIAGE_FOR_CABINS_ID = 2
+const INITIAL_CARRIAGE_FOR_CABINS_LEVEL = 0
 
 @export var train_container: Node2D
 @export var character_container: Node2D
@@ -15,6 +17,20 @@ const MIN_CAMERA_ZOOM = 1
 
 @export var _journey_background: PackedScene
 @export var _town_background: PackedScene
+@export var _cabin_point_pairs: Node2D
+
+
+func _ready() -> void:
+	_populate_carriage_with_initial_cabins()
+
+
+func _populate_carriage_with_initial_cabins() -> void:
+	var carriage: TrainCarriage = TrainRegistry.get_carriage(INITIAL_CARRIAGE_FOR_CABINS_ID)
+	var carriage_level: TrainCarriageLevel = carriage.get_carriage_level(INITIAL_CARRIAGE_FOR_CABINS_LEVEL)
+
+	for cabin_point_pair in _cabin_point_pairs.get_children():
+		for cabin_point in cabin_point_pair.get_children():
+			carriage_level.build_cabin(cabin_point.global_position)
 
 
 func _process(_delta: float) -> void:

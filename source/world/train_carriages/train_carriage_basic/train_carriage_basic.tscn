@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://fhlqrgvrjs57"]
+[gd_scene load_steps=6 format=3 uid="uid://fhlqrgvrjs57"]
 
 [ext_resource type="Script" path="res://source/world/train_carriages/train_carriage.gd" id="1_8vhu3"]
 [ext_resource type="PackedScene" uid="uid://bsb4c1430qocc" path="res://source/world/train_carriage_levels/train_carriage_level.tscn" id="3_ggp37"]
 [ext_resource type="Texture2D" uid="uid://c43gko6xfsiym" path="res://assets/graphics/train/carriage_shell.png" id="3_syt2v"]
+[ext_resource type="Texture2D" uid="uid://bobq80y6vk04m" path="res://assets/graphics/train/carriage_full_unscaled.png" id="4_uc0ap"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fws6n"]
 size = Vector2(1408, 8)
@@ -29,3 +30,7 @@ z_index = 2
 position = Vector2(0, -2.86102e-06)
 scale = Vector2(0.199716, 0.2)
 texture = ExtResource("3_syt2v")
+
+[node name="CarriageFullUnscaled" type="Sprite2D" parent="."]
+position = Vector2(0, -320)
+texture = ExtResource("4_uc0ap")

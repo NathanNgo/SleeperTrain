@@ -50,7 +50,7 @@ func _ready() -> void:
 
 	length = _portal_shape.shape.get_rect().size.x
 	height = _portal_shape.shape.get_rect().size.y
-	# setup(BuildingGrid.center_global_position(global_position))
+	setup(BuildingGrid.center_global_position(global_position))
 
 
 func _exit_tree() -> void:

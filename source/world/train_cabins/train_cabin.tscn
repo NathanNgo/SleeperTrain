@@ -5,13 +5,13 @@
 [ext_resource type="Texture2D" uid="uid://bn4w1fl1nawow" path="res://assets/graphics/train/cabin_front.png" id="3_wc31d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d321f"]
-size = Vector2(1408, 256)
+size = Vector2(984, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6u23v"]
-size = Vector2(20, 256)
+size = Vector2(32, 256)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cehls"]
-size = Vector2(20, 256)
+size = Vector2(32, 256)
 
 [node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground", "_first_wall_shape", "_second_wall_shape")]
 texture_repeat = 2

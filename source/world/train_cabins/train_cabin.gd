@@ -71,9 +71,9 @@ var cabin_amenities := {
 
 
 func setup(
-	start_centered_global_position_setup: Vector2,
-	end_centered_global_position_setup: Vector2,
-	height_setup: float
+	start_centered_global_position_setup: Vector2 = Vector2.ZERO,
+	end_centered_global_position_setup: Vector2 = Vector2.ZERO,
+	height_setup: float = 0.0
 ) -> void:
 	var average_global_position: Vector2 = (
 		(start_centered_global_position_setup + end_centered_global_position_setup)

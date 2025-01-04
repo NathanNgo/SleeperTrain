@@ -6,13 +6,13 @@ const CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y = 0
 @export var _train_cabin: PackedScene
 @export var _door_portal: PackedScene
 # TODO: Remove this.
-@export var _placeholder_world_object: PackedScene
 @export var _train_cabins_container: Node2D
 @export var _world_objects_container: Node2D
 @export var _portals_container: Node2D
 @export var _train_carriage_level_area: Area2D
 @export var _train_carriage_level_shape: CollisionShape2D
 @export var _train_carriage_level_background: Sprite2D
+@export var _world_object_factory: Node
 
 # Dict[Vector2, Node2D]
 var height: float
@@ -114,7 +114,7 @@ func build_world_object(mouse_position) -> void:
 
 
 func add_world_object(centered_global_position: Vector2) -> WorldObject:
-	var world_object := WorldObjectFactory.create_world_object(
+	var world_object: WorldObject = _world_object_factory.create_world_object(
 		Globals.building_world_object_type
 	)
 	_world_objects_container.add_child(world_object)

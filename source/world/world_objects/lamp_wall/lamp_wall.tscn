@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bm6xikbos7hw8"]
+
+[ext_resource type="Texture2D" uid="uid://combca2cwggxi" path="res://assets/graphics/furniture/lamp_wall.png" id="1_7iijs"]
+[ext_resource type="Script" path="res://source/world/world_objects/world_object.gd" id="1_8eal1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6o4x1"]
+size = Vector2(32, 32)
+
+[node name="LampWall" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
+script = ExtResource("1_8eal1")
+_world_object_area = NodePath("Area2D")
+_world_object_shape = NodePath("Area2D/CollisionShape2D")
+
+[node name="LampWall" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-3.8147e-06, -7.62939e-06)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7iijs")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_6o4x1")

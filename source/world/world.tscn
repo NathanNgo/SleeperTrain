@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=14 format=4 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/backgrounds/background_good/background_good.tscn" id="1_uiuku"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://chdq82xwdb2vw" path="res://source/characters/conductor.tscn" id="5_gai6i"]
 [ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table_dining/table_dining.tscn" id="6_d37su"]
 [ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/Tilemap/tilemap.png" id="6_h5r1k"]
+[ext_resource type="PackedScene" uid="uid://bm6xikbos7hw8" path="res://source/world/world_objects/lamp_wall/lamp_wall.tscn" id="7_4cuyn"]
+[ext_resource type="PackedScene" uid="uid://dt142jsrqk6sn" path="res://source/world/world_objects/luggage_rack/luggage_rack.tscn" id="7_a15cj"]
+[ext_resource type="PackedScene" uid="uid://dumkj6pcppnq1" path="res://source/world/portals/door/door.tscn" id="9_tp73u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjh8s"]
 texture = ExtResource("6_h5r1k")
@@ -62,7 +65,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_sjh8s")
 
-[node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot", "_background_sub_viewport")]
+[node name="World" type="Node2D" node_paths=PackedStringArray("train_container", "character_container", "_camera", "_background_pivot", "_background_sub_viewport", "_cabin_point_pairs")]
 script = ExtResource("1_bljk7")
 train_container = NodePath("TrainContainer")
 character_container = NodePath("CharacterContainer")
@@ -72,6 +75,7 @@ _background_sub_viewport = NodePath("BackgroundPivot/SubViewportContainer/SubVie
 _train_resources = ExtResource("2_4a2n7")
 _journey_background = ExtResource("1_uiuku")
 _town_background = ExtResource("4_yfvks")
+_cabin_point_pairs = NodePath("CabinPointPairs")
 
 [node name="BackgroundPivot" type="Node2D" parent="."]
 position = Vector2(960, 544)
@@ -105,19 +109,55 @@ position = Vector2(960, 864)
 [node name="TrainCarriageBasic" parent="TrainContainer" instance=ExtResource("5_cchdb")]
 
 [node name="Table" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="0" instance=ExtResource("6_d37su")]
-position = Vector2(96, 80)
+position = Vector2(128, 64)
 
 [node name="Table2" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="1" instance=ExtResource("6_d37su")]
-position = Vector2(224, 80)
+position = Vector2(384, 64)
 
 [node name="Table3" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="2" instance=ExtResource("6_d37su")]
-position = Vector2(-96, 80)
+position = Vector2(-128, 64)
 
 [node name="Table4" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="3" instance=ExtResource("6_d37su")]
-position = Vector2(-224, 80)
+position = Vector2(-384, 64)
+
+[node name="LampWall" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="4" instance=ExtResource("7_4cuyn")]
+position = Vector2(-144, -16)
+
+[node name="LampWall2" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="5" instance=ExtResource("7_4cuyn")]
+position = Vector2(-368, -16)
+
+[node name="LampWall3" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="6" instance=ExtResource("7_4cuyn")]
+position = Vector2(-400, -16)
+
+[node name="LampWall4" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="7" instance=ExtResource("7_4cuyn")]
+position = Vector2(-112, -16)
+
+[node name="LampWall5" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="8" instance=ExtResource("7_4cuyn")]
+position = Vector2(112, -16)
+
+[node name="LampWall6" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="9" instance=ExtResource("7_4cuyn")]
+position = Vector2(144, -16)
+
+[node name="LampWall7" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="10" instance=ExtResource("7_4cuyn")]
+position = Vector2(368, -16)
+
+[node name="LampWall8" parent="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="11" instance=ExtResource("7_4cuyn")]
+position = Vector2(400, -16)
 
 [node name="TrainCarriageBasic2" parent="TrainContainer" instance=ExtResource("5_cchdb")]
 position = Vector2(-1408, 0)
+
+[node name="LuggageRack2" parent="TrainContainer/TrainCarriageBasic2/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="0" instance=ExtResource("7_a15cj")]
+position = Vector2(-384, 16)
+
+[node name="LuggageRack3" parent="TrainContainer/TrainCarriageBasic2/TrainCarriageLevelsContainer/TrainCarriageLevel/WorldObjectsContainer" index="1" instance=ExtResource("7_a15cj")]
+position = Vector2(-576, 16)
+
+[node name="Door" parent="TrainContainer/TrainCarriageBasic2/TrainCarriageLevelsContainer/TrainCarriageLevel" index="4" instance=ExtResource("9_tp73u")]
+position = Vector2(-160, 32)
+
+[node name="Door2" parent="TrainContainer/TrainCarriageBasic2/TrainCarriageLevelsContainer/TrainCarriageLevel" index="5" instance=ExtResource("9_tp73u")]
+position = Vector2(120, 32)
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 864)
@@ -129,8 +169,24 @@ position = Vector2(960, 896)
 tile_map_data = PackedByteArray("AAAdAB0AAAAAAAAAAAAeABwAAAAAAAAAAAAdABsAAAAAAAAAAAAeABoAAAAAAAAAAAAdABkAAAABAAAAAAAeABgAAAABAAAAAAAdABcAAAABAAAAAAAeABYAAAABAAAAAAAeAB4AAAABAAAAAAA=")
 tile_set = SubResource("TileSet_v4835")
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2(0, 16)
+[node name="CabinPointPairs" type="Node2D" parent="."]
+
+[node name="CabinPointPair" type="Node2D" parent="CabinPointPairs"]
+
+[node name="CabinPoint" type="Node2D" parent="CabinPointPairs/CabinPointPair"]
+position = Vector2(-656, 864)
+
+[node name="CabinPoint2" type="Node2D" parent="CabinPointPairs/CabinPointPair"]
+position = Vector2(-400, 864)
+
+[node name="CabinPointPair2" type="Node2D" parent="CabinPointPairs"]
+position = Vector2(256, 0)
+
+[node name="CabinPoint" type="Node2D" parent="CabinPointPairs/CabinPointPair2"]
+position = Vector2(-624, 864)
+
+[node name="CabinPoint2" type="Node2D" parent="CabinPointPairs/CabinPointPair2"]
+position = Vector2(-80, 864)
 
 [editable path="TrainContainer/TrainCarriageBasic"]
 [editable path="TrainContainer/TrainCarriageBasic/TrainCarriageLevelsContainer/TrainCarriageLevel"]

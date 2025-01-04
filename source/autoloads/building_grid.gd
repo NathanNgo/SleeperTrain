@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const TILE_SIZE = 32
+const TILE_SIZE = 16
 const GRID_OFFSET = 1
 
 
