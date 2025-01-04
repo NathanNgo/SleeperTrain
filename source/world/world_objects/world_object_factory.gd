@@ -5,7 +5,8 @@ enum WorldObjectType {
 	TABLE_DINING,
 	BED,
 	LAMP_WALL,
-	LUGGAGE_RACK
+	LUGGAGE_RACK,
+	CHAIR_BASIC
 }
 
 @export var _table_cabin: PackedScene
@@ -13,6 +14,7 @@ enum WorldObjectType {
 @export var _bed: PackedScene
 @export var _lamp_wall: PackedScene
 @export var _luggage_rack: PackedScene
+@export var _chair_basic: PackedScene
 
 
 func create_world_object(world_object_type: WorldObjectType) -> WorldObject:
@@ -27,6 +29,8 @@ func create_world_object(world_object_type: WorldObjectType) -> WorldObject:
 			return _lamp_wall.instantiate()
 		WorldObjectType.LUGGAGE_RACK:
 			return _luggage_rack.instantiate()
+		WorldObjectType.CHAIR_BASIC:
+			return _chair_basic.instantiate()
 
 	push_error("WorldObject not found in WorldObjectFactory")
 	return null

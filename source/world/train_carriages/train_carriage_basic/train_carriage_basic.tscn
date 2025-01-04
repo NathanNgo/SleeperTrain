@@ -9,7 +9,7 @@ size = Vector2(1408, 8)
 
 [node name="TrainCarriageBasic" type="Polygon2D" node_paths=PackedStringArray("_train_carriage_levels_container")]
 color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(-704, -128, 704, -128, 704, 128, -704, 128)
+polygon = PackedVector2Array(-368, -64, 368, -64, 368, 64, -368, 64)
 script = ExtResource("1_8vhu3")
 _train_carriage_levels_container = NodePath("TrainCarriageLevelsContainer")
 
@@ -22,10 +22,9 @@ shape = SubResource("RectangleShape2D_fws6n")
 [node name="TrainCarriageLevelsContainer" type="Node2D" parent="."]
 
 [node name="TrainCarriageLevel" parent="TrainCarriageLevelsContainer" instance=ExtResource("3_ggp37")]
-polygon = PackedVector2Array(-688, -96, 688, -96, 688, 96, -688, 96, -688, 0)
+polygon = PackedVector2Array(-320, -48, 320, -48, 320, 48, -320, 48)
 
 [node name="CarriageShell" type="Sprite2D" parent="."]
 z_index = 2
-position = Vector2(0, -2.86102e-06)
-scale = Vector2(0.199716, 0.2)
+texture_filter = 1
 texture = ExtResource("3_syt2v")

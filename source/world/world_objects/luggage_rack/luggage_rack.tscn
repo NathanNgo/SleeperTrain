@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d2agf2s4c8cjg" path="res://assets/graphics/furniture/luggage_rack.png" id="1_ukxp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sr7fj"]
-size = Vector2(128, 32)
+size = Vector2(64, 32)
 
 [node name="LuggageRack" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
 script = ExtResource("1_b7plh")
@@ -12,9 +12,9 @@ _world_object_area = NodePath("Area2D")
 _world_object_shape = NodePath("Area2D/CollisionShape2D")
 
 [node name="LuggageRack" type="Sprite2D" parent="."]
+z_index = 1
 texture_filter = 1
 position = Vector2(5.72205e-06, -1.90735e-06)
-scale = Vector2(2, 2)
 texture = ExtResource("1_ukxp3")
 
 [node name="Area2D" type="Area2D" parent="."]
