@@ -1,24 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfvvce0x58vns"]
+[gd_scene load_steps=4 format=3 uid="uid://0j0dflyu1oys"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_0oi3d"]
-[ext_resource type="PackedScene" uid="uid://bfybk2e44api1" path="res://source/managers/menu_manager/main_menu_manager/main_menu_manager.tscn" id="1_0rlfs"]
-[ext_resource type="Resource" uid="uid://c2m2kj7npdynt" path="res://source/resources/train_resources/train_resources.tres" id="2_vgucw"]
-[ext_resource type="PackedScene" uid="uid://316wsd84fv1l" path="res://source/managers/menu_manager/popup_menu_manager/popup_menu_manager.tscn" id="3_oefb6"]
-[ext_resource type="PackedScene" uid="uid://3udgfnp20qkf" path="res://source/world/world.tscn" id="3_vr70b"]
-[ext_resource type="PackedScene" uid="uid://hgx7x4lnbqt6" path="res://source/managers/menu_manager/gui_menu_manager/gui_menu_manager.tscn" id="4_r1sq8"]
+[ext_resource type="PackedScene" uid="uid://dkqaspa2mn8p1" path="res://source/managers/menu_manager/splash_screen_menu_manager/splash_screen_menu_manager.tscn" id="2_nxcrq"]
+[ext_resource type="PackedScene" uid="uid://bfvvce0x58vns" path="res://source/managers/game_manager/game_manager.tscn" id="2_qb31n"]
 
-[node name="Main" type="Node" node_paths=PackedStringArray("_main_menu_manager", "_popup_menu_manager", "_gui_menu_manager", "_world")]
+[node name="Main" type="Node" node_paths=PackedStringArray("_game_manager", "_splash_screen_menu_manager")]
 script = ExtResource("1_0oi3d")
-_main_menu_manager = NodePath("MainMenuManager")
-_popup_menu_manager = NodePath("PopupMenuManager")
-_gui_menu_manager = NodePath("GuiMenuManager")
-_world = NodePath("World")
-_train_resources = ExtResource("2_vgucw")
+_game_manager = NodePath("GameManager")
+_splash_screen_menu_manager = NodePath("SplashScreenMenuManager")
 
-[node name="GuiMenuManager" parent="." instance=ExtResource("4_r1sq8")]
+[node name="GameManager" parent="." instance=ExtResource("2_qb31n")]
 
-[node name="PopupMenuManager" parent="." instance=ExtResource("3_oefb6")]
-
-[node name="MainMenuManager" parent="." instance=ExtResource("1_0rlfs")]
-
-[node name="World" parent="." instance=ExtResource("3_vr70b")]
+[node name="SplashScreenMenuManager" parent="." instance=ExtResource("2_nxcrq")]
+layer = 2

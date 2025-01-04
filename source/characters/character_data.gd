@@ -1,18 +1,11 @@
 class_name CharacterData extends RefCounted
 
-const DEFAULT_SATISFACTION = {
-	Globals.SatisfactionType.ROOM: true,
-	Globals.SatisfactionType.SERVICE: true,
-	Globals.SatisfactionType.FOOD: true,
-	Globals.SatisfactionType.SCENERY: true,
-	Globals.SatisfactionType.TIME: true
-}
 const DEFAULT_LAYER := Globals.Layers.CARRIAGE
 
 var character_id: int
 
 var character_name: String
-# Dict[Globals.SatisfactionType, Bool]
+# Dict[Globals.SatisfactionType, int]
 var satisfaction = {}
 var money: int
 var hunger: int
@@ -28,6 +21,16 @@ var layer: Globals.Layers = DEFAULT_LAYER
 var world_representation: PackedScene
 var menu_image: Resource
 
+# const with a dict makes it read-only.
+var default_satisfaction = {
+	Globals.SatisfactionType.ROOM: 100,
+	Globals.SatisfactionType.SERVICE: 100,
+	Globals.SatisfactionType.FOOD: 100,
+	Globals.SatisfactionType.TIME: 100,
+	Globals.SatisfactionType.SCENERY: 100,
+	Globals.SatisfactionType.SAFETY: 100
+}
+
 
 func _init(
 	character_name_init: String,
@@ -37,10 +40,15 @@ func _init(
 	destination_town_init: GridRailwayVertex,
 	money_init: int = 0,
 	hunger_init: int = 0,
-	satisfaction_init: Variant = DEFAULT_SATISFACTION,
+	satisfaction_init: Dictionary = default_satisfaction,
 	assigned_cabin_id_init: Variant = null,
 	layer_init: Globals.Layers = DEFAULT_LAYER
 ) -> void:
+	var result = Globals.satisfaction_schema.parse(satisfaction_init)
+	if not result.ok():
+		push_error(result.error)
+		return
+
 	self.character_id = CharacterRegistry.register(self)
 	self.character_name = character_name_init
 	self.menu_image = menu_image_init

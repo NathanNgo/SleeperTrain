@@ -102,4 +102,4 @@ func _move() -> void:
 	velocity = move_direction.normalized() * move_speed
 	move_and_slide()
 
-	character_data.global_world_position = to_global(position)
+	character_data.global_world_position = global_position

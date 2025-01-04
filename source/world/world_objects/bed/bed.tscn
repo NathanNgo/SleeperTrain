@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://prpbaxh73iq8"]
+
+[ext_resource type="Texture2D" uid="uid://be7afvuuv4x5e" path="res://assets/graphics/furniture/bed_neat.png" id="1_2lt4g"]
+[ext_resource type="Script" path="res://source/world/world_objects/world_object.gd" id="1_d420a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5buxw"]
+size = Vector2(64, 32)
+
+[node name="Bed" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
+script = ExtResource("1_d420a")
+_world_object_area = NodePath("Area2D")
+_world_object_shape = NodePath("Area2D/CollisionShape2D")
+
+[node name="Bed" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_2lt4g")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
+shape = SubResource("RectangleShape2D_5buxw")

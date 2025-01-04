@@ -1,16 +1,21 @@
 class_name TrainCarriage extends Polygon2D
 
-enum TrainCarriageType { BASIC, SHORT }
+enum TrainCarriageType { BASIC }
 
 @export var _train_carriage_levels_container: Node2D
+@export var initial_carriage_index := 0
 
 var carriage_id: int
 var max_train_carriage_length := 0.0
 
 
 func _ready() -> void:
-	carriage_id = TrainRegistry.register_carriage(self)
 	_calculate_max_length()
+	carriage_id = TrainRegistry.register_carriage(self)
+
+
+func _exit_tree() -> void:
+	TrainRegistry.unregister_carriage(carriage_id)
 
 
 func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLevel:

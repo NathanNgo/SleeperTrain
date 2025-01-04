@@ -10,7 +10,7 @@ enum Menus {
 	BUILDING_MODE_MENU
 }
 
-const DEFAULT_MENU = Menus.MAIN_MENU
+const DEFAULT_MENU = MainMenuManager.Menus.MAIN_MENU
 const DEFAULT_ESCAPE_ACTION = "escape"
 
 @export var _main_menu: ManagedMenu:
