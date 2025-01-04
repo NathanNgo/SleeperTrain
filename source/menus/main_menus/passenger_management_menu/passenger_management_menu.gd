@@ -43,6 +43,8 @@ func _on_minus_button_pressed() -> void:
 		_carriage_selection - 1, MIN_CARRIAGES, total_carriages - 1
 	)
 	_number_select.display_label.text = str(_carriage_selection)
+
+
 func _on_plus_button_pressed() -> void:
 	_carriage_selection = clamp(
 		_carriage_selection + 1, MIN_CARRIAGES, total_carriages - 1

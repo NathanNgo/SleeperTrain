@@ -13,19 +13,23 @@ enum WorldObjectType {
 
 
 func create_world_object(world_object_type: WorldObjectType) -> WorldObject:
+	var world_object: WorldObject = null
+
 	match world_object_type:
 		WorldObjectType.TABLE_CABIN:
-			return _table_cabin.instantiate()
+			world_object = _table_cabin.instantiate()
 		WorldObjectType.TABLE_DINING:
-			return _table_dining.instantiate()
+			world_object = _table_dining.instantiate()
 		WorldObjectType.BED:
-			return _bed.instantiate()
+			world_object = _bed.instantiate()
 		WorldObjectType.LAMP_WALL:
-			return _lamp_wall.instantiate()
+			world_object = _lamp_wall.instantiate()
 		WorldObjectType.LUGGAGE_RACK:
-			return _luggage_rack.instantiate()
+			world_object = _luggage_rack.instantiate()
 		WorldObjectType.CHAIR_BASIC:
-			return _chair_basic.instantiate()
+			world_object = _chair_basic.instantiate()
 
-	push_error("WorldObject not found in WorldObjectFactory")
-	return null
+	if not world_object:
+		push_error("WorldObject not found in WorldObjectFactory")
+
+	return world_object
