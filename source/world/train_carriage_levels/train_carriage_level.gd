@@ -26,7 +26,7 @@ var _currently_selected: bool = false
 
 func _ready() -> void:
 	_calculate_height_and_length()
-	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
 		_train_carriage_level_shape.global_position, height, length
 	)
 	_train_carriage_level_shape.shape = _train_carriage_level_shape.shape.duplicate()

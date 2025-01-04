@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 const TILE_SIZE = 32
+const GRID_OFFSET = 1
 
 
 func _ready() -> void:
@@ -22,7 +23,7 @@ func center_global_position(global_position_input: Vector2) -> Vector2:
 	return grid_to_global_position(global_position_to_grid(global_position_input))
 
 
-func get_grid_positions_for_shape(
+func get_grid_positions_for_aligned_shape(
 	global_position_input: Vector2, height: float, length: float
 ):
 	var half_length = length / 2
@@ -39,10 +40,14 @@ func get_grid_positions_for_shape(
 		Vector2(shape_position_right, shape_position_top)
 	)
 
+	# The GRID_OFFSET prevents the shape from being one tile larger than it actually is.
+	# This is because of how we sample the points. Given that being on the very edge
+	# of the grid causes it to move into the square either on the top or the right, those
+	# grids values will be used. E.g. a 1x1 will be a 2x2.
 	return {
 		Side.SIDE_LEFT: bottom_left_position.x,
-		Side.SIDE_RIGHT: top_right_position.x,
-		Side.SIDE_TOP: top_right_position.y,
+		Side.SIDE_RIGHT: top_right_position.x - GRID_OFFSET,
+		Side.SIDE_TOP: top_right_position.y + GRID_OFFSET,
 		Side.SIDE_BOTTOM: bottom_left_position.y
 	}
 

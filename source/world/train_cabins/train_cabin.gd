@@ -101,7 +101,7 @@ func setup(
 	# to_global(position) will give incorrect results, as it's designed for the nodes
 	# children. We therefore need to use global_position instead.
 	# https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d-method-to-global
-	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
 		_train_cabin_shape.global_position, height, length
 	)
 

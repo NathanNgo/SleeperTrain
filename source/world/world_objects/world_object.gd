@@ -21,7 +21,7 @@ func setup(centered_global_position: Vector2) -> void:
 	position -= BuildingGrid.get_shift_for_grid_alignment(
 		centered_global_position, length, height
 	)
-	shape_grid_positions = BuildingGrid.get_grid_positions_for_shape(
+	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
 		_world_object_shape.global_position, height, length
 	)
 
