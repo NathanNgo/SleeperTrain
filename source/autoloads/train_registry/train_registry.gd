@@ -273,7 +273,9 @@ func _on_consumption_timer_timeout() -> void:
 
 
 func _on_player_body_transitioned_in(portal: Portal) -> void:
-	var portal_grid_position = BuildingGrid.global_position_to_grid(portal.global_position)
+	var portal_grid_position = BuildingGrid.global_position_to_grid(
+		portal.global_position
+	)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
 
@@ -284,7 +286,9 @@ func _on_player_body_transitioned_in(portal: Portal) -> void:
 
 
 func _on_player_body_transitioned_out(portal: Portal) -> void:
-	var portal_grid_position = BuildingGrid.global_position_to_grid(portal.global_position)
+	var portal_grid_position = BuildingGrid.global_position_to_grid(
+		portal.global_position
+	)
 	for cabin_id in cabin_registry:
 		var cabin = cabin_registry[cabin_id]
 

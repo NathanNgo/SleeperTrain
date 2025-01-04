@@ -31,6 +31,7 @@ var default_satisfaction = {
 	Globals.SatisfactionType.SAFETY: 100
 }
 
+
 func _init(
 	character_name_init: String,
 	menu_image_init: Resource,
@@ -43,7 +44,7 @@ func _init(
 	assigned_cabin_id_init: Variant = null,
 	layer_init: Globals.Layers = DEFAULT_LAYER
 ) -> void:
-	var result = Globals.SatisfactionSchema.parse(satisfaction_init)
+	var result = Globals.satisfaction_schema.parse(satisfaction_init)
 	if not result.ok():
 		push_error(result.error)
 		return

@@ -16,7 +16,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	TrainRegistry.unregister_carriage(carriage_id)
-	
+
 
 func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLevel:
 	for carriage_level in _train_carriage_levels_container.get_children():

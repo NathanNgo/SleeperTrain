@@ -102,7 +102,9 @@ func add_portal(centered_global_position: Vector2) -> Portal:
 
 
 func build_world_object(mouse_position) -> void:
-	var world_object = add_world_object(BuildingGrid.center_global_position(mouse_position))
+	var world_object = add_world_object(
+		BuildingGrid.center_global_position(mouse_position)
+	)
 
 	if not BuildingGrid.grid_bounds_in_bounds(
 		world_object.shape_grid_positions, shape_grid_positions

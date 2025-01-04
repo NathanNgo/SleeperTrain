@@ -1,12 +1,7 @@
 class_name WorldObjectFactory extends Node
 
 enum WorldObjectType {
-	TABLE_CABIN,
-	TABLE_DINING,
-	BED,
-	LAMP_WALL,
-	LUGGAGE_RACK,
-	CHAIR_BASIC
+	TABLE_CABIN, TABLE_DINING, BED, LAMP_WALL, LUGGAGE_RACK, CHAIR_BASIC
 }
 
 @export var _table_cabin: PackedScene

@@ -1,18 +1,7 @@
 class_name TrainCabin extends Node2D
 
-enum CabinQualityType {
-	AESTHETIC,
-	AMENITIES,
-	BEDDING,
-	SPACE
-}
-enum AmenitiesType {
-	STORAGE,
-	TOILET,
-	HYGIENE,
-	DESK,
-	SEATING
-}
+enum CabinQualityType { AESTHETIC, AMENITIES, BEDDING, SPACE }
+enum AmenitiesType { STORAGE, TOILET, HYGIENE, DESK, SEATING }
 
 const AESTHETIC_MAX = 30
 const AMENITIES_MAX = 25
@@ -39,20 +28,30 @@ var length: float
 var height: float
 var shape_grid_positions: Dictionary
 
-var CabinQualitySchema = Z.schema({
-	CabinQualityType.AESTHETIC: Z.integer().minimum(AESTHETIC_MIN).maximum(AESTHETIC_MAX),
-	CabinQualityType.AMENITIES: Z.integer().minimum(AMENITIES_MIN).maximum(AMENITIES_MAX),
-	CabinQualityType.BEDDING: Z.integer().minimum(BEDDING_MIN).maximum(BEDDING_MAX),
-	CabinQualityType.SPACE: Z.integer().minimum(SPACE_MIN).maximum(SPACE_MAX),
-})
+var cabin_quality_schema = (
+	Z
+	. schema(
+		{
+			CabinQualityType.AESTHETIC:
+			Z.integer().minimum(AESTHETIC_MIN).maximum(AESTHETIC_MAX),
+			CabinQualityType.AMENITIES:
+			Z.integer().minimum(AMENITIES_MIN).maximum(AMENITIES_MAX),
+			CabinQualityType.BEDDING:
+			Z.integer().minimum(BEDDING_MIN).maximum(BEDDING_MAX),
+			CabinQualityType.SPACE: Z.integer().minimum(SPACE_MIN).maximum(SPACE_MAX),
+		}
+	)
+)
 
-var CabinAmenitiesSchema = Z.schema({
-	AmenitiesType.STORAGE: Z.boolean(),
-	AmenitiesType.TOILET: Z.boolean(),
-	AmenitiesType.HYGIENE: Z.boolean(),
-	AmenitiesType.DESK: Z.boolean(),
-	AmenitiesType.SEATING: Z.boolean()
-})
+var cabin_amenities_schema = Z.schema(
+	{
+		AmenitiesType.STORAGE: Z.boolean(),
+		AmenitiesType.TOILET: Z.boolean(),
+		AmenitiesType.HYGIENE: Z.boolean(),
+		AmenitiesType.DESK: Z.boolean(),
+		AmenitiesType.SEATING: Z.boolean()
+	}
+)
 
 var cabin_quality := {
 	CabinQualityType.AESTHETIC: 0,

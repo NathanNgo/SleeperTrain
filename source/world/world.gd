@@ -25,8 +25,12 @@ func _ready() -> void:
 
 
 func _populate_carriage_with_initial_cabins() -> void:
-	var carriage: TrainCarriage = TrainRegistry.get_carriage(INITIAL_CARRIAGE_FOR_CABINS_ID)
-	var carriage_level: TrainCarriageLevel = carriage.get_carriage_level(INITIAL_CARRIAGE_FOR_CABINS_LEVEL)
+	var carriage: TrainCarriage = TrainRegistry.get_carriage(
+		INITIAL_CARRIAGE_FOR_CABINS_ID
+	)
+	var carriage_level: TrainCarriageLevel = carriage.get_carriage_level(
+		INITIAL_CARRIAGE_FOR_CABINS_LEVEL
+	)
 
 	for cabin_point_pair in _cabin_point_pairs.get_children():
 		for cabin_point in cabin_point_pair.get_children():

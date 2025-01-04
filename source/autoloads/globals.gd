@@ -14,14 +14,7 @@ enum ResourceType {
 	MONEY,
 }
 
-enum SatisfactionType {
-	ROOM,
-	SERVICE,
-	FOOD,
-	TIME,
-	SCENERY,
-	SAFETY
-}
+enum SatisfactionType { ROOM, SERVICE, FOOD, TIME, SCENERY, SAFETY }
 
 enum Layers { CABIN = 1, CARRIAGE = 2 }
 
@@ -48,18 +41,22 @@ var building_layer := Layers.CARRIAGE
 var building_object_type := ObjectType.CABIN
 var building_world_object_type := WorldObjectFactory.WorldObjectType.TABLE_DINING
 
-var ResourceScema = Z.schema({
-	ResourceType.COAL: Z.integer().minimum(RESOURCE_MIN),
-	ResourceType.FOOD: Z.integer().minimum(RESOURCE_MIN),
-	ResourceType.LUXURIES: Z.integer().minimum(RESOURCE_MIN),
-	ResourceType.REPUTATION: Z.integer(),
-	ResourceType.MONEY: Z.integer()
-})
-var SatisfactionSchema = Z.schema({
-	SatisfactionType.ROOM: Z.integer().minimum(ROOM_MIN).maximum(ROOM_MAX),
-	SatisfactionType.SERVICE: Z.integer().minimum(SERVICE_MIN).maximum(SERVICE_MAX),
-	SatisfactionType.FOOD: Z.integer().minimum(FOOD_MIN).maximum(FOOD_MAX),
-	SatisfactionType.TIME: Z.integer().minimum(TIME_MIN).maximum(TIME_MAX),
-	SatisfactionType.SCENERY: Z.integer().minimum(SCENERY_MIN).maximum(SCENERY_MAX),
-	SatisfactionType.SAFETY: Z.integer().minimum(SAFETY_MIN).maximum(SAFETY_MAX)
-})
+var resource_schema = Z.schema(
+	{
+		ResourceType.COAL: Z.integer().minimum(RESOURCE_MIN),
+		ResourceType.FOOD: Z.integer().minimum(RESOURCE_MIN),
+		ResourceType.LUXURIES: Z.integer().minimum(RESOURCE_MIN),
+		ResourceType.REPUTATION: Z.integer(),
+		ResourceType.MONEY: Z.integer()
+	}
+)
+var satisfaction_schema = Z.schema(
+	{
+		SatisfactionType.ROOM: Z.integer().minimum(ROOM_MIN).maximum(ROOM_MAX),
+		SatisfactionType.SERVICE: Z.integer().minimum(SERVICE_MIN).maximum(SERVICE_MAX),
+		SatisfactionType.FOOD: Z.integer().minimum(FOOD_MIN).maximum(FOOD_MAX),
+		SatisfactionType.TIME: Z.integer().minimum(TIME_MIN).maximum(TIME_MAX),
+		SatisfactionType.SCENERY: Z.integer().minimum(SCENERY_MIN).maximum(SCENERY_MAX),
+		SatisfactionType.SAFETY: Z.integer().minimum(SAFETY_MIN).maximum(SAFETY_MAX)
+	}
+)

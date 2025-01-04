@@ -18,6 +18,7 @@ func set_resource(resource_type: Globals.ResourceType, amount: int) -> void:
 
 	_validate_or_throw(resources)
 
+
 func add_resources(resource_type: Globals.ResourceType, amount: int) -> void:
 	resources[resource_type] += amount
 	SignalBus.train_resources_changed.emit()
@@ -33,6 +34,6 @@ func remove_resources(resource_type: Globals.ResourceType, amount: int) -> void:
 
 
 func _validate_or_throw(resources_for_validation: Variant) -> void:
-	var result = Globals.ResourceSchema.parse(resources_for_validation)
+	var result = Globals.resource_schema.parse(resources_for_validation)
 	if not result.ok():
 		push_error(result.error)

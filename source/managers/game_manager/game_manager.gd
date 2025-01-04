@@ -128,17 +128,15 @@ func _disembark_passengers() -> void:
 		character_departed = true
 
 		TrainRegistry.remove_character_from_train(character_id)
-		_train_resources.add_resources(
-			Globals.ResourceType.MONEY, character_data.money
-		)
+		_train_resources.add_resources(Globals.ResourceType.MONEY, character_data.money)
 		_train_resources.add_resources(
 			Globals.ResourceType.REPUTATION, character_data.get_satisfaction_score()
 		)
 
 		for satisfaction_type in character_data.satisfaction:
-			total_satisfaction_scores[satisfaction_type] = character_data.satisfaction[
-				satisfaction_type
-			]
+			total_satisfaction_scores[satisfaction_type] = (
+				character_data.satisfaction[satisfaction_type]
+			)
 
 	if character_departed:
 		_populate_passenger_journey_report_menu(total_satisfaction_scores)

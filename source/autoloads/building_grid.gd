@@ -63,8 +63,12 @@ func _calculate_global_pin_position(
 	)
 
 
-func get_grid_pin_position(global_center_position, length: float, height: float) -> Vector2:
-	return global_position_to_grid(_calculate_global_pin_position(global_center_position, length, height))
+func get_grid_pin_position(
+	global_center_position, length: float, height: float
+) -> Vector2:
+	return global_position_to_grid(
+		_calculate_global_pin_position(global_center_position, length, height)
+	)
 
 
 func get_shift_for_grid_alignment(
@@ -94,7 +98,9 @@ func grid_position_in_bounds(grid_position: Vector2, bounds: Dictionary) -> bool
 	return false
 
 
-func grid_bounds_in_bounds(interior_bounds: Dictionary, exterior_bounds: Dictionary) -> bool:
+func grid_bounds_in_bounds(
+	interior_bounds: Dictionary, exterior_bounds: Dictionary
+) -> bool:
 	if (
 		interior_bounds[Side.SIDE_LEFT] < exterior_bounds[Side.SIDE_LEFT]
 		or interior_bounds[Side.SIDE_RIGHT] > exterior_bounds[Side.SIDE_RIGHT]

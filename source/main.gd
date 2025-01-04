@@ -7,6 +7,7 @@ extends Node
 	SplashScreenMenuManager.Menus.SPLASH_SCREEN_MENU
 )
 
+
 func _ready() -> void:
 	_splash_screen_menu.new_game_pressed.connect(_on_new_game_pressed)
 	_splash_screen_menu.quit_game_pressed.connect(_on_quit_game_pressed)
