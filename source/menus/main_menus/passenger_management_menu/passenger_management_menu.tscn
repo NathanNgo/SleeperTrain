@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cmu6g87qlns5e" path="res://source/menus/main_menus/passenger_management_menu/character_display.tscn" id="2_c5rl1"]
 [ext_resource type="PackedScene" uid="uid://cm20vamj531m0" path="res://source/menus/common/number_select/number_select.tscn" id="3_vys3d"]
 
-[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_submit_button")]
+[node name="PassengerManagementMenu" type="Control" node_paths=PackedStringArray("_passengers_container", "_submit_button", "_number_select")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ script = ExtResource("1_n5wrw")
 _passengers_container = NodePath("MarginContainer/VBoxContainer/Passengers")
 _character_display = ExtResource("2_c5rl1")
 _submit_button = NodePath("MarginContainer/VBoxContainer/Submit/Button")
+_number_select = NodePath("MarginContainer/VBoxContainer/CarriageNumberSelect")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
