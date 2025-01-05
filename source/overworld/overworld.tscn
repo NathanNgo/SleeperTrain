@@ -1,22 +1,22 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5nue1m4semk6"]
 
 [ext_resource type="Script" path="res://source/overworld/overworld.gd" id="1_suyy2"]
-[ext_resource type="PackedScene" uid="uid://bhpf5hs87h706" path="res://source/overworld/levels/level_small/level_small.tscn" id="2_6c2vs"]
-[ext_resource type="Texture2D" uid="uid://e3cfo3l22sfh" path="res://assets/graphics/Conductor_3.png" id="4_obo4p"]
+[ext_resource type="PackedScene" uid="uid://chuji30k2f8a6" path="res://source/overworld/levels/level_tutorial/level_tutorial.tscn" id="3_l6cqs"]
+[ext_resource type="Texture2D" uid="uid://e3cfo3l22sfh" path="res://assets/graphics/characters/Conductor_3.png" id="4_obo4p"]
 
 [sub_resource type="Curve2D" id="Curve2D_2ma4i"]
 
 [node name="Overworld" type="Node2D" node_paths=PackedStringArray("_camera", "level", "_train_path", "_train_path_follow", "_train")]
 script = ExtResource("1_suyy2")
 _camera = NodePath("Camera2D")
-level = NodePath("LevelSmall")
+level = NodePath("LevelTutorial")
 _train_path = NodePath("TrainPath")
 _train_path_follow = NodePath("TrainPath/PathFollow2D")
 _train = NodePath("TrainPath/PathFollow2D/Conductor3")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="LevelSmall" parent="." instance=ExtResource("2_6c2vs")]
+[node name="LevelTutorial" parent="." instance=ExtResource("3_l6cqs")]
 
 [node name="TrainPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_2ma4i")
