@@ -1,0 +1,196 @@
+[gd_scene load_steps=7 format=3 uid="uid://chuji30k2f8a6"]
+
+[ext_resource type="Script" path="res://source/overworld/levels/level.gd" id="1_6jvoc"]
+[ext_resource type="PackedScene" uid="uid://y4fu0nbrv38y" path="res://source/overworld/levels/level_tutorial/level_tutorial_map.tscn" id="1_oub6h"]
+[ext_resource type="PackedScene" uid="uid://bixcdsp2pjd16" path="res://source/grid_railway_graph/grid_railway_vertex.tscn" id="2_uu3sa"]
+[ext_resource type="PackedScene" uid="uid://6x27i7g382dh" path="res://source/grid_railway_graph/grid_railway_edge.tscn" id="3_tr7gc"]
+[ext_resource type="PackedScene" uid="uid://dx5ptdx7rwa0" path="res://source/overworld/levels/location_selection.tscn" id="4_fh8wb"]
+[ext_resource type="Texture2D" uid="uid://cf28b6bqa86h7" path="res://assets/graphics/ui/station_sign_plate.png" id="5_w0b05"]
+
+[node name="LevelTutorial" type="Node2D" node_paths=PackedStringArray("_grid_railway_vertex_container", "_grid_railway_edge_container", "_town_selections", "map")]
+script = ExtResource("1_6jvoc")
+_grid_railway_vertex_container = NodePath("GridRailwayVertexContainer")
+_grid_railway_edge_container = NodePath("GridRailwayEdgeContainer")
+_town_selections = NodePath("Control/TownSelections")
+map = NodePath("LevelTutorialMap")
+
+[node name="LevelTutorialMap" parent="." instance=ExtResource("1_oub6h")]
+
+[node name="GridRailwayVertexContainer" type="Node2D" parent="."]
+
+[node name="FirstTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(488, 144)
+vertex_name = "First Town"
+
+[node name="SecondTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(-16, -40)
+vertex_name = "Second Town"
+
+[node name="ThirdTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(224, -224)
+vertex_name = "Third Town"
+
+[node name="FourthTown" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(0, -512)
+vertex_name = "Fourth Town"
+
+[node name="Exit1" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(144, -664)
+vertex_name = "Exit 1"
+
+[node name="Exit2" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(536, -536)
+vertex_name = "Exit 2"
+
+[node name="Junction1" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(-16, -112)
+vertex_name = "Junction 1"
+vertex_type = 1
+
+[node name="Junction2" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(272, -336)
+vertex_name = "Junction 2"
+vertex_type = 1
+
+[node name="Junction3" parent="GridRailwayVertexContainer" instance=ExtResource("2_uu3sa")]
+position = Vector2(144, -528)
+vertex_name = "Junction 3"
+vertex_type = 1
+
+[node name="GridRailwayEdgeContainer" type="Node2D" parent="."]
+
+[node name="GridRailwayEdge1" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(488, 144)
+points = PackedVector2Array(0, 0, -408, 0, -504, -96, -504, -184)
+
+[node name="GridRailwayEdge2" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(-16, -40)
+points = PackedVector2Array(0, 0, 0, -72)
+
+[node name="GridRailwayEdge3" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(-16, -112)
+points = PackedVector2Array(0, 0, 128, 0, 240, -112)
+
+[node name="GridRailwayEdge4" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(-16, -112)
+points = PackedVector2Array(0, 0, 0, -384, 16, -400)
+
+[node name="GridRailwayEdge5" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(0, -512)
+points = PackedVector2Array(0, 0, 16, -16, 144, -16)
+
+[node name="GridRailwayEdge6" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(224, -224)
+points = PackedVector2Array(0, 0, 48, -48, 48, -112)
+
+[node name="GridRailwayEdge7" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(272, -336)
+points = PackedVector2Array(0, 0, 0, -160, -32, -192, -128, -192)
+
+[node name="GridRailwayEdge8" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(144, -528)
+points = PackedVector2Array(0, 0, 0, -136)
+
+[node name="GridRailwayEdge9" parent="GridRailwayEdgeContainer" instance=ExtResource("3_tr7gc")]
+position = Vector2(272, -336)
+points = PackedVector2Array(0, 0, 64, 0, 264, -200)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TownNames" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label1" type="Label" parent="Control/TownNames"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 156.0
+offset_right = 516.0
+offset_bottom = 179.0
+text = "Town 1
+"
+
+[node name="Label2" type="Label" parent="Control/TownNames"]
+layout_mode = 0
+offset_left = -44.0
+offset_top = -28.0
+offset_right = 12.0
+offset_bottom = -5.0
+text = "Town 2
+"
+
+[node name="Label3" type="Label" parent="Control/TownNames"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = -212.0
+offset_right = 252.0
+offset_bottom = -189.0
+text = "Town 3
+"
+
+[node name="Label4" type="Label" parent="Control/TownNames"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -500.0
+offset_right = 28.0
+offset_bottom = -477.0
+text = "Town 4
+"
+
+[node name="TownSelections" type="Control" parent="Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LocationSelection1" parent="Control/TownSelections" instance=ExtResource("4_fh8wb")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 476.0
+offset_top = 132.0
+offset_right = 500.0
+offset_bottom = 156.0
+pivot_offset = Vector2(24, 24)
+texture_normal = ExtResource("5_w0b05")
+stretch_mode = 0
+vertex_name = "First Town"
+
+[node name="LocationSelection2" parent="Control/TownSelections" instance=ExtResource("4_fh8wb")]
+texture_filter = 1
+layout_mode = 0
+offset_left = -28.0
+offset_top = -52.0
+offset_right = -4.0
+offset_bottom = -28.0
+pivot_offset = Vector2(24, 24)
+texture_normal = ExtResource("5_w0b05")
+stretch_mode = 0
+vertex_name = "Second Town"
+
+[node name="LocationSelection3" parent="Control/TownSelections" instance=ExtResource("4_fh8wb")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 212.0
+offset_top = -236.0
+offset_right = 236.0
+offset_bottom = -212.0
+pivot_offset = Vector2(24, 24)
+texture_normal = ExtResource("5_w0b05")
+stretch_mode = 0
+vertex_name = "Third Town"
+
+[node name="LocationSelection4" parent="Control/TownSelections" instance=ExtResource("4_fh8wb")]
+texture_filter = 1
+layout_mode = 0
+offset_left = -12.0
+offset_top = -524.0
+offset_right = 12.0
+offset_bottom = -500.0
+pivot_offset = Vector2(24, 24)
+texture_normal = ExtResource("5_w0b05")
+stretch_mode = 0
+vertex_name = "Fourth Town"
