@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://chuji30k2f8a6"]
+[gd_scene load_steps=6 format=3 uid="uid://chuji30k2f8a6"]
 
 [ext_resource type="Script" path="res://source/overworld/levels/level.gd" id="1_6jvoc"]
 [ext_resource type="PackedScene" uid="uid://y4fu0nbrv38y" path="res://source/overworld/levels/level_tutorial/level_tutorial_map.tscn" id="1_oub6h"]
 [ext_resource type="PackedScene" uid="uid://bixcdsp2pjd16" path="res://source/grid_railway_graph/grid_railway_vertex.tscn" id="2_uu3sa"]
 [ext_resource type="PackedScene" uid="uid://6x27i7g382dh" path="res://source/grid_railway_graph/grid_railway_edge.tscn" id="3_tr7gc"]
 [ext_resource type="PackedScene" uid="uid://dx5ptdx7rwa0" path="res://source/overworld/levels/location_selection.tscn" id="4_fh8wb"]
-[ext_resource type="Texture2D" uid="uid://cf28b6bqa86h7" path="res://assets/graphics/ui/station_sign_plate.png" id="5_w0b05"]
 
 [node name="LevelTutorial" type="Node2D" node_paths=PackedStringArray("_grid_railway_vertex_container", "_grid_railway_edge_container", "_town_selections", "map")]
 script = ExtResource("1_6jvoc")
@@ -155,7 +154,6 @@ offset_top = 132.0
 offset_right = 500.0
 offset_bottom = 156.0
 pivot_offset = Vector2(24, 24)
-texture_normal = ExtResource("5_w0b05")
 stretch_mode = 0
 vertex_name = "First Town"
 
@@ -167,7 +165,6 @@ offset_top = -52.0
 offset_right = -4.0
 offset_bottom = -28.0
 pivot_offset = Vector2(24, 24)
-texture_normal = ExtResource("5_w0b05")
 stretch_mode = 0
 vertex_name = "Second Town"
 
@@ -179,7 +176,6 @@ offset_top = -236.0
 offset_right = 236.0
 offset_bottom = -212.0
 pivot_offset = Vector2(24, 24)
-texture_normal = ExtResource("5_w0b05")
 stretch_mode = 0
 vertex_name = "Third Town"
 
@@ -191,6 +187,5 @@ offset_top = -524.0
 offset_right = 12.0
 offset_bottom = -500.0
 pivot_offset = Vector2(24, 24)
-texture_normal = ExtResource("5_w0b05")
 stretch_mode = 0
 vertex_name = "Fourth Town"

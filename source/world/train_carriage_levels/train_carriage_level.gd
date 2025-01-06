@@ -128,6 +128,14 @@ func commit_world_object() -> void:
 	pass
 
 
+func get_cabins_in_carriage_level() -> Array[TrainCabin]:
+	var cabins: Array[TrainCabin] = []
+	for cabin in _train_cabins_container.get_children():
+		cabins.append(cabin)
+
+	return cabins
+
+
 func _calculate_height_and_length() -> void:
 	var top := 0.0
 	var bottom := 0.0

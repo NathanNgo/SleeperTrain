@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/train_carriages/train_carriage_basic/train_carriage_basic.tscn" id="5_cchdb"]
 [ext_resource type="PackedScene" uid="uid://chdq82xwdb2vw" path="res://source/characters/conductor.tscn" id="5_gai6i"]
 [ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table_dining/table_dining.tscn" id="6_d37su"]
-[ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/Tilemap/tilemap.png" id="6_h5r1k"]
+[ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/tilemap/tilemap.png" id="6_h5r1k"]
 [ext_resource type="PackedScene" uid="uid://mg6lgokxojdl" path="res://source/world/world_objects/chair_basic/chair_basic.tscn" id="7_7fky7"]
 [ext_resource type="PackedScene" uid="uid://dt142jsrqk6sn" path="res://source/world/world_objects/luggage_rack/luggage_rack.tscn" id="7_a15cj"]
 [ext_resource type="PackedScene" uid="uid://dumkj6pcppnq1" path="res://source/world/portals/door/door.tscn" id="9_tp73u"]

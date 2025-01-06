@@ -46,3 +46,11 @@ func _calculate_max_length() -> void:
 			right = vertex.x
 
 		max_train_carriage_length = abs(right - left)
+
+
+func get_cabins_in_carriage() -> Array[TrainCabin]:
+	var cabins: Array[TrainCabin] = []
+	for carriage_level in _train_carriage_levels_container.get_children():
+		cabins.append_array(carriage_level.get_cabins_in_carriage_level())
+
+	return cabins
