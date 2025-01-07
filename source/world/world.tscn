@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dwi6pubh3vgby" path="res://source/world/backgrounds/background_town/background_town.tscn" id="4_yfvks"]
 [ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/train_carriages/train_carriage_basic/train_carriage_basic.tscn" id="5_cchdb"]
 [ext_resource type="PackedScene" uid="uid://chdq82xwdb2vw" path="res://source/characters/conductor.tscn" id="5_gai6i"]
-[ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/tilemap/tilemap.png" id="6_h5r1k"]
+[ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/Tilemap/tilemap.png" id="6_h5r1k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjh8s"]
 texture = ExtResource("6_h5r1k")

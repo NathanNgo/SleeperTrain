@@ -31,7 +31,6 @@ func _populate_carriage_with_initial_cabins() -> void:
 	var carriage_building_zone: TrainBuildingZone = carriage.get_building_zone(
 		INITIAL_BUILDING_ZONE_FOR_CABINS_LEVEL
 	)
-	print(carriage_building_zone)
 
 	for cabin_point_pair in _cabin_point_pairs.get_children():
 		for cabin_point in cabin_point_pair.get_children():
