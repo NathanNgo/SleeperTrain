@@ -16,7 +16,7 @@ _train_cabin = ExtResource("2_3juoi")
 _door_portal = ExtResource("3_11yxg")
 _train_cabins_container = NodePath("TrainCabinsContainer")
 _world_objects_container = NodePath("WorldObjectsContainer")
-_portals_container = NodePath("PortalContainer")
+_portals_container = NodePath("PortalsContainer")
 _train_building_zone_area = NodePath("Area2D")
 _train_building_zone_shape = NodePath("Area2D/TrainBuildingZoneArea")
 _train_building_zone_background = NodePath("TrainBuildingZoneBackground")
@@ -34,7 +34,7 @@ region_rect = Rect2(0, 0, 1410, 250)
 
 [node name="WorldObjectsContainer" type="Node2D" parent="."]
 
-[node name="PortalContainer" type="Node2D" parent="."]
+[node name="PortalsContainer" type="Node2D" parent="."]
 
 [node name="Area2D" type="Area2D" parent="."]
 
