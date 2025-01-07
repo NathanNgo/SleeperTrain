@@ -57,7 +57,9 @@ func _exit_tree() -> void:
 	TrainRegistry.unregister_portal(portal_id)
 
 
-func _transition_in(body: Node2D, layer: Globals.Layers, collision_layer: Globals.CollisionLayers) -> void:
+func _transition_in(
+	body: Node2D, layer: Globals.Layers, collision_layer: Globals.CollisionLayers
+) -> void:
 	if body not in _bodies:
 		return
 
@@ -65,7 +67,9 @@ func _transition_in(body: Node2D, layer: Globals.Layers, collision_layer: Global
 	body.set_collision_mask_value(collision_layer, true)
 
 
-func _transition_out(body: Node2D, layer: Globals.Layers, collision_layer: Globals.CollisionLayers) -> void:
+func _transition_out(
+	body: Node2D, layer: Globals.Layers, collision_layer: Globals.CollisionLayers
+) -> void:
 	if body not in _bodies:
 		return
 

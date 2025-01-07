@@ -4,7 +4,8 @@ const DEFAULT_TRANSITION_LAYER = Globals.Layers.CABIN_MIDDLE
 
 @export var transition_layer_in: Globals.Layers = Globals.Layers.CABIN_MIDDLE
 @export var transition_layer_out: Globals.Layers = Globals.Layers.CARRIAGE_MIDDLE
-@export var transition_collision_layer: Globals.CollisionLayers = Globals.CollisionLayers.CABINS
+@export
+var transition_collision_layer: Globals.CollisionLayers = Globals.CollisionLayers.CABINS
 
 
 func _unhandled_input(event: InputEvent) -> void:

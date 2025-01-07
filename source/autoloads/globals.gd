@@ -16,9 +16,9 @@ enum ResourceType {
 
 enum SatisfactionType { ROOM, SERVICE, FOOD, TIME, SCENERY, SAFETY }
 
-enum Layers { 
+enum Layers {
 	BACKGROUND = 0,
-	CABIN_BACK = 200, 
+	CABIN_BACK = 200,
 	CABIN_MIDDLE = 210,
 	CABIN_FRONT = 220,
 	CARRIAGE_BACK = 300,
