@@ -1,6 +1,6 @@
 class_name CharacterData extends RefCounted
 
-const DEFAULT_LAYER := Globals.Layers.CARRIAGE
+const DEFAULT_LAYER := Globals.Layers.CARRIAGE_MIDDLE
 
 var character_id: int
 
@@ -16,7 +16,6 @@ var global_world_position: Vector2
 var assigned_carriage_id: Variant
 # int or null
 var assigned_cabin_id: Variant
-var layer: Globals.Layers = DEFAULT_LAYER
 
 var world_representation: PackedScene
 var menu_image: Resource
@@ -42,7 +41,6 @@ func _init(
 	hunger_init: int = 0,
 	satisfaction_init: Dictionary = default_satisfaction,
 	assigned_cabin_id_init: Variant = null,
-	layer_init: Globals.Layers = DEFAULT_LAYER
 ) -> void:
 	var result = Globals.satisfaction_schema.parse(satisfaction_init)
 	if not result.ok():
@@ -59,7 +57,6 @@ func _init(
 	self.hunger = hunger_init
 	self.world_representation = world_representation_init
 	self.assigned_cabin_id = assigned_cabin_id_init
-	self.layer = layer_init
 
 
 func get_satisfaction_score() -> int:

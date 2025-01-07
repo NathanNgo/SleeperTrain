@@ -20,7 +20,9 @@ const NUMBER_OF_GRID_POSTITIONS = 2
 @export var _train_cabin_background: Sprite2D
 @export var _train_cabin_foreground: Sprite2D
 @export var _first_wall_shape: CollisionShape2D
+@export var _first_wall: StaticBody2D
 @export var _second_wall_shape: CollisionShape2D
+@export var _second_wall: StaticBody2D
 
 var cabin_id: int
 # Dict[Vector2, Node2D]
@@ -110,6 +112,9 @@ func setup(
 	_second_wall_shape.shape = _second_wall_shape.shape.duplicate()
 	_second_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
 	_second_wall_shape.position.x = to_local(end_centered_global_position_setup).x
+
+	_first_wall.set_collision_layer_value(Globals.CollisionLayers.CABINS, true)
+	_second_wall.set_collision_layer_value(Globals.CollisionLayers.CABINS, true)
 
 
 func remove() -> void:

@@ -2,7 +2,7 @@ class_name TrainCarriage extends Polygon2D
 
 enum TrainCarriageType { BASIC }
 
-@export var _train_carriage_levels_container: Node2D
+@export var _train_building_zones_container: Node2D
 @export var initial_carriage_index := 0
 
 var carriage_id: int
@@ -18,21 +18,21 @@ func _exit_tree() -> void:
 	TrainRegistry.unregister_carriage(carriage_id)
 
 
-func get_carriage_level_by_position(grid_position: Vector2) -> TrainCarriageLevel:
-	for carriage_level in _train_carriage_levels_container.get_children():
-		var carriage_level_grid_positions = carriage_level.get_grid_positions()
+func get_building_zone_by_position(grid_position: Vector2) -> TrainBuildingZone:
+	for building_zone in _train_building_zones_container.get_children():
+		var building_zone_grid_positions = building_zone.get_grid_positions()
 		if (
-			(grid_position.y < carriage_level_grid_positions[Side.SIDE_BOTTOM])
-			or (grid_position.y > carriage_level_grid_positions[Side.SIDE_TOP])
+			(grid_position.y < building_zone_grid_positions[Side.SIDE_BOTTOM])
+			or (grid_position.y > building_zone_grid_positions[Side.SIDE_TOP])
 		):
 			continue
 
-		return carriage_level
+		return building_zone
 	return null
 
 
-func get_carriage_level(level: int) -> TrainCarriageLevel:
-	return _train_carriage_levels_container.get_children().pop_at(level)
+func get_building_zone(level: int) -> TrainBuildingZone:
+	return _train_building_zones_container.get_children()[level]
 
 
 func _calculate_max_length() -> void:
@@ -50,7 +50,7 @@ func _calculate_max_length() -> void:
 
 func get_cabins_in_carriage() -> Array[TrainCabin]:
 	var cabins: Array[TrainCabin] = []
-	for carriage_level in _train_carriage_levels_container.get_children():
-		cabins.append_array(carriage_level.get_cabins_in_carriage_level())
+	for building_zone in _train_building_zones_container.get_children():
+		cabins.append_array(building_zone.get_cabins_in_building_zone())
 
 	return cabins

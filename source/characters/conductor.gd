@@ -5,7 +5,17 @@ extends CharacterBody2D
 @export var speed := 275
 
 var player_character := true
-var layer := Globals.Layers.CARRIAGE
+var layer := Globals.Layers.CARRIAGE_MIDDLE
+
+
+func _ready() -> void:
+	set_collision_layer_value(Globals.CollisionLayers.CABINS, false)
+	set_collision_layer_value(Globals.CollisionLayers.PORTALS, true)
+	set_collision_layer_value(Globals.CollisionLayers.WORLD_OBJECTS, false)
+	set_collision_mask_value(Globals.CollisionLayers.CABINS, false)
+	set_collision_mask_value(Globals.CollisionLayers.PORTALS, false)
+	set_collision_mask_value(Globals.CollisionLayers.WORLD_OBJECTS, false)
+	z_index = Globals.Layers.CARRIAGE_MIDDLE
 
 
 func _physics_process(_delta: float) -> void:

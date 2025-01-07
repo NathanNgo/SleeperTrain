@@ -4,7 +4,7 @@ class_name WorldObject extends Node2D
 @export var _world_object_shape: CollisionShape2D
 
 var world_object_id: int
-var layer: Globals.Layers = Globals.Layers.CARRIAGE
+var layer: Globals.Layers = Globals.Layers.CARRIAGE_BACK
 
 var height: float
 var length: float
@@ -44,7 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Globals.game_mode != Globals.GameModeType.DEMOLISHING:
 			return
 
-		if layer != Globals.Layers.CABIN or layer != Globals.Layers.CARRIAGE:
+		if layer != Globals.Layers.CABIN_BACK or layer != Globals.Layers.CARRIAGE_BACK:
 			return
 
 		if not _currently_selected:

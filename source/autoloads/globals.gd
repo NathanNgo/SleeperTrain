@@ -16,7 +16,21 @@ enum ResourceType {
 
 enum SatisfactionType { ROOM, SERVICE, FOOD, TIME, SCENERY, SAFETY }
 
-enum Layers { CABIN = 1, CARRIAGE = 2 }
+enum Layers { 
+	BACKGROUND = 0,
+	CABIN_BACK = 200, 
+	CABIN_MIDDLE = 210,
+	CABIN_FRONT = 220,
+	CARRIAGE_BACK = 300,
+	CARRIAGE_MIDDLE = 310,
+	CARRIAGE_FRONT = 320
+}
+
+enum CollisionLayers {
+	CABINS = 1,
+	PORTALS = 2,
+	WORLD_OBJECTS = 3,
+}
 
 enum ObjectType { CABIN, PORTAL, WORLD_OBJECT }
 
@@ -37,7 +51,7 @@ const SCENERY_MIN = 0
 const SAFETY_MIN = 0
 
 var game_mode := GameModeType.NORMAL
-var building_layer := Layers.CARRIAGE
+var building_layer := Layers.CARRIAGE_BACK
 var building_object_type := ObjectType.CABIN
 var building_world_object_type := WorldObjectFactory.WorldObjectType.TABLE_DINING
 

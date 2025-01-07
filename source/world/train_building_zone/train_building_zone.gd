@@ -1,7 +1,7 @@
-class_name TrainCarriageLevel extends Polygon2D
+class_name TrainBuildingZone extends Polygon2D
 
-const CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_X = 0
-const CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y = 0
+const CARRIAGE_BUILDING_ZONE_SPRITE_DEFAULT_OFFSET_X = 0
+const CARRIAGE_BUILDING_ZONE_SPRITE_DEFAULT_OFFSET_Y = 0
 
 @export var _train_cabin: PackedScene
 @export var _door_portal: PackedScene
@@ -9,9 +9,9 @@ const CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y = 0
 @export var _train_cabins_container: Node2D
 @export var _world_objects_container: Node2D
 @export var _portals_container: Node2D
-@export var _train_carriage_level_area: Area2D
-@export var _train_carriage_level_shape: CollisionShape2D
-@export var _train_carriage_level_background: Sprite2D
+@export var _train_building_zone_area: Area2D
+@export var _train_building_zone_shape: CollisionShape2D
+@export var _train_building_zone_background: Sprite2D
 @export var _world_object_factory: Node
 
 # Dict[Vector2, Node2D]
@@ -27,20 +27,20 @@ var _currently_selected: bool = false
 func _ready() -> void:
 	_calculate_height_and_length()
 	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
-		_train_carriage_level_shape.global_position, height, length
+		_train_building_zone_shape.global_position, height, length
 	)
-	_train_carriage_level_shape.shape = _train_carriage_level_shape.shape.duplicate()
-	_train_carriage_level_shape.shape.set_size(Vector2(length, height))
-	_train_carriage_level_area.mouse_entered.connect(_on_mouse_entered)
-	_train_carriage_level_area.mouse_exited.connect(_on_mouse_exited)
+	_train_building_zone_shape.shape = _train_building_zone_shape.shape.duplicate()
+	_train_building_zone_shape.shape.set_size(Vector2(length, height))
+	_train_building_zone_area.mouse_entered.connect(_on_mouse_entered)
+	_train_building_zone_area.mouse_exited.connect(_on_mouse_exited)
 
-	var carriage_level_sprite_rect = Rect2(
-		CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_X,
-		CARRIAGE_LEVEL_SPRITE_DEFAULT_OFFSET_Y,
+	var building_zone_sprite_rect = Rect2(
+		CARRIAGE_BUILDING_ZONE_SPRITE_DEFAULT_OFFSET_X,
+		CARRIAGE_BUILDING_ZONE_SPRITE_DEFAULT_OFFSET_Y,
 		length,
 		height
 	)
-	_train_carriage_level_background.set_region_rect(carriage_level_sprite_rect)
+	_train_building_zone_background.set_region_rect(building_zone_sprite_rect)
 
 
 func _input(event: InputEvent) -> void:
@@ -128,7 +128,7 @@ func commit_world_object() -> void:
 	pass
 
 
-func get_cabins_in_carriage_level() -> Array[TrainCabin]:
+func get_cabins_in_building_zone() -> Array[TrainCabin]:
 	var cabins: Array[TrainCabin] = []
 	for cabin in _train_cabins_container.get_children():
 		cabins.append(cabin)

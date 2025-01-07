@@ -37,6 +37,14 @@ func _ready() -> void:
 	_random_walk_timer.timeout.connect(_on_random_walk_timer_timeout)
 	_random_walk_timer.start()
 
+	set_collision_layer_value(Globals.CollisionLayers.CABINS, false)
+	set_collision_layer_value(Globals.CollisionLayers.PORTALS, true)
+	set_collision_layer_value(Globals.CollisionLayers.WORLD_OBJECTS, false)
+	set_collision_mask_value(Globals.CollisionLayers.CABINS, false)
+	set_collision_mask_value(Globals.CollisionLayers.PORTALS, false)
+	set_collision_mask_value(Globals.CollisionLayers.WORLD_OBJECTS, false)
+	z_index = Globals.Layers.CARRIAGE_MIDDLE
+
 
 func _physics_process(_delta) -> void:
 	match state:

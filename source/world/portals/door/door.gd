@@ -1,9 +1,10 @@
 extends Portal
 
-const DEFAULT_TRANSITION_LAYER = Globals.Layers.CABIN
+const DEFAULT_TRANSITION_LAYER = Globals.Layers.CABIN_MIDDLE
 
-@export var transition_layer_in: Globals.Layers = Globals.Layers.CABIN
-@export var transition_layer_out: Globals.Layers = Globals.Layers.CARRIAGE
+@export var transition_layer_in: Globals.Layers = Globals.Layers.CABIN_MIDDLE
+@export var transition_layer_out: Globals.Layers = Globals.Layers.CARRIAGE_MIDDLE
+@export var transition_collision_layer: Globals.CollisionLayers = Globals.CollisionLayers.CABINS
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -16,9 +17,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func transition(body: Node2D) -> void:
-	if body.layer == transition_layer_in:
-		_transition(body, transition_layer_out)
+	if body.z_index == transition_layer_in:
+		_transition_out(body, transition_layer_out, transition_collision_layer)
 		player_body_transitioned_out.emit()
-	elif body.layer == transition_layer_out:
-		_transition(body, transition_layer_in)
+	elif body.z_index == transition_layer_out:
+		_transition_in(body, transition_layer_in, transition_collision_layer)
 		player_body_transitioned_in.emit()

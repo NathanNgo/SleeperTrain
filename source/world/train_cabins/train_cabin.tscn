@@ -13,14 +13,16 @@ size = Vector2(32, 256)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cehls"]
 size = Vector2(32, 256)
 
-[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground", "_first_wall_shape", "_second_wall_shape")]
+[node name="TrainCabin" type="Node2D" node_paths=PackedStringArray("_train_cabin_shape", "_train_cabin_background", "_train_cabin_foreground", "_first_wall_shape", "_first_wall", "_second_wall_shape", "_second_wall")]
 texture_repeat = 2
 script = ExtResource("1_r1b0f")
 _train_cabin_shape = NodePath("TrainCabinArea/TrainCabinShape")
 _train_cabin_background = NodePath("TrainCabinBackground")
 _train_cabin_foreground = NodePath("TrainCabinForeground")
 _first_wall_shape = NodePath("FirstWall/CollisionShape2D")
+_first_wall = NodePath("FirstWall")
 _second_wall_shape = NodePath("SecondWall/CollisionShape2D")
+_second_wall = NodePath("SecondWall")
 
 [node name="TrainCabinBackground" type="Sprite2D" parent="."]
 texture_repeat = 2
@@ -41,6 +43,7 @@ texture = ExtResource("3_wc31d")
 region_enabled = true
 
 [node name="FirstWall" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FirstWall"]
 shape = SubResource("RectangleShape2D_6u23v")

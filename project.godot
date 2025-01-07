@@ -129,6 +129,11 @@ enter_portal={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Cabins"
+2d_physics/layer_2="Portals"
+
 [rendering]
 
 anti_aliasing/quality/msaa_2d=3
