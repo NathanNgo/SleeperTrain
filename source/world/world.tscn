@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://3udgfnp20qkf"]
+[gd_scene load_steps=15 format=4 uid="uid://3udgfnp20qkf"]
 
 [ext_resource type="Script" path="res://source/world/world.gd" id="1_bljk7"]
 [ext_resource type="PackedScene" uid="uid://08wmaujqxydq" path="res://source/world/backgrounds/background_good/background_good.tscn" id="1_uiuku"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://fhlqrgvrjs57" path="res://source/world/train_carriages/train_carriage_basic/train_carriage_basic.tscn" id="5_cchdb"]
 [ext_resource type="PackedScene" uid="uid://chdq82xwdb2vw" path="res://source/characters/conductor.tscn" id="5_gai6i"]
 [ext_resource type="Texture2D" uid="uid://dlp16dmu4srkf" path="res://assets/tilemap/tilemap.png" id="6_h5r1k"]
+[ext_resource type="PackedScene" uid="uid://cmiq8ccueakx4" path="res://source/world/world_objects/table_dining/table_dining.tscn" id="6_mjlch"]
+[ext_resource type="PackedScene" uid="uid://mg6lgokxojdl" path="res://source/world/world_objects/chair_basic/chair_basic.tscn" id="7_6jr3q"]
+[ext_resource type="PackedScene" uid="uid://prpbaxh73iq8" path="res://source/world/world_objects/bed/bed.tscn" id="8_wjl3m"]
+[ext_resource type="PackedScene" uid="uid://dt142jsrqk6sn" path="res://source/world/world_objects/luggage_rack/luggage_rack.tscn" id="9_y0jm7"]
+[ext_resource type="PackedScene" uid="uid://dumkj6pcppnq1" path="res://source/world/portals/door/door.tscn" id="10_374g2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sjh8s"]
 texture = ExtResource("6_h5r1k")
@@ -77,6 +82,7 @@ _cabin_point_pairs = NodePath("CabinPointPairs")
 position = Vector2(960, 544)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="BackgroundPivot"]
+z_index = -1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -104,8 +110,78 @@ position = Vector2(960, 864)
 
 [node name="TrainCarriageBasic" parent="TrainContainer" instance=ExtResource("5_cchdb")]
 
+[node name="Table" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="0" instance=ExtResource("6_mjlch")]
+position = Vector2(-160, 32)
+
+[node name="Table2" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="1" instance=ExtResource("6_mjlch")]
+position = Vector2(-32, 32)
+
+[node name="Table3" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="2" instance=ExtResource("6_mjlch")]
+position = Vector2(96, 32)
+
+[node name="Table4" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="3" instance=ExtResource("6_mjlch")]
+position = Vector2(224, 32)
+
+[node name="ChairBasic" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="4" instance=ExtResource("7_6jr3q")]
+position = Vector2(-112, 32)
+
+[node name="ChairBasic2" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="5" instance=ExtResource("7_6jr3q")]
+position = Vector2(16, 32)
+
+[node name="ChairBasic3" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="6" instance=ExtResource("7_6jr3q")]
+position = Vector2(144, 32)
+
+[node name="ChairBasic4" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="7" instance=ExtResource("7_6jr3q")]
+position = Vector2(272, 32)
+
+[node name="ChairBasic5" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="8" instance=ExtResource("7_6jr3q")]
+position = Vector2(176, 32)
+scale = Vector2(-1, 1)
+
+[node name="ChairBasic6" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="9" instance=ExtResource("7_6jr3q")]
+position = Vector2(48, 32)
+scale = Vector2(-1, 1)
+
+[node name="ChairBasic7" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="10" instance=ExtResource("7_6jr3q")]
+position = Vector2(-80, 32)
+scale = Vector2(-1, 1)
+
+[node name="ChairBasic8" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="11" instance=ExtResource("7_6jr3q")]
+position = Vector2(-208, 32)
+scale = Vector2(-1, 1)
+
 [node name="TrainCarriageBasic2" parent="TrainContainer" instance=ExtResource("5_cchdb")]
 position = Vector2(-736, 0)
+
+[node name="Bed" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="0" instance=ExtResource("8_wjl3m")]
+position = Vector2(256, 32)
+
+[node name="Bed2" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="1" instance=ExtResource("8_wjl3m")]
+position = Vector2(80, 32)
+
+[node name="LuggageRack" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="2" instance=ExtResource("9_y0jm7")]
+position = Vector2(-256, 16)
+
+[node name="LuggageRack2" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="3" instance=ExtResource("9_y0jm7")]
+position = Vector2(-192, 16)
+
+[node name="LuggageRack3" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="4" instance=ExtResource("9_y0jm7")]
+position = Vector2(-128, 16)
+
+[node name="LuggageRack4" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="5" instance=ExtResource("9_y0jm7")]
+position = Vector2(-128, -16)
+
+[node name="LuggageRack5" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="6" instance=ExtResource("9_y0jm7")]
+position = Vector2(-192, -16)
+
+[node name="LuggageRack6" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/WorldObjectsContainer" index="7" instance=ExtResource("9_y0jm7")]
+position = Vector2(-256, -16)
+
+[node name="Door" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/PortalsContainer" index="0" instance=ExtResource("10_374g2")]
+position = Vector2(-32, 16)
+
+[node name="Door2" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/PortalsContainer" index="1" instance=ExtResource("10_374g2")]
+position = Vector2(176, 24)
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 864)

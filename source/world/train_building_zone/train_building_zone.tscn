@@ -23,6 +23,7 @@ _train_building_zone_background = NodePath("TrainBuildingZoneBackground")
 _world_object_factory = NodePath("WorldObjectFactory")
 
 [node name="TrainBuildingZoneBackground" type="Sprite2D" parent="."]
+z_index = -1
 texture_repeat = 2
 position = Vector2(2.40803e-05, -1.01967e-05)
 scale = Vector2(1.00993, 1.024)
