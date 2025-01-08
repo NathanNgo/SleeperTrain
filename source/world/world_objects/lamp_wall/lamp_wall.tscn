@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6o4x1"]
 size = Vector2(32, 32)
 
-[node name="LampWall" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape")]
+[node name="LampWall" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape", "_world_object_sprite")]
 script = ExtResource("1_8eal1")
 _world_object_area = NodePath("Area2D")
 _world_object_shape = NodePath("Area2D/CollisionShape2D")
+_world_object_sprite = NodePath("LampWall")
 
 [node name="LampWall" type="Sprite2D" parent="."]
 z_index = 1

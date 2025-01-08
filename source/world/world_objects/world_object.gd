@@ -2,6 +2,7 @@ class_name WorldObject extends Node2D
 
 @export var _world_object_area: Area2D
 @export var _world_object_shape: CollisionShape2D
+@export var _world_object_sprite: Sprite2D
 
 var world_object_id: int
 var layer: Globals.Layers = Globals.Layers.CARRIAGE_BACK
