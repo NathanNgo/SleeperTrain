@@ -1,8 +1,8 @@
 class_name WorldObject extends Node2D
 
 @export var _world_object_area: Area2D
-@export var _world_object_shape: CollisionShape2D
-@export var _world_object_sprite: Sprite2D
+@export var world_object_shape: CollisionShape2D
+@export var world_object_sprite: Sprite2D
 
 var world_object_id: int
 var layer: Globals.Layers = Globals.Layers.CARRIAGE_BACK
@@ -15,15 +15,15 @@ var shape_grid_positions: Dictionary
 var _currently_selected := false
 
 
-func setup(centered_global_position: Vector2) -> void:
-	global_position = centered_global_position
+func setup(grid_square_center_global_position: Vector2) -> void:
+	global_position = grid_square_center_global_position
 	# The object is placed in the center of a grid square, and so
-	# centered_global_position == global_center_position
+	# grid_square_center_global_position == global_center_position
 	position -= BuildingGrid.get_shift_for_grid_alignment(
-		centered_global_position, length, height
+		grid_square_center_global_position, length, height
 	)
 	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
-		_world_object_shape.global_position, height, length
+		world_object_shape.global_position, height, length
 	)
 
 
@@ -31,8 +31,8 @@ func _ready() -> void:
 	world_object_id = TrainRegistry.register_world_object(self)
 	_world_object_area.mouse_entered.connect(_on_mouse_entered)
 	_world_object_area.mouse_exited.connect(_on_mouse_exited)
-	length = _world_object_shape.shape.get_rect().size.x
-	height = _world_object_shape.shape.get_rect().size.y
+	length = world_object_shape.shape.get_rect().size.x
+	height = world_object_shape.shape.get_rect().size.y
 	setup(BuildingGrid.center_global_position(global_position))
 
 

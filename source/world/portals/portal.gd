@@ -14,10 +14,10 @@ var _currently_selected := false
 var _bodies: Array[Node2D] = []
 
 
-func setup(centered_global_position: Vector2) -> void:
-	global_position = centered_global_position
+func setup(grid_square_center_global_position: Vector2) -> void:
+	global_position = grid_square_center_global_position
 	position -= BuildingGrid.get_shift_for_grid_alignment(
-		centered_global_position, length, height
+		grid_square_center_global_position, length, height
 	)
 	shape_grid_positions = BuildingGrid.get_grid_positions_for_aligned_shape(
 		_portal_shape.global_position, height, length

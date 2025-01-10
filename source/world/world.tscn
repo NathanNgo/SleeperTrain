@@ -150,6 +150,9 @@ scale = Vector2(-1, 1)
 position = Vector2(-208, 32)
 scale = Vector2(-1, 1)
 
+[node name="WorldObjectFactory" parent="TrainContainer/TrainCarriageBasic/TrainBuildingZonesContainer/TrainBuildingZone" index="5"]
+_placement_preview = null
+
 [node name="TrainCarriageBasic2" parent="TrainContainer" instance=ExtResource("5_cchdb")]
 position = Vector2(-736, 0)
 
@@ -182,6 +185,9 @@ position = Vector2(-32, 16)
 
 [node name="Door2" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone/PortalsContainer" index="1" instance=ExtResource("10_374g2")]
 position = Vector2(176, 24)
+
+[node name="WorldObjectFactory" parent="TrainContainer/TrainCarriageBasic2/TrainBuildingZonesContainer/TrainBuildingZone" index="5"]
+_placement_preview = null
 
 [node name="CharacterContainer" type="Node2D" parent="."]
 position = Vector2(960, 864)

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://72oo8ihtrdxr"]
+
+[ext_resource type="Script" path="res://source/world/placement_preview/placement_preview.gd" id="1_27ft4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obhpi"]
+size = Vector2(64, 32)
+
+[node name="PlacementPreview" type="Node2D" node_paths=PackedStringArray("_world_object_shape", "_world_object_sprite")]
+script = ExtResource("1_27ft4")
+_world_object_shape = NodePath("Area2D/CollisionShape2D")
+_world_object_sprite = NodePath("PlacementPreviewSprite")
+
+[node name="PlacementPreviewSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -16)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+z_index = 1
+shape = SubResource("RectangleShape2D_obhpi")

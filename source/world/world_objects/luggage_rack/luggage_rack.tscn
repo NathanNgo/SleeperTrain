@@ -6,11 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sr7fj"]
 size = Vector2(64, 32)
 
-[node name="LuggageRack" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape", "_world_object_sprite")]
+[node name="LuggageRack" type="Node2D" node_paths=PackedStringArray("_world_object_area", "world_object_shape", "world_object_sprite")]
 script = ExtResource("1_b7plh")
 _world_object_area = NodePath("Area2D")
-_world_object_shape = NodePath("Area2D/CollisionShape2D")
-_world_object_sprite = NodePath("LuggageRack")
+world_object_shape = NodePath("Area2D/CollisionShape2D")
+world_object_sprite = NodePath("LuggageRack")
 
 [node name="LuggageRack" type="Sprite2D" parent="."]
 z_index = 1

@@ -6,12 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ss6yt"]
 size = Vector2(32, 32)
 
-[node name="ChairBasic" type="Node2D" node_paths=PackedStringArray("_world_object_area", "_world_object_shape", "_world_object_sprite")]
+[node name="ChairBasic" type="Node2D" node_paths=PackedStringArray("_world_object_area", "world_object_shape", "world_object_sprite")]
 z_index = 1
 script = ExtResource("1_sbdl7")
 _world_object_area = NodePath("Area2D")
-_world_object_shape = NodePath("Area2D/CollisionShape2D")
-_world_object_sprite = NodePath("ChairBasic")
+world_object_shape = NodePath("Area2D/CollisionShape2D")
+world_object_sprite = NodePath("ChairBasic")
 
 [node name="ChairBasic" type="Sprite2D" parent="."]
 texture_filter = 1

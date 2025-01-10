@@ -75,11 +75,11 @@ func build_cabin(mouse_position: Vector2) -> void:
 
 
 func add_cabin(
-	start_centered_global_position: Vector2, end_centered_global_position: Vector2
+	start_grid_square_center_global_position: Vector2, end_grid_square_center_global_position: Vector2
 ) -> void:
 	var cabin := _train_cabin.instantiate()
 	_train_cabins_container.add_child(cabin)
-	cabin.setup(start_centered_global_position, end_centered_global_position, height)
+	cabin.setup(start_grid_square_center_global_position, end_grid_square_center_global_position, height)
 
 
 func build_portal(mouse_position: Vector2) -> void:
@@ -94,10 +94,10 @@ func build_portal(mouse_position: Vector2) -> void:
 		return
 
 
-func add_portal(centered_global_position: Vector2) -> Portal:
+func add_portal(grid_square_center_global_position: Vector2) -> Portal:
 	var portal := _door_portal.instantiate()
 	_portals_container.add_child(portal)
-	portal.setup(centered_global_position)
+	portal.setup(grid_square_center_global_position)
 	return portal
 
 
@@ -115,12 +115,12 @@ func build_world_object(mouse_position) -> void:
 		return
 
 
-func add_world_object(centered_global_position: Vector2) -> WorldObject:
+func add_world_object(grid_square_center_global_position: Vector2) -> WorldObject:
 	var world_object: WorldObject = _world_object_factory.create_world_object(
 		Globals.building_world_object_type
 	)
 	_world_objects_container.add_child(world_object)
-	world_object.setup(centered_global_position)
+	world_object.setup(grid_square_center_global_position)
 	return world_object
 
 
