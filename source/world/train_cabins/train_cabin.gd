@@ -77,7 +77,10 @@ func setup(
 	height_setup: float = 0.0
 ) -> void:
 	var average_global_position: Vector2 = (
-		(start_grid_square_center_global_position_setup + end_grid_square_center_global_position_setup)
+		(
+			start_grid_square_center_global_position_setup
+			+ end_grid_square_center_global_position_setup
+		)
 		/ NUMBER_OF_GRID_POSTITIONS
 	)
 
@@ -108,10 +111,14 @@ func setup(
 
 	_first_wall_shape.shape = _first_wall_shape.shape.duplicate()
 	_first_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
-	_first_wall_shape.position.x = to_local(start_grid_square_center_global_position_setup).x
+	_first_wall_shape.position.x = (
+		to_local(start_grid_square_center_global_position_setup).x
+	)
 	_second_wall_shape.shape = _second_wall_shape.shape.duplicate()
 	_second_wall_shape.shape.set_size(Vector2(BuildingGrid.TILE_SIZE, height))
-	_second_wall_shape.position.x = to_local(end_grid_square_center_global_position_setup).x
+	_second_wall_shape.position.x = (
+		to_local(end_grid_square_center_global_position_setup).x
+	)
 
 	_first_wall.set_collision_layer_value(Globals.CollisionLayers.CABINS, true)
 	_second_wall.set_collision_layer_value(Globals.CollisionLayers.CABINS, true)

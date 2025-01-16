@@ -37,6 +37,8 @@ region_rect = Rect2(0, 0, 1410, 250)
 
 [node name="PortalsContainer" type="Node2D" parent="."]
 
+[node name="PlacementPreviewContainer" type="Node2D" parent="."]
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="TrainBuildingZoneArea" type="CollisionShape2D" parent="Area2D"]

@@ -9,6 +9,7 @@ const CARRIAGE_BUILDING_ZONE_SPRITE_DEFAULT_OFFSET_Y = 0
 @export var _train_cabins_container: Node2D
 @export var _world_objects_container: Node2D
 @export var _portals_container: Node2D
+@export var _placement_preview_container: Node2D
 @export var _train_building_zone_area: Area2D
 @export var _train_building_zone_shape: CollisionShape2D
 @export var _train_building_zone_background: Sprite2D
@@ -75,11 +76,16 @@ func build_cabin(mouse_position: Vector2) -> void:
 
 
 func add_cabin(
-	start_grid_square_center_global_position: Vector2, end_grid_square_center_global_position: Vector2
+	start_grid_square_center_global_position: Vector2,
+	end_grid_square_center_global_position: Vector2
 ) -> void:
 	var cabin := _train_cabin.instantiate()
 	_train_cabins_container.add_child(cabin)
-	cabin.setup(start_grid_square_center_global_position, end_grid_square_center_global_position, height)
+	cabin.setup(
+		start_grid_square_center_global_position,
+		end_grid_square_center_global_position,
+		height
+	)
 
 
 func build_portal(mouse_position: Vector2) -> void:
@@ -101,7 +107,7 @@ func add_portal(grid_square_center_global_position: Vector2) -> Portal:
 	return portal
 
 
-func build_world_object(mouse_position) -> void:
+func build_world_object(mouse_position: Vector2) -> void:
 	var world_object = add_world_object(
 		BuildingGrid.center_global_position(mouse_position)
 	)
@@ -124,8 +130,29 @@ func add_world_object(grid_square_center_global_position: Vector2) -> WorldObjec
 	return world_object
 
 
-func commit_world_object() -> void:
-	pass
+func add_placement_preview(mouse_position: Vector2, ) -> void:
+	var factory: Node
+
+	match Globals.building_object_type:
+		Globals.ObjectType.PORTAL:
+			pass
+		Globals.ObjectType.WORLD_OBJECT:
+			factory = _world_object_factory
+
+	var placement_preview = factory.create_placement_preview(
+		Globals.building_world_object_type
+	)
+	_placement_preview_container.add_child(placement_preview)
+
+
+func clear_placement_previews() -> void:
+	for placement_preview in _placement_preview_container.get_children():
+		placement_preview.queue_free()
+
+
+func move_placement_previews(mouse_position: Vector2) -> void:
+	for placement_preview in _placement_preview_container.get_children():
+		placement_preview.move(mouse_position)
 
 
 func get_cabins_in_building_zone() -> Array[TrainCabin]:
