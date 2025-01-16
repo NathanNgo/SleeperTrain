@@ -130,7 +130,7 @@ func add_world_object(grid_square_center_global_position: Vector2) -> WorldObjec
 	return world_object
 
 
-func add_placement_preview(mouse_position: Vector2, ) -> void:
+func add_placement_preview() -> void:
 	var factory: Node
 
 	match Globals.building_object_type:
